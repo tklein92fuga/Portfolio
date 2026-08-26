@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prototype interactif — Beaucens</title>
+  <style>
+    :root{--navy:#20385d;--ink:#132a50;--cream:#fbf7ef;--paper:#fffdfa;--coral:#cf5f43;--sage:#6f9077;--gold:#bd9142;--line:#e7d7c4}
+    *{box-sizing:border-box}html{background:#eceff3}body{margin:0;color:var(--ink);font-family:Arial,sans-serif;background:var(--cream)}
+    button,input{font:inherit}button{cursor:pointer}.serif{font-family:Georgia,serif}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage)}
+    .screen{display:none;min-height:760px;padding:28px 24px 92px}.screen.active{display:block}.hero{text-align:center}.hero h1{font:italic 48px Georgia,serif;margin:18px 0 4px}.hero .date{font-size:11px;letter-spacing:.18em;color:#786f66}.portrait{height:250px;margin:28px 0;border-radius:160px 160px 14px 14px;background:linear-gradient(145deg,#d8dfcf,#f1d6c5);display:grid;place-items:center;overflow:hidden}.portrait span{font:52px Georgia,serif;color:#fff;background:#ffffff55;border:1px solid #ffffffaa;border-radius:50%;padding:30px}
+    .hero h2{font:28px Georgia,serif;line-height:1.25;margin:0 0 14px}.hero p{font-size:14px;line-height:1.65;color:#59483a}.actions{display:grid;gap:12px;margin-top:26px}.btn{border:0;border-radius:12px;padding:17px 20px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.btn.primary{background:var(--coral);color:white}.btn.secondary{background:transparent;border:1px solid var(--line);color:var(--ink)}
+    .top{background:var(--navy);color:white;margin:-28px -24px 24px;padding:25px 24px 30px}.back{border:0;background:none;color:#b8c6dc;padding:0;margin-bottom:24px}.top h2{font:40px Georgia,serif;margin:7px 0 18px}.top h2 em{display:block;color:#ff9c82;font-size:30px}.count{background:#ffffff12;border:1px solid #ffffff20;border-radius:12px;text-align:center;padding:18px}.count b{font:32px Georgia,serif;display:block}.count span{font-size:9px;letter-spacing:.22em}
+    .section-title{font:30px Georgia,serif;margin:7px 0 22px}.card{border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:20px;margin:0 0 14px}.card h3{font:22px Georgia,serif;margin:8px 0}.card p{font-size:14px;line-height:1.6;margin:7px 0;color:#49392e}.tag{float:right;border:1px solid var(--line);border-radius:20px;padding:6px 10px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}.accent{border:2px solid var(--navy);background:#f7fbf7}.notice{background:#f8eee9;border-radius:12px;padding:15px;font-size:13px;line-height:1.55;margin-bottom:16px}.transport-toggle{display:grid;grid-template-columns:1fr 1fr;background:#ede9e1;border-radius:12px;padding:5px;margin:18px 0}.transport-toggle button{border:0;border-radius:9px;padding:13px;background:transparent;color:#8a7d6f;font-weight:700}.transport-toggle button.active{background:var(--navy);color:white}.route{display:flex;justify-content:space-between;background:#f3efe8;border-radius:12px;padding:17px;margin:9px 0;font-weight:700}.route span{color:var(--coral);font:18px Georgia,serif}
+    .stay.good{background:#f4faf5}.stay h3{font:23px Georgia,serif;margin:0 0 8px}.faq-search{width:100%;border:1px solid var(--line);border-radius:12px;padding:15px;background:white;margin:0 0 14px}.faq-item{border:1px solid var(--line);background:white;border-radius:12px;margin:9px 0;overflow:hidden}.faq-q{width:100%;border:0;background:white;padding:17px;text-align:left;color:var(--ink);font:17px Georgia,serif}.faq-q span{float:right;color:var(--coral)}.faq-a{display:none;padding:0 17px 17px;color:#5e5047;font-size:13px;line-height:1.55}.faq-item.open .faq-a{display:block}
+    .rsvp label{display:block;font-size:12px;font-weight:700;margin:16px 0 7px}.rsvp input{width:100%;border:1px solid var(--line);border-radius:10px;padding:13px;background:white}.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice button{border:1px solid var(--line);border-radius:10px;padding:13px;background:white;color:var(--ink)}.choice button.selected{background:var(--navy);color:white}.success{display:none;text-align:center;padding:42px 10px}.success.show{display:block}.rsvp-form.hide{display:none}
+    .nav{position:fixed;left:0;right:0;bottom:0;display:none;grid-template-columns:repeat(4,1fr);gap:4px;background:#fffdf8;border-top:1px solid var(--line);padding:9px 8px}.nav.show{display:grid}.nav button{border:0;background:transparent;color:#657087;padding:8px 2px;font-size:10px;text-transform:uppercase}.nav button.active{color:var(--coral);font-weight:700}
+    .demo-badge{position:fixed;top:10px;right:10px;z-index:3;background:#111214;color:white;border-radius:20px;padding:6px 10px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:.82}
+  </style>
+</head>
+<body>
+  <div class="demo-badge">Prototype · données fictives</div>
+  <main>
+    <section id="home" class="screen active hero">
+      <div class="eyebrow" style="color:#a27b52">Nous nous marions</div><h1>Lucie<br>&amp; Gabriel</h1><div class="date">SAMEDI 19 SEPTEMBRE 2027</div>
+      <div class="portrait"><span>L + G</span></div><h2>Domaine des Pyrénées<br>Hautes-Pyrénées</h2>
+      <p>Confirmez votre présence, puis consultez le guide pour retrouver toutes les informations pratiques.</p>
+      <div class="actions"><button class="btn primary" data-go="rsvp">Inscription</button><button class="btn secondary" data-go="guide">Voir le guide</button></div>
+    </section>
+    <section id="guide" class="screen">
+      <div class="top"><button class="back" data-go="home">← Accueil</button><div class="eyebrow" style="color:#ffac96">Notre mariage</div><h2>Guide <em>pratique</em></h2><div class="count"><b>84</b><span>JOURS AVANT LE MARIAGE</span></div></div>
+      <div class="eyebrow">Le jour du mariage</div><h2 class="section-title">C'est ici qu'on vous attend</h2>
+      <div class="card accent"><div class="tag">Le mariage</div><div class="eyebrow">Samedi 19 septembre</div><h3>Célébration au Domaine des Pyrénées</h3><p>14 route des Cimes, 65400 Vallée des Gaves</p><button class="btn primary" style="width:100%;margin-top:10px">Voir l'itinéraire</button></div>
+      <div class="notice">ⓘ Le domaine est situé en montagne. Une automobile est recommandée.</div>
+    </section>
+    <section id="programme" class="screen">
+      <div class="eyebrow">Programme</div><h2 class="section-title">Trois jours, un seul incontournable</h2>
+      <div class="card"><div class="tag">Optionnel</div><div class="eyebrow" style="color:var(--coral)">Vendredi 18 septembre</div><h3>Accueil des proches</h3><p>18h, place du village. Un verre informel pour celles et ceux déjà sur place.</p></div>
+      <div class="card accent"><div class="tag" style="background:var(--navy);color:white">Le mariage</div><div class="eyebrow">Samedi 19 septembre</div><h3>Célébration au domaine</h3><p>Cérémonie en extérieur, dîner en salle et soirée dansante.</p></div>
+      <div class="card"><div class="tag">Optionnel</div><div class="eyebrow" style="color:var(--gold)">Dimanche 20 septembre</div><h3>Brunch des retrouvailles</h3><p>28 € par personne, uniquement sur réservation.</p></div>
+      <div class="eyebrow" style="margin-top:32px">Transports</div><h2 class="section-title">Venir jusqu'au domaine</h2>
+      <div class="transport-toggle"><button class="active" data-transport="air">Aéroports</button><button data-transport="rail">Gares</button></div><div id="routes"></div>
+    </section>
+    <section id="sleep" class="screen">
+      <div class="eyebrow">Hébergements</div><h2 class="section-title">Où dormir le samedi soir ?</h2>
+      <div class="notice">Les familles proches disposent de chambres réservées au domaine. Les autres invités peuvent choisir librement autour de la vallée.</div>
+      <div class="card stay good"><h3>Argelès-Gazost</h3><div class="eyebrow">Notre recommandation · 12 min</div><p>Hôtels indépendants, chambres d'hôtes et appartements près du centre.</p></div>
+      <div class="card stay"><h3>Lourdes</h3><div class="eyebrow">25 min</div><p>Une offre importante, du logement simple aux hôtels avec services complets.</p></div>
+      <div class="card stay"><h3>Saint-Savin &amp; Pierrefitte</h3><div class="eyebrow">8–15 min</div><p>Gîtes et locations locales, en nombre plus limité.</p></div>
+    </section>
+    <section id="faq" class="screen">
+      <div class="eyebrow">Questions fréquentes</div><h2 class="section-title">Tout ce qu'on nous demande</h2><input id="faqSearch" class="faq-search" placeholder="Rechercher une question…">
+      <div id="faqList"></div>
+    </section>
+    <section id="rsvp" class="screen rsvp">
+      <button class="back" data-go="home" style="color:#657087">← Accueil</button><div class="eyebrow">Confirmation</div><h2 class="section-title">Serez-vous des nôtres ?</h2>
+      <div class="rsvp-form"><label>Votre nom</label><input placeholder="Camille Martin"><label>Présence</label><div class="choice"><button class="selected">Oui, avec plaisir</button><button>Non, désolé·e</button></div><label>Nombre d'invités</label><input type="number" min="1" max="6" value="2"><label>Allergies ou régime</label><input placeholder="Aucune"><button id="sendRsvp" class="btn primary" style="width:100%;margin-top:24px">Envoyer ma réponse</button></div>
+      <div class="success"><div style="font-size:54px">✓</div><h2 class="section-title">Merci !</h2><p>Votre réponse fictive a bien été enregistrée pour cette démonstration.</p><button class="btn secondary" data-go="home">Retour à l'accueil</button></div>
+    </section>
+  </main>
+  <nav class="nav"><button data-go="guide">Lieu</button><button data-go="programme">Programme</button><button data-go="sleep">Dormir</button><button data-go="faq">FAQ</button></nav>
+  <script>
+    const screens=[...document.querySelectorAll('.screen')],nav=document.querySelector('.nav');
+    function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));nav.classList.toggle('show',!['home','rsvp'].includes(id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===id));scrollTo(0,0)}
+    document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+    const data={air:[['Tarbes–Lourdes','40 min'],['Pau','1 h'],['Biarritz','2 h']],rail:[['Lourdes','25 min'],['Tarbes','45 min'],['Pau','1 h 10']]};
+    function routes(k){document.querySelector('#routes').innerHTML=data[k].map(x=>`<div class="route">${x[0]}<span>${x[1]}</span></div>`).join('')};routes('air');
+    document.querySelectorAll('[data-transport]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-transport]').forEach(x=>x.classList.remove('active'));b.classList.add('active');routes(b.dataset.transport)});
+    const faqs=[['Le logement est-il compris ?','Certaines chambres sont réservées aux proches. Les autres invités choisissent leur hébergement.'],['Combien coûte le brunch ?','Le brunch fictif est proposé à 28 € par personne.'],['Faut-il une automobile ?','Elle est recommandée pour rejoindre le domaine et circuler dans la vallée.'],['Quelle tenue prévoir ?','Une tenue colorée et confortable, avec une couche chaude pour la soirée.'],['Comment signaler une allergie ?','Indiquez-la dans le formulaire de confirmation.']];
+    function faq(q=''){document.querySelector('#faqList').innerHTML=faqs.filter(x=>x[0].toLowerCase().includes(q.toLowerCase())).map(x=>`<div class="faq-item"><button class="faq-q">${x[0]}<span>+</span></button><div class="faq-a">${x[1]}</div></div>`).join('')};faq();
+    document.querySelector('#faqSearch').oninput=e=>faq(e.target.value);document.querySelector('#faqList').onclick=e=>{const q=e.target.closest('.faq-q');if(q)q.parentElement.classList.toggle('open')};
+    document.querySelectorAll('.choice button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.choice button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+    document.querySelector('#sendRsvp').onclick=()=>{document.querySelector('.rsvp-form').classList.add('hide');document.querySelector('.success').classList.add('show')};
+  </script>
+</body>
+</html>
