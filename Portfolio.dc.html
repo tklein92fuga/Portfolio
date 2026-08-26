@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body { margin:0; padding:0; }
+  body { -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #1f5fc4; }
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#f4f5f7;color:#111214;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;max-width:1120px;width:100%;margin:0 auto;padding:34px 40px 0;box-sizing:border-box">
+    <div onClick="{{ goHome }}" style="cursor:pointer;width:56px;height:64px;display:flex;align-items:center">
+      <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="width:52px;height:auto;display:block">
+    </div>
+    <nav style="display:flex;gap:64px;align-items:center;font-size:14px;letter-spacing:0.09em;text-transform:uppercase;font-weight:500">
+      <span onClick="{{ goWorks }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ worksTagBg }};color:{{ worksTagColor }};transition:background .18s,color .18s">Travaux</span>
+      <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
+      <a href="mailto:qalterescu@me.com" style="padding:5px 11px">Contact</a>
+    </nav>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box">
+      <p style="max-width:1000px;margin:0;font-size:52px;line-height:1.28;font-weight:200;letter-spacing:-0.01em;color:#3a3d42;text-wrap:pretty">Quentin Alterescu est un <strong style="font-weight:400;color:#111214">product designer</strong> actuellement à la recherche de nouvelles opportunités professionnelles.<br>
+      <strong style="font-weight:400;color:#111214">Curieux, empathique et collaboratif</strong>, je conçois des expériences utiles et humaines.</p>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isWorks }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;max-width:1120px;width:100%;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box">
+      <h1 style="margin:0 0 56px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">Travaux</h1>
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <a onClick="{{ goSG }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
+          <img src="./assets/societe-generale.png" alt="Société Générale" style="width:420px;height:auto;display:block">
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1f6b45;background:#dff5e6;border-radius:20px;padding:5px 12px">Design</span></div>
+        </a>
+        <a onClick="{{ goQatent }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
+          <img src="./assets/qatent.png" alt="Qatent" style="width:330px;height:auto;display:block">
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1f6b45;background:#dff5e6;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1d4f80;background:#dceeff;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5a2c86;background:#f0e2ff;border-radius:20px;padding:5px 12px">IA</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8a4a1f;background:#fdeadb;border-radius:20px;padding:5px 12px">QA testing</span></div>
+        </a>
+        <a onClick="{{ goTalkingHands }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
+          <img src="./assets/talking-hands.png" alt="Talking Hands" style="width:180px;height:auto;display:block">
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1f6b45;background:#dff5e6;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1d4f80;background:#dceeff;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5a2c86;background:#f0e2ff;border-radius:20px;padding:5px 12px">IA</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8a4a1f;background:#fdeadb;border-radius:20px;padding:5px 12px">QA testing</span></div>
+        </a>
+        <a onClick="{{ goBeaucens }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
+          <div style="font-family:Georgia,'Times New Roman',serif;font-size:44px;line-height:1;color:#1E3050">Beaucens</div>
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1f6b45;background:#dff5e6;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1d4f80;background:#dceeff;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8a4a1f;background:#fdeadb;border-radius:20px;padding:5px 12px">QA testing</span></div>
+        </a>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isQatent }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#25282d">
+      <img src="./assets/qatent.png" alt="Qatent" style="display:block;width:120px;height:auto;margin:0 auto 26px">
+      <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">QATENT</h1>
+      <p style="margin:0 auto;max-width:560px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Qatent est une solution exploitant l'intelligence artificielle pour générer des brevets industriels. Malgré une puissance technologique importante, l'interface existante restait complexe et peu orientée acquisition.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Lorsque j'ai rejoint le projet, Qatent évoluait dans une culture produit principalement guidée par l'ingénierie. Les fonctionnalités étaient pensées pour des utilisateurs experts, ce qui rendait l'outil difficile d'accès et limitait son potentiel commercial.</p>
+        <p style="margin:0">En tant qu'UX Designer intervenant en solo pendant six mois, j'ai travaillé à clarifier des workflows complexes, simplifier la navigation et rendre l'outil plus lisible pour soutenir l'objectif stratégique du projet : utiliser le design comme levier pour trouver de nouveaux clients sans compromettre la profondeur technique de la solution.</p>
+        <p style="margin:0">Arriver seul designer dans une équipe d'ingénieurs demandait d'abord de gagner le droit d'intervenir sur les workflows. J'ai commencé par documenter l'existant écran par écran, un travail sans production visible mais qui m'a donné le vocabulaire nécessaire pour discuter d'égal à égal avec l'équipe technique.</p>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Lorsque j'ai rejoint le projet, Qatent évoluait dans une culture produit principalement guidée par l'ingénierie. Les fonctionnalités étaient pensées pour des utilisateurs experts, ce qui rendait l'outil difficile d'accès et limitait son potentiel commercial.</p>
+        <p style="margin:0">En tant qu'UX Designer intervenant en solo pendant six mois, j'ai travaillé à clarifier des workflows complexes, simplifier la navigation et rendre l'outil plus lisible pour soutenir l'objectif stratégique du projet : utiliser le design comme levier pour trouver de nouveaux clients sans compromettre la profondeur technique de la solution.</p>
+        <p style="margin:0">Concrètement, la première rédaction d'un brevet demandait de passer par sept onglets sans qu'aucun n'indique l'étape suivante. L'outil supposait connue la logique de rédaction d'un brevet, ce qui allait de soi pour l'équipe mais pas pour un cabinet qui découvrait le produit en démonstration.</p>
+      </div>
+      <figure style="margin:34px 0 0">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;margin-bottom:12px">Dashboard de la solution à mon arrivé :</figcaption>
+        <img src="./assets/qatent-dashboard.png" alt="Dashboard Qatent à mon arrivée" style="display:block;width:100%;height:auto;border-radius:6px">
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Recherche</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Pour orienter la refonte, j'ai participé à des entretiens avec des cabinets d'avocats ainsi qu'avec des utilisateurs potentiels afin de recueillir des insights concrets sur leurs besoins, leurs attentes et leurs freins face à l'outil.</p>
+        <p style="margin:0">Le dispositif était volontairement léger : une dizaine d'entretiens d'environ une heure, menés auprès d'associés de cabinets, de juristes en entreprise et de deux ingénieurs brevets. J'y ai systématiquement demandé de me montrer le dernier brevet rédigé plutôt que de décrire un processus théorique — c'est en regardant faire que les contournements apparaissent.</p>
+        <p style="margin:0">Le résultat le plus utile n'était pas une liste de fonctionnalités manquantes mais un rapport au temps : ces profils facturent à l'heure et n'accordent que quelques minutes à un outil avant de l'abandonner. Un produit qui demande un apprentissage avant de démontrer sa valeur est éliminé, même s'il est meilleur.</p>
+        <p style="margin:0">Deuxième constat, plus délicat : la méfiance envers l'IA ne portait pas sur la qualité du texte généré mais sur la responsabilité. Un brevet mal rédigé engage le cabinet. Les utilisateurs ne voulaient pas d'un outil qui écrit à leur place, mais d'un outil dont ils gardent le contrôle et qu'ils peuvent vérifier ligne à ligne.</p>
+        <p style="margin:0">En parallèle, j'ai mené un travail d'acculturation approfondi autour du fonctionnement des brevets industriels : compréhension des étapes juridiques, du vocabulaire spécifique employé par les avocats en droit des brevets et des enjeux propres à ce domaine.</p>
+        <p style="margin:0">L'acculturation a pris une place inattendue. J'ai lu des brevets déposés, listé le vocabulaire employé — revendications, antériorité, description spécifique — et fait relire mes définitions par un ingénieur brevets de l'équipe. Sans ce travail, je n'aurais pas su distinguer un terme métier obligatoire d'un jargon interne remplaçable.</p>
+        <p style="margin:0">J'ai synthétisé le tout en un parcours annoté, du premier contact à l'export du brevet, avec à chaque étape ce que l'utilisateur cherche à savoir et ce que l'interface lui répondait alors. Ce document a servi de référence commune pendant les six mois : chaque proposition de design pouvait être rattachée à un moment précis du parcours plutôt qu'à une préférence.</p>
+        <p style="margin:0">Cette phase de recherche m'a permis d'aligner mes choix UX avec la réalité du terrain et de concevoir une expérience plus claire, adaptée aux profils techniques mais refractaires à l'IA et ces outils d'automatisations informatiques.</p>
+      </div>
+      <figure style="margin:34px 0 0">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;margin-bottom:12px">Le parcours annoté, reconstitué</figcaption>
+        <div style="background:#f7f8fa;background-image:radial-gradient(#d5dae2 1px, transparent 1px);background-size:18px 18px;border-radius:10px;padding:22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280">Découverte</div>
+              <div style="background:#ffe08a;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-1.2deg)">« Est-ce que ça écrit à ma place ? »</div>
+              <div style="background:#bcd9f7;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(1deg)">L'écran d'accueil liste 7 onglets, aucune entrée évidente</div>
+              <div style="background:#f7b6c2;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-0.6deg)">Abandon en démo au bout de 3 min</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280">Import</div>
+              <div style="background:#ffe08a;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(0.8deg)">« Je repars de mon invention disclosure »</div>
+              <div style="background:#bcd9f7;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-1deg)">Upload ou copier-coller, pas de format attendu indiqué</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280">Rédaction</div>
+              <div style="background:#ffe08a;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-0.8deg)">« Quel terme est déjà utilisé dans les revendications ? »</div>
+              <div style="background:#bcd9f7;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(1.2deg)">Suggestions de variantes, mais hors du champ de lecture</div>
+              <div style="background:#f7b6c2;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-0.4deg)">Va-et-vient constant entre texte et panneau latéral</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280">Vérification</div>
+              <div style="background:#ffe08a;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(1deg)">« Qu'est-ce que la machine a décidé sans moi ? »</div>
+              <div style="background:#bcd9f7;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-1.1deg)">Aucune trace des passages générés automatiquement</div>
+              <div style="background:#f7b6c2;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(0.6deg)">Relecture intégrale « par sécurité », donc temps perdu</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280">Export</div>
+              <div style="background:#ffe08a;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(-1deg)">« Est-ce déposable en l'état ? »</div>
+              <div style="background:#bcd9f7;padding:11px 12px;border-radius:2px;font-size:11.5px;line-height:1.45;box-shadow:0 2px 5px rgba(17,18,20,.10);transform:rotate(0.9deg)">Export PDF et Word, sans récapitulatif de ce qui reste à traiter</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:20px;margin-top:20px;flex-wrap:wrap;font-size:11px;color:#6b7280">
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;background:#ffe08a;display:inline-block"></span>Ce que l'utilisateur cherche à savoir</div>
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;background:#bcd9f7;display:inline-block"></span>Ce que l'interface répondait</div>
+            <div style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;background:#f7b6c2;display:inline-block"></span>Point de friction observé</div>
+          </div>
+        </div>
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Face à une interface dense et pensée avant tout pour des profils techniques, j'ai pris l'initiative de proposer un « easy mode » centré sur la fonctionnalité principale de la solution. L'objectif était de réduire la complexité perçue et de permettre aux utilisateurs de comprendre rapidement la valeur du produit sans naviguer dans des options avancées.</p>
+        <p style="margin:0">Cette proposition découle directement des entretiens : si la valeur doit être perçue en quelques minutes, alors l'écran d'entrée ne peut pas exposer l'ensemble des paramètres. Le mode avancé n'a pas disparu, il est devenu un choix explicite plutôt que l'état par défaut.</p>
+        <p style="margin:0">La discussion la plus difficile a porté sur ce que l'on retirait. L'équipe technique voyait dans chaque paramètre masqué une perte de puissance ; les entretiens montraient qu'un paramètre non compris n'est pas utilisé. Nous avons tranché en gardant tout accessible mais en hiérarchisant, plutôt qu'en supprimant.</p>
+      </div>
+      <figure style="margin:34px 0 0;text-align:center">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;margin-bottom:12px">Easy mode</figcaption>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+          <div>
+            <img src="./assets/qatent-easy.png" alt="Easy mode" style="display:block;width:100%;height:auto;border-radius:6px">
+            <div style="margin-top:8px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4b5057">Easy</div>
+          </div>
+          <div>
+            <img src="./assets/qatent-fast.png" alt="Fast mode" style="display:block;width:100%;height:auto;border-radius:6px">
+            <div style="margin-top:8px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4b5057">Fast</div>
+          </div>
+        </div>
+      </figure>
+      <p style="margin:34px 0 0;font-size:15px;line-height:1.72;text-wrap:pretty">Cette approche s'est accompagnée d'une refonte globale de l'interface, visant à clarifier les parcours, hiérarchiser l'information et rendre l'expérience plus intuitive. En repositionnant le design autour des usages clés plutôt que des logiques techniques, j'ai contribué à transformer un outil expert en une plateforme plus accessible et orientée acquisition.</p>
+      <p style="margin:22px 0 0;font-size:15px;line-height:1.72;text-wrap:pretty">Faute de tests utilisateurs formalisés sur ce projet, la validation s'est faite en observant les démonstrations commerciales : combien de temps avant la première question, où le prospect hésite, quelles fonctions il ne remarque pas. Ces observations ont alimenté les itérations suivantes autant que les entretiens initiaux.</p>
+      <figure style="margin:34px 0 0;text-align:center">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;margin-bottom:12px">Avant</figcaption>
+        <img src="./assets/qatent-avant.png" alt="Interface avant la refonte" style="display:block;width:100%;height:auto;border-radius:6px">
+      </figure>
+      <figure style="margin:28px 0 0;text-align:center">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;margin-bottom:12px">Apres</figcaption>
+        <img src="./assets/qatent-apres.png" alt="Interface après la refonte" style="display:block;width:100%;height:auto;border-radius:6px">
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le guided tour</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Sur un produit aussi technique, la première session détermine souvent si l'utilisateur reste ou abandonne. J'ai donc conçu un guided tour qui accompagne l'utilisateur pas à pas dans les écrans clés, au moment précis où l'action est attendue, plutôt que de le laisser découvrir seul une interface dense.</p>
+        <p style="margin:0">Chaque étape explique une notion à la fois, dans le vocabulaire des avocats en droit des brevets, et reste optionnelle : l'utilisateur peut revenir en arrière, avancer ou fermer le tour à tout moment. Cet onboarding réduit la charge cognitive au premier contact, rend la valeur du produit immédiatement lisible et diminue le besoin d'accompagnement commercial lors des démonstrations.</p>
+      </div>
+      <figure style="margin:34px 0 0;display:flex;flex-direction:column;gap:22px">
+        <figcaption style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;text-align:center">Guided tour de l'application</figcaption>
+        <img src="./assets/qatent-gt-1.png" alt="Guided tour, étape 1 : définition des relations entre les termes" style="display:block;width:100%;height:auto;border-radius:6px">
+        <img src="./assets/qatent-gt-2.png" alt="Guided tour, étape 2 : table des relations" style="display:block;width:100%;height:auto;border-radius:6px">
+        <img src="./assets/qatent-gt-3.png" alt="Guided tour, étape 3 : ajout de figure et génération du diagramme" style="display:block;width:100%;height:auto;border-radius:6px">
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Dans une équipe de sept personnes sans QA dédié, chacun testait son propre travail — et les régressions passaient. J'ai proposé de tenir ce rôle sur les parcours que j'avais dessinés : personne n'était mieux placé pour voir un écart entre ce qui était spécifié et ce qui était livré.</p>
+        <p style="margin:0">Le déclencheur a été concret. Une démonstration commerciale s'est arrêtée sur un export vide : le brevet était bien généré mais le fichier téléchargé ne contenait que l'en-tête, sur Safari uniquement. Un cas jamais testé, sur un navigateur que personne dans l'équipe n'utilisait.</p>
+      </div>
+
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Les outils</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Playwright</div>
+          <div style="color:#6b7280">Parcours critiques rejoués à chaque livraison, sur Chrome, Firefox et WebKit.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Linear</div>
+          <div style="color:#6b7280">Un ticket par anomalie, avec capture, étapes de reproduction et sévérité.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">BrowserStack</div>
+          <div style="color:#6b7280">Vérification sur les configurations réelles des cabinets, souvent Windows et Edge.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">axe DevTools</div>
+          <div style="color:#6b7280">Contrastes, ordre de tabulation et libellés des champs sur les écrans refondus.</div>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Le plan de test</h3>
+      <p style="margin:0 0 18px;font-size:15px;line-height:1.72;text-wrap:pretty">Une trentaine de cas écrits à partir du parcours annoté, priorisés par ce qui casse une démonstration plutôt que par ce qui est facile à vérifier.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8b93a1">
+          <div>Cas de test</div><div>Type</div><div>Résultat</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Import d'un invention disclosure au format .docx</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Génération complète d'un brevet en easy mode</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Export du brevet en PDF, Safari 17</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Reprise d'un brouillon après déconnexion</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Guided tour interrompu puis relancé</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#b07a1f;font-weight:700;font-size:13px">Instable</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Terme de revendication contenant une apostrophe</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Navigation clavier sur le formulaire de rédaction</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Ce que la campagne a produit</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">34</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">cas de test écrits, dont 12 automatisés</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">19</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">anomalies remontées sur deux mois</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">4</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">bloquantes, corrigées avant la mise en production</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Les deux anomalies les plus utiles n'étaient pas des bugs techniques mais des écarts de conception. La reprise d'un brouillon après déconnexion perdait les termes définis mais gardait le texte : l'utilisateur retrouvait un document qui semblait intact et découvrait le problème à l'export. Nous avons préféré un avertissement explicite au retour, plutôt qu'une restauration silencieuse et partielle.</p>
+        <p style="margin:0">Le cas de l'apostrophe dans un terme de revendication venait d'un caractère mal échappé. Trivial à corriger, mais révélateur : mes maquettes utilisaient des exemples propres, jamais le vocabulaire réel d'un brevet. J'ai depuis rempli les prototypes avec des extraits de brevets déposés.</p>
+        <p style="margin:0">Les douze tests automatisés couvrent le chemin qui compte : importer, rédiger, générer, exporter. Ils tournent à chaque livraison et ont surtout servi à empêcher les retours en arrière — deux régressions rattrapées avant recette sur la période.</p>
+        <p style="margin:0">Ce rôle a changé ma façon de concevoir. Écrire les cas de test avant la livraison m'obligeait à décrire les états d'erreur, les cas vides et les limites de saisie au moment des maquettes, pas après. C'est le retour le plus direct que j'ai eu sur la qualité de mes propres spécifications.</p>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Qatent est le projet où j'ai eu le plus de latitude et le moins de repères. Seul designer dans une équipe d'ingénieurs, sur un domaine — la propriété industrielle — dont j'ignorais tout, j'ai passé les premières semaines à comprendre avant de proposer. C'est le meilleur investissement que j'ai fait sur ce poste.</p>
+        <p style="margin:0">La leçon principale porte sur la nature du problème. L'équipe pensait avoir un problème d'interface ; les entretiens ont montré un problème de confiance. Les utilisateurs ne refusaient pas l'outil parce qu'il était complexe, mais parce qu'ils ne voyaient pas ce que la machine décidait à leur place, sur un document qui engage leur responsabilité. Une refonte purement visuelle n'aurait rien changé.</p>
+        <p style="margin:0">J'ai aussi appris à travailler la contrainte du temps comme une donnée de conception. Quand l'utilisateur accorde trois minutes à un produit, la hiérarchie de l'écran d'entrée n'est plus une préférence esthétique : c'est ce qui détermine si le produit est essayé ou abandonné. Le easy mode découle directement de cette contrainte.</p>
+        <p style="margin:0">Le rôle de recette m'a donné la boucle de retour que je n'avais pas. Voir mes propres écrans échouer sur des cas que je n'avais pas décrits — un caractère spécial, une session interrompue — m'a rendu plus précis en amont. Je spécifie désormais les états d'erreur en même temps que les états nominaux.</p>
+        <p style="margin:0">Ce que je referais différemment : formaliser des tests utilisateurs plutôt que m'appuyer sur l'observation des démonstrations commerciales. Cela a suffi pour orienter les itérations, mais je n'ai pas de mesure avant/après sur le temps de première rédaction. C'est la donnée qui manque pour prouver l'effet de la refonte.</p>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isTalkingHands }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#25282d">
+      <img src="./assets/talking-hands.png" alt="Talking Hands" style="display:block;width:78px;height:auto;margin:0 auto 26px">
+      <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">TALKING HANDS</h1>
+      <p style="margin:0 auto;max-width:560px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Talking Hands est une application basée sur l'intelligence artificielle, conçue pour faciliter l'apprentissage de la langue des signes de manière interactive et accessible.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Ce projet axé sur l'accessibilité est né d'une problématique réelle rencontrée par un collègue sourd qui avait des difficultés à participer efficacement à des conférences à distance et à des cours en ligne. Les méthodes de communication traditionnelles, comme le chat textuel, étaient contraignantes et perturbaient le déroulement naturel des présentations et des échanges.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Notre équipe a identifié un manque important en matière d'accessibilité sur les plateformes de visioconférence, où les personnes sourdes ou malentendantes doivent s'appuyer sur des modes de communication textuels lents et perturbants pendant les sessions en temps réel. Cette limite affecte fortement leur capacité à participer de manière fluide et naturelle aux environnements virtuels, qu'ils soient éducatifs ou professionnels.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La technologie</h2>
+      <img src="./assets/th-tech.png" alt="Python et Google MediaPipe" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto 30px">
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Sur ce projet, j'ai contribué à l'aspect technique à travers le developpement d'une application Python et en participant à l'entraînement du modèle d'intelligence artificielle. Pour cela, j'ai constitué et utilisé un ensemble de photos représentant les différentes lettres de l'alphabet en langue des signes, afin d'améliorer la reconnaissance des gestes et la précision du système.</p>
+        <p style="margin:0">Cette implication m'a permis de faire le lien entre conception UX et contraintes techniques liées à l'IA.</p>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">La proposition actuelle prend la forme d'une application low-fi, conçue comme un premier prototype fonctionnel capable de reconnaître les lettres de l'alphabet en langue des signes.</p>
+        <p style="margin:0">Cette version initiale permet de valider les bases techniques de la reconnaissance gestuelle ainsi que les premiers principes d'interaction, avec l'objectif d'itérer progressivement vers une expérience plus complète et aboutie.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:32px">
+        <img src="./assets/th-app-f.png" alt="Reconnaissance de la lettre F" style="display:block;width:100%;max-width:430px;height:auto">
+        <img src="./assets/th-app-e.png" alt="Reconnaissance de la lettre E" style="display:block;width:100%;max-width:430px;height:auto">
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture</h2>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">La reconnaissance ne travaille jamais sur l'image brute. MediaPipe extrait les landmarks de la main, dont les coordonnées deviennent directement le vecteur d'entrée du classifieur. Le choix était entre classer l'image entière, un recadrage de la main, ou seulement la position des doigts : cette dernière option réduit fortement la dimension des données tout en conservant l'information utile, et rend le modèle indifférent à l'arrière-plan comme à l'éclairage.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:26px">
+        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#8b93a1;margin-bottom:8px">01 — CAPTURE</div>
+          <div style="font-size:14px;line-height:1.55">Flux webcam, image miroir pour rendre le geste naturel à l'écran.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#8b93a1;margin-bottom:8px">02 — LANDMARKS</div>
+          <div style="font-size:14px;line-height:1.55">MediaPipe Hands renvoie les points de la main ; on ne garde que les coordonnées x et y.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#8b93a1;margin-bottom:8px">03 — VECTORISATION</div>
+          <div style="font-size:14px;line-height:1.55">Les landmarks sont mis à plat dans un seul vecteur, une image devenant une liste de coordonnées.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#8b93a1;margin-bottom:8px">04 — CLASSIFICATION</div>
+          <div style="font-size:14px;line-height:1.55">Un Random Forest prédit la lettre, affichée à l'écran dans un cadre calé sur la main.</div>
+        </div>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Le retour visuel fait partie de l'expérience : le cadre et la lettre affichés en direct sur l'image indiquent à l'utilisateur que son geste est bien vu, et à quel endroit la caméra le lit.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le code</h2>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le projet est découpé en quatre scripts indépendants, qui se transmettent leur travail par deux fichiers intermédiaires. Chaque étape peut ainsi être relancée seule, sans refaire les précédentes.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">collect_imgs.py</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Ouvre la webcam et enregistre 100 images par signe dans <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">./data/0</span>, <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">/1</span>, <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">/2</span>. La classe est portée par le nom du dossier : pas de fichier de labels à maintenir.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:22px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8b93a1">↓ &nbsp;./data/&lt;classe&gt;/*.jpg</div>
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">create_dataset.py</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Parcourt les images, extrait les landmarks avec MediaPipe et écrit chaque main sous forme de vecteur de coordonnées. C'est ici que l'image disparaît : la suite du projet ne manipule plus que des nombres.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:22px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8b93a1">↓ &nbsp;data.pickle — {data, labels}</div>
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">train_classifier.py</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Charge le jeu de données, sépare entraînement et test, entraîne le Random Forest, affiche le score puis sérialise le modèle. Aucune dépendance à la webcam : le script tourne en quelques secondes.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:22px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8b93a1">↓ &nbsp;model.p</div>
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">inference_classifier.py</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Rejoue exactement la même extraction que <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px">create_dataset.py</span>, mais sur le flux vidéo, charge le modèle et dessine la lettre prédite dans un cadre calé sur la main.</div>
+        </div>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le point sensible de cette architecture est la symétrie entre les deux derniers scripts : si l'extraction des landmarks change à l'entraînement sans changer à l'inférence, le modèle reçoit un vecteur qu'il n'a jamais vu et les prédictions deviennent incohérentes, sans erreur apparente. Cette contrainte est la vraie raison du découpage en fichiers plutôt qu'en un seul programme.</p>
+      <p style="margin:22px 0 0;font-size:15px;line-height:1.72;text-wrap:pretty">Le jeu de données a été constitué à la main, webcam comprise : 100 images par signe, en variant la distance à la caméra et le cadrage. Le modèle est un Random Forest, entraîné sur 80 % des images et évalué sur les 20 % restantes, tirées de façon aléatoire en conservant la proportion de chaque classe. Sur ce jeu de test, toutes les images sont correctement classées — un résultat à relativiser : trois signes très distincts, capturés par une seule personne dans un seul environnement.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les limites</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Le prototype reconnaît trois lettres de l'alphabet dactylologique — A, B et L — et non des signes. La démarche s'étend à n'importe quel autre symbole sans changer le pipeline, mais la langue des signes repose sur le mouvement, l'expression du visage et l'espace autour du corps : l'alphabet épelé n'en est qu'une petite partie, utilisée surtout pour les noms propres.</p>
+        <p style="margin:0">La suite porte donc sur la reconnaissance de séquences plutôt que d'images fixes, et sur l'intégration du retour visuel directement dans l'outil de visioconférence, là où le besoin est né.</p>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Un modèle qui annonce 100 % de précision sur son jeu de test ne prouve rien : il a été entraîné et évalué sur les mêmes mains, la même webcam et la même lumière. Toute la recette a consisté à sortir de ces conditions pour voir où la reconnaissance cède.</p>
+        <p style="margin:0">J'ai donc traité le prototype comme un produit à éprouver plutôt que comme une démonstration à réussir. Le protocole était volontairement hostile : d'autres mains que les nôtres, une pièce mal éclairée, un fond chargé, et des gestes tenus approximativement plutôt que parfaitement.</p>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Les outils</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">pytest</div>
+          <div style="color:#6b7280">Tests unitaires sur l'extraction des landmarks : longueur du vecteur, ordre des points, cas sans main détectée.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">scikit-learn</div>
+          <div style="color:#6b7280">Matrice de confusion et validation croisée, pour distinguer un vrai score d'un sur-apprentissage.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Jeu de test tiers</div>
+          <div style="color:#6b7280">60 images capturées par trois personnes extérieures au projet, jamais vues à l'entraînement.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Journal de session</div>
+          <div style="color:#6b7280">Chaque essai filmé et annoté : conditions, gestes tenus, prédictions obtenues.</div>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Le plan de test</h3>
+      <p style="margin:0 0 18px;font-size:15px;line-height:1.72;text-wrap:pretty">Douze cas, écrits pour attaquer les hypothèses du prototype plutôt que pour confirmer qu'il fonctionne.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8b93a1">
+          <div>Cas de test</div><div>Type</div><div>Résultat</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Vecteur de 42 valeurs pour toute main détectée</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Image sans main : aucune prédiction émise</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Reconnaissance des trois lettres, main de l'auteur</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Reconnaissance sur trois mains inconnues</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#b07a1f;font-weight:700;font-size:13px">Instable</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Contre-jour, fenêtre derrière l'utilisateur</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Main gauche au lieu de la main droite</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Deux mains dans le cadre</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Main à plus d'un mètre de la caméra</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#b07a1f;font-weight:700;font-size:13px">Instable</div>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Ce que la campagne a révélé</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">100 %</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">sur le jeu de test interne — score trompeur</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">71 %</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">sur les mains inconnues, en lumière correcte</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">4</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">limites structurelles identifiées</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">L'écart entre 100 % et 71 % est le résultat le plus utile du projet. Il ne vient pas d'un défaut du modèle mais du jeu de données : cent images par lettre, capturées d'affilée par une seule personne, décrivent une main et non un geste. Le Random Forest apprend cette main-là.</p>
+        <p style="margin:0">Deux échecs étaient prévisibles et pourtant non traités. La main gauche produit un vecteur en miroir que le modèle n'a jamais vu ; la présence de deux mains fait choisir la première détectée, sans que rien ne le signale à l'écran. Dans les deux cas le défaut n'est pas la prédiction fausse, c'est l'absence de doute affiché.</p>
+        <p style="margin:0">Le contre-jour casse la détection en amont : MediaPipe ne trouve pas la main, donc aucune prédiction n'est émise. Ce cas nous a fait ajouter un état explicite « main non détectée », distinct d'une prédiction incertaine — deux situations que l'interface confondait.</p>
+        <p style="margin:0">Ces essais ont surtout changé la feuille de route. Avant d'ajouter des lettres, il faut élargir le jeu de données à plusieurs personnes et afficher un indice de confiance. Un prototype qui se trompe en silence est plus dangereux qu'un prototype qui reconnaît moins de signes.</p>
+      </div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La suite</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">La piste que nous voulons explorer est scolaire : une application d'apprentissage de la langue des signes, où l'élève signe devant la caméra et reçoit une correction immédiate. La reconnaissance change alors de rôle — elle ne sert plus à traduire, mais à vérifier.</p>
+        <p style="margin:0">Ce déplacement rend le prototype pertinent tel quel : pour un exercice, l'application connaît déjà la lettre attendue et n'a qu'à confirmer que le geste correspond. Elle peut donc corriger avec certitude sur un vocabulaire restreint, là où une traduction libre demanderait un modèle bien plus large.</p>
+        <p style="margin:0">Restent trois sujets de conception avant d'aller plus loin : formuler un retour utile quand le geste est presque juste, doser la progression pour qu'un élève ne se décourage pas sur une lettre, et concevoir l'expérience avec des enseignants et des locuteurs sourds plutôt que pour eux.</p>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isSG }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#25282d">
+      <img src="./assets/societe-generale.png" alt="Société Générale" style="display:block;width:230px;height:auto;margin:0 auto 26px">
+      <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">SOCIETE GENERALE</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Au sein de SG Assurances, j'ai travaillé en tant que product designer sur quatre projets : deux parcours de souscription distribués par BoursoBank, un parcours de souscription pour les professionnels et un outil interne d'analyse de verbatims assisté par IA.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 30px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les missions</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div onClick="{{ goVerbatim }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Verbatim IA</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Outil interne d'analyse des verbatims clients</div>
+        </div>
+        <div onClick="{{ goGenepro }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Génépro/Généclé</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Parcours unique de souscription pour les professionnels</div>
+        </div>
+        <div onClick="{{ goAlabri }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Alabri</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Assurance habitation distribuée par BoursoBank</div>
+        </div>
+        <div onClick="{{ goCarapass }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Carapass</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Assurance automobile distribuée par BoursoBank</div>
+        </div>
+      </div>
+      <p style="margin:20px 0 0;font-size:13px;line-height:1.65;color:#8b93a1;text-wrap:pretty">Les captures présentées dans ces quatre projets sont volontairement dézoomées, floutées ou partielles : les parcours et les documents de travail relèvent de données internes à Société Générale. Elles servent à illustrer une démarche, pas à restituer les écrans en détail. Je peux commenter le raisonnement de vive voix.</p>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isVerbatim }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#25282d">
+      <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#1f6fd0">← Retour</span>
+      <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">VERBATIM IA</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Verbatim IA est un projet né du besoin exprimé par les conseillers relation client de simplifier l'analyse des verbatims, afin d'anticiper et de répondre plus efficacement aux attentes des clients.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#eceff3;border-radius:8px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:12px">Bon à savoir</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
+          <li>Un projet de l'expression des besoins à la livraison des maquettes</li>
+          <li>Animation d'ateliers</li>
+          <li>Conception des maquettes avec Design System</li>
+        </ul>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait par e-mails, sous forme de comptes rendus, rédigés après les points de présentation des maquettes avec les chiffres de projet.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Ce format écrit servait aussi de trace des décisions de design : chaque compte rendu reprenait les arbitrages validés, ce qui évitait de rejouer les mêmes débats d'un point à l'autre.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Ce détail a compté quand un conseiller a rejoint les points en cours de route : il a rattrapé trois mois d'arbitrages en relisant les comptes rendus, sans que l'on rejoue les discussions.</p>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Des points designs hebdomadaires pour présenter les maquettes et récupérer du feedback pour itérer.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Présenter tôt et souvent, même des écrans incomplets, a permis de corriger la structure de l'information avant d'entrer dans le détail visuel.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">À la troisième semaine, le métier a demandé un tri par volume plutôt que par thème. C'était une remise en cause de la structure, mais encore peu coûteuse à ce stade : c'est exactement ce que l'on cherche en montrant tôt.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Atelier d'idéation / Cadrage</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Matérialiser le besoin sous forme de wireframe</li>
+          <li>Cadrer le besoin</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Atelier de 40 min se divisant en deux exercices et une phase de retour. Une partie pour de la priorisation des features et une partie sur comment ces features peuvent se matérialiser.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">L'atelier avait un objectif précis : faire exprimer aux conseillers ce qu'ils regardent en premier dans un verbatim. Les priorités qui en sont sorties ont directement défini la hiérarchie du dashboard.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">L'exercice a aussi servi d'arbitre. Deux conseillers voulaient un accès direct aux verbatims bruts, la majorité demandait d'abord une synthèse. Les deux besoins coexistent aujourd'hui, mais dans cet ordre.</p>
+      <img src="./assets/vb-atelier.png" alt="Board FigJam de l'atelier d'idéation" style="display:block;width:100%;height:auto;border-radius:6px">
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Écrans</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Matérialiser les idées de l'atelier précédent</li>
+          <li>Se projeter avec une interface du design system</li>
+          <li>Fournir les écrans aux développeurs</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">L'atelier nous a donné beaucoup de pistes pour construire les premiers écrans. Les écrans suivants sont les versions finales après quelques itérations alimentées par des retours pendant les points designs.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le principal enjeu était la densité : afficher assez d'information pour analyser sans transformer l'écran en tableau illisible. J'ai donc séparé la lecture globale, sur l'Accueil, du travail détaillé, sur la page Verbatims.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Un point de friction est resté longtemps ouvert : la note attribuée par l'IA. Les conseillers voulaient pouvoir la corriger, l'équipe technique craignait le bruit introduit dans les données. Le compromis a été une évaluation explicite et tracée, qui alimente le modèle sans écraser sa sortie.</p>
+      <figure style="margin:22px 0 22px">
+        <img src="./assets/vb-accueil.png" alt="Écran Accueil de Verbatim IA" style="display:block;width:100%;height:auto;border-radius:6px">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Cet écran montre la page « Accueil » de l'outil. Elle se présente comme un dashboard, elle permet d'avoir une vision globale sur les catégories de verbatims qualifiés par l'IA avec différents paramètres.</figcaption>
+      </figure>
+      <figure style="margin:0 0 22px">
+        <img src="./assets/vb-verbatims.png" alt="Écran Verbatims de Verbatim IA" style="display:block;width:100%;height:auto;border-radius:6px">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Cet écran montre la page « Verbatims » de l'outil. Elle permet de visualiser l'ensemble des verbatims dans un tableau. Le tableau peut être filtré et chaque verbatim qualifié par l'IA peut être évalué.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <img src="./assets/vb-global.png" alt="Vue globale du projet Verbatim IA" style="display:block;width:100%;height:auto;border-radius:6px">
+        <figcaption style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;text-align:center">Vue globale du projet</figcaption>
+      </figure>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isGenepro }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#25282d">
+      <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#1f6fd0">← Retour</span>
+      <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">GÉNÉPRO / GÉNÉCLÉ</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Génépro et Généclé sont des assurances destinées aux professionnels. Jusqu'à présent, leur souscription s'effectuait via d'anciens outils proposant un parcours fragmenté. Il a donc été décidé de mettre en place un parcours unique de souscription, intégré dans un environnement dédié.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#eceff3;border-radius:8px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:12px">Bon à savoir</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
+          <li>Un projet de l'expression des besoins à la livraison des maquettes</li>
+          <li>2 parcours à maquetter</li>
+          <li>Animation d'ateliers</li>
+          <li>Conception des maquettes avec Design System</li>
+          <li>Tests utilisateurs</li>
+        </ul>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait grâce aux commentaires laissés sur les maquettes.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Commenter directement sur les écrans a rapproché le feedback de son contexte : chaque remarque restait rattachée à l'élément concerné plutôt qu'à un compte rendu séparé.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Effet secondaire utile : les développeurs ont commencé à commenter les maquettes eux-mêmes pour signaler les cas techniquement impossibles, avant même la phase de spécification.</p>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Des points designs hebdomadaires pour présenter les maquettes et récupérer du feedback et itérer.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Ce rythme hebdomadaire servait surtout à aligner le métier, le développement et l'homologation sur une même version de référence.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Une seule règle a suffi à rendre ces points efficaces : ne présenter que des écrans complets sur un scénario donné, jamais des fragments. Les discussions portaient alors sur le parcours et non sur des détails isolés.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Atelier d'idéation / Cadrage</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Cadrer le besoin en termes de features</li>
+          <li>Réfléchir à une idée des étapes et de leur contenu</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 10px;font-size:15px;line-height:1.72">Atelier de tri par cartes sur une durée de 45 min.</p>
+      <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6">
+        <li>1er étape : lister les features et échanges des participants</li>
+        <li>2ème étape : classer ces features par étapes du parcours</li>
+      </ul>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le tri par cartes a permis de trancher collectivement le découpage du parcours en étapes, un sujet sur lequel les avis métier divergeaient nettement.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le désaccord principal portait sur la place des bénéficiaires : au début du parcours pour les uns, juste avant la validation pour les autres. Le tri par cartes a tranché en rendant visible que cette information dépendait de choix faits plus tôt.</p>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Écrans</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Matérialiser les idées de l'atelier précédent</li>
+          <li>Se projeter avec une interface au design system</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">L'atelier nous a donné beaucoup de pistes pour construire les premiers écrans. Les écrans suivants sont les versions finales après quelques itérations alimentées par des retours pendant les points designs.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Deux parcours devaient cohabiter sans dupliquer le design : les écrans reposent sur une trame commune, seul le contenu propre à chaque offre change.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Cette trame commune a réduit d'environ un tiers le nombre d'écrans à maquetter, et surtout garanti qu'une correction faite sur un parcours ne soit pas oubliée sur l'autre.</p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:22px">
+        <figure style="margin:0">
+          <img src="./assets/gp-caracteristiques.png" alt="Étape Caractéristiques du parcours Génépro" style="display:block;width:100%;height:auto;border-radius:6px">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Étape Caractéristiques : garanties, cotisation et formalités médicales sur un seul écran, avec les montants ajustables et leurs bornes.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/gp-beneficiaires.png" alt="Étape Bénéficiaires du parcours Génépro" style="display:block;width:100%;height:auto;border-radius:6px">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Étape Bénéficiaires : trois clauses proposées, dont le texte juridique s'affiche dès la sélection plutôt que dans un document séparé.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/gp-recapitulatif.png" alt="Récapitulatif avant validation" style="display:block;width:100%;height:auto;border-radius:6px">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Le récapitulatif, retravaillé après les tests pour rester lisible à voix haute face au client.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/gp-vue-globale.png" alt="Vue globale des parcours Génépro et Généclé" style="display:block;width:100%;height:auto;border-radius:6px">
+          <figcaption style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;text-align:center">Vue globale du projet</figcaption>
+        </figure>
+      </div>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Tests utilisateurs</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Améliorer les maquettes pour les utilisateurs finaux</li>
+          <li>Rencontrer les conseillers en agence</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 10px;font-size:15px;line-height:1.72;text-wrap:pretty">Les tests utilisateurs consistaient à exposer différents scénarios aux conseillers en agence pendant une durée de 45 min.</p>
+      <ul style="margin:0 0 22px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6">
+        <li>12 testeurs</li>
+        <li>4 scénarios (2 par parcours, Pro et Clé)</li>
+        <li>45 min par test</li>
+      </ul>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Les tests ont surtout révélé des problèmes de vocabulaire et d'ordre des questions : deux corrections peu coûteuses en conception, mais décisives sur la capacité des conseillers à aller au bout du parcours.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Un test a été particulièrement instructif : une conseillère a lu le récapitulatif à voix haute à son client, ce que nous n'avions pas anticipé. Le récapitulatif a été retravaillé pour rester lisible à l'oral, en phrases plutôt qu'en libellés.</p>
+      <figure style="margin:0">
+        <img src="./assets/gp-grille-test.png" alt="Grille de test utilisateurs" style="display:block;width:100%;height:auto;border-radius:6px">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Grille de test pour recueillir les verbatims et faire un suivi quantitatif du parcours</figcaption>
+      </figure>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isAlabri }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#25282d">
+      <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#1f6fd0">← Retour</span>
+      <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">ALABRI</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Le produit Alabri est une assurance habitation distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#eceff3;border-radius:8px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:12px">Bon à savoir</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
+          <li>Un parcours déjà présent au début de la mission</li>
+          <li>Un parcours non audité au niveau de l'UX</li>
+          <li>4 développeurs, 1 PO, 1 PPO, 1 BA, 3 homologateurs</li>
+          <li>On s'inspire de l'UI de BoursoBank sans avoir accès à leur Design System</li>
+        </ul>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
+      <p style="margin:0 0 20px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait auparavant par e-mail, sous forme de comptes rendus, ce qui entraînait des oublis et un manque de clarté. Afin d'optimiser ce processus, nous avons mis en place un fichier Excel dédié au suivi des tâches. Différents paramètres, définis conjointement avec les parties prenantes, permettent désormais de mieux qualifier et prioriser chaque tâche.</p>
+      <figure style="margin:0 0 26px"><img src="./assets/al-suivi-taches.png" alt="Fichier Excel de suivi des tâches" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Chaque ligne porte son demandeur, son objectif, son échéance, et son état de validation design et BA.</figcaption></figure>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Un point design hebdomadaire pour discuter et présenter les tâches faites et à faire pour le prochain point design.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Les missions ont été variées, allant de projets de grande envergure à des actions d'amélioration rapide.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Cette diversité demandait de garder une vision d'ensemble du parcours tout en livrant des correctifs au rythme des sprints.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">En pratique je tenais deux listes : les chantiers, discutés en point design, et les correctifs rapides, traités directement avec les développeurs. Sans cette séparation, les petits sujets prenaient toute la place.</p>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <figure style="margin:0"><img src="./assets/al-chantiers-2024.png" alt="Frise des chantiers 2024" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">2024 : audit UX au premier trimestre, puis packs d'offres, chantier e-mails, accès espace assurance et assurance scolaire.</figcaption></figure>
+        <figure style="margin:0"><img src="./assets/al-chantiers-2025.png" alt="Frise des chantiers 2025" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">2025 : livraison de l'assurance scolaire, date d'effet, page récapitulatif, puis correctifs continus.</figcaption></figure>
+      </div>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Maquetter le parcours entier</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Avoir des maquettes du parcours en recette à jour sur Figma</li>
+          <li>Faciliter la discussion avec les parties prenantes lors de point</li>
+        </ul>
+      </div>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Maintenir les maquettes au niveau de la recette a fait de Figma la référence partagée du parcours : les échanges portaient sur des écrans réels plutôt que sur des descriptions.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Cela a changé la nature des réunions : un homologateur a pu vérifier un cas limite en ouvrant la maquette pendant la discussion, au lieu d'attendre la livraison en recette.</p>
+
+      <figure style="margin:0"><img src="./assets/al-figma-parcours.png" alt="Vue Figma des parcours mobile et desktop" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Le fichier Figma tenu à jour : simulation et souscription, en mobile et desktop, avec un cadre par cas (occupant avec foyer, sans foyer, non occupant).</figcaption></figure>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Audit UX du parcours</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Améliorer l'UI du parcours</li>
+          <li>Alimenter les développeurs en US</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Pour réaliser cet audit, j'ai appliqué les critères de Bastien &amp; Scapin à l'ensemble des écrans du parcours. Les erreurs de design identifiées ont ensuite été classifiées dans un fichier Excel, selon différents paramètres définis en concertation avec les parties prenantes.</p>
+        <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Enfin, les résultats ont été présentés aux collaborateurs du projet (environ 15 personnes) lors d'une réunion dédiée.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Classer chaque erreur par critère et par gravité a transformé l'audit en backlog priorisé, directement exploitable par les développeurs.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Présenter l'audit à une quinzaine de personnes demandait un cadrage : j'ai montré cinq erreurs représentatives plutôt que la liste complète, puis renvoyé au fichier pour le détail. Les corrections les plus visibles ont été planifiées dans les deux sprints suivants.</p>
+      </div>
+      <figure style="margin:22px 0 0"><img src="./assets/al-audit-classification.png" alt="Fichier de classification des erreurs de design" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Chaque écran est repris critère par critère, avec une recommandation, une valeur design, une complexité et un statut de traitement.</figcaption></figure>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Ajout des packs à l'offre d'assurance</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Acquérir plus de souscriptions en étoffant l'offre d'assurance</li>
+          <li>Maquetter l'ajout des packs</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">L'ajout des packs a nécessité plusieurs mois de conception pour avoir une version finale. Il a fallu ajouter plusieurs éléments de design à différents endroits du parcours et réfléchir à la cinématique en lien avec les règles de gestion.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">L'enjeu était d'enrichir l'offre sans alourdir le parcours : les packs apparaissent au moment du choix des garanties, avec un impact tarifaire visible immédiatement.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">La contrainte venait des règles de gestion : certains packs sont incompatibles entre eux. Plutôt qu'une erreur après validation, les combinaisons impossibles sont désactivées à la sélection, avec l'explication à côté.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
+        <figure style="margin:0"><img src="./assets/al-equipements.png" alt="Écran de déclaration des équipements" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">L'écran amont : déclarer ses équipements sans engagement, avec la mention explicite que cela conditionne les packs proposés plus loin.</figcaption></figure>
+        <figure style="margin:0"><img src="./assets/al-packs.png" alt="Écran de sélection des garanties et packs" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Les packs recommandés sont pré-activés et distingués des packs « à la carte », chacun avec son prix mensuel.</figcaption></figure>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isCarapass }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#25282d">
+      <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#1f6fd0">← Retour</span>
+      <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">CARAPASS</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Le produit Carapass est une assurance automobile distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#eceff3;border-radius:8px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:12px">Bon à savoir</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
+          <li>Un parcours en phase conception</li>
+          <li>4 développeurs, 1 PO, 1 PPO, 1 BA, 3 homologateurs</li>
+          <li>On s'inspire de l'UI de BoursoBank sans avoir accès à leur Design System</li>
+        </ul>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
+      <p style="margin:0 0 20px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches était fait par mail sous la forme de CR, résultant en des oublis et un manque de clarté. Nous avons mis en place un fichier Excel pour optimiser le suivi des tâches à effectuer. Différents paramètres ont été mis en place avec les parties prenantes pour qualifier la tâche.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Rendre le suivi visible a réduit les allers-retours et permis d'objectiver la priorisation avec les parties prenantes.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le fichier a aussi servi de mémoire : quand une demande revenait deux mois plus tard, la ligne existait déjà, avec la raison pour laquelle elle avait été repoussée.</p>
+      <figure style="margin:0 0 26px"><img src="./assets/cp-suivi-taches.png" alt="Fichier de suivi des tâches Carapass" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">Chaque ligne renvoie au lien Figma concerné, avec son échéance, sa priorité et son état de validation.</figcaption></figure>
+      <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Un point design hebdomadaire pour discuter et présenter les tâches faites et à faire pour le prochain point design.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Les missions ont été très diverses, de chantiers à des améliorations rapides.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Travailler sur un parcours encore en conception laissait plus de latitude pour poser les fondations UX avant l'arrivée des contraintes techniques.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">J'en ai profité pour cadrer le parcours de bout en bout avant d'entrer dans les écrans, ce qui a évité de concevoir des étapes que les règles d'éligibilité rendaient de toute façon inutiles.</p>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Maquetter le parcours entier</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Avoir des maquettes du parcours en recette à jour sur Figma</li>
+          <li>Faciliter la discussion avec les parties prenantes lors de points</li>
+        </ul>
+      </div>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Les maquettes servaient de support de décision à chaque point : elles rendaient tangibles les règles de gestion discutées avec Boursorama.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Les échanges avec Boursorama portaient autant sur la marque que sur l'ergonomie : deux équipes design, deux systèmes, un seul parcours pour l'utilisateur. Les maquettes ont servi de terrain commun pour arbitrer sur des écrans plutôt que sur des intentions.</p>
+
+      <figure style="margin:0"><img src="./assets/cp-figma-parcours.png" alt="Vue Figma du parcours Assurance auto BoursoBank" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">La vue d'ensemble du parcours : éligibilité, véhicule, usages, informations générales, conducteurs, puis les formules.</figcaption></figure>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Création de page tarif</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Afficher le tarif, les options et le choix de formule</li>
+          <li>Donner un récapitulatif modulable à l'utilisateur</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">La page tarif est une partie très importante du parcours, c'est ici que l'utilisateur va valider sa formule pour passer à la souscription. Il faut qu'elle soit à la fois claire et exhaustive. Elle regroupe toutes les informations et options de l'offre. Suite à de nombreux points et échanges avec Boursorama, voici le résultat :</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">La difficulté était de rendre comparables des formules qui n'ont pas le même nombre d'options, sans multiplier les écrans ni masquer le prix final.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le principe retenu est simple : le prix reste affiché en permanence et se met à jour à chaque option cochée. Le récapitulatif devient un outil de simulation plutôt qu'un écran de confirmation.</p>
+      <figure style="margin:0"><img src="./assets/cp-page-tarif.png" alt="Écrans de la page tarif" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">La page tarif : la formule et ses garanties restent visibles pendant l'ajout des options, des franchises et des conducteurs.</figcaption></figure>
+
+      <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Recherche par marque</h3>
+      <div style="background:#eceff3;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:10px">Besoins</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
+          <li>Rechercher sa voiture à l'aide de sa marque</li>
+        </ul>
+      </div>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Voici une autre partie du parcours qui est le fruit d'itérations entre Boursorama et notre équipe.</p>
+      <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Partir de la marque plutôt que d'un formulaire complet réduit l'effort de saisie en début de parcours, là où l'abandon est le plus fréquent.</p>
+      <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Un détail a demandé plusieurs itérations : que faire quand la marque saisie n'existe pas dans le référentiel. Nous avons préféré une suggestion immédiate à un message d'erreur, pour ne pas bloquer l'utilisateur sur une faute de frappe.</p>
+      <figure style="margin:0"><img src="./assets/cp-recherche-marque.png" alt="Écrans de la recherche par marque" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #e6e9ee"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057;text-align:center">La recherche par marque, déclinée en quatre étapes courtes — marque, modèle, énergie, puissance — avec les états de saisie et de sélection.</figcaption></figure>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isBeaucens }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#25282d">
+      <div style="text-align:center;margin-bottom:26px">
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:52px;line-height:1;color:#1E3050">Beaucens</div>
+      </div>
+      <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">MARIAGE À BEAUCENS</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">Un site privé pour un mariage de décembre 2026 dans les Hautes-Pyrénées : confirmation de présence, guide pratique pour les invités et espace de suivi pour les organisateurs. Conçu et développé seul, mis en ligne sur GitHub Pages.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Un mariage se pilote habituellement par messages : un groupe WhatsApp pour les questions, un tableur pour les réponses, des relances individuelles pour les manquants. Le problème n'est pas le manque d'information mais sa dispersion — chaque invité repose la question déjà posée par un autre.</p>
+        <p style="margin:0">Le site part de là. Une seule adresse, protégée par le mot de passe figurant sur l'invitation, qui répond à la place des organisateurs : où, quand, comment venir, où dormir, et que dois-je confirmer.</p>
+      </div>
+      <figure style="margin:34px 0 0">
+        <img src="./assets/beaucens-domaine.jpg" alt="Dessin du Domaine de Beaucens" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #E8E0D3;background:#F5EFE4">
+        <figcaption style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#4b5057;text-align:center">Le dessin du domaine, utilisé comme repère visuel sur la page d'accueil</figcaption>
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les contraintes</h2>
+      <div style="background:#eceff3;border-radius:8px;padding:20px 24px;margin-bottom:26px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin-bottom:12px">Ce qui a dicté la conception</div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
+          <li>Des invités de 20 à 80 ans, dont une partie peu à l'aise avec un formulaire en ligne</li>
+          <li>Consultation quasi exclusivement sur mobile, souvent depuis un lien reçu par message</li>
+          <li>Un domaine au pied des Pyrénées, où le réseau n'est pas garanti sur place</li>
+          <li>Deux langues, invités français et anglophones</li>
+          <li>Aucun budget d'hébergement ni de service tiers</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">La contrainte d'âge a eu le plus d'effet sur les écrans : un seul objectif visible à la fois, des zones tactiles larges, aucun terme d'interface qui suppose une habitude du web. La page d'accueil ne propose que deux actions — répondre, ou consulter le guide.</p>
+        <p style="margin:0">Le réseau incertain a conduit à garder la réponse envoyée en mémoire côté navigateur : un invité qui revient voit sa réponse et peut la modifier, au lieu d'en créer une seconde en croyant que la première n'est pas passée.</p>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture technique</h2>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le parti pris est un site statique sans serveur : tout tient dans un fichier HTML publié sur GitHub Pages, et les réponses partent vers une feuille Google Sheets via un script Apps Script déployé en application web.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">index.html / en.html</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Le site complet, en français et en anglais : accueil, formulaire, guide et espace organisateur. Un seul fichier par langue, donc rien à installer et rien qui puisse tomber en panne à la place du reste.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:22px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8b93a1">↓ &nbsp;POST de la réponse</div>
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">Code.gs — Google Apps Script</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Reçoit la réponse, crée l'onglet RSVP et ses colonnes au premier appel, puis écrit une ligne par invité. Sert aussi de lecture pour l'espace organisateur.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:22px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8b93a1">↓ &nbsp;onglet RSVP</div>
+        <div style="background:#16181d;color:#e6e9ef;border-radius:10px;padding:18px 22px">
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9fd4ff;margin-bottom:8px">Google Sheets</div>
+          <div style="font-size:14px;line-height:1.6;color:#c3c8d2">Le vrai outil des organisateurs. Ils y travaillaient déjà : plutôt que d'imposer une base de données, le site alimente l'endroit où le travail se faisait de toute façon.</div>
+        </div>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Cette architecture a une limite que j'ai documentée dans le dépôt plutôt que de la cacher : le code organisateur protège l'interface, pas l'API. Toute personne connaissant l'URL du script peut techniquement lire les réponses. C'est acceptable pour une liste d'invités, pas pour des données sensibles — et c'est le genre d'arbitrage qu'il vaut mieux écrire noir sur blanc que découvrir plus tard.</p>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les écrans</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Le site est découpé en trois espaces distincts : la porte d'entrée par mot de passe, le parcours invité (accueil, formulaire, guide) et l'espace organisateur. Le guide se parcourt avec une barre d'onglets en bas d'écran — Lieu, Programme, Transports, Hébergements — parce qu'un invité y revient plusieurs fois et cherche à chaque fois une chose précise.</p>
+        <p style="margin:0">Le contenu est écrit pour lever les questions dans l'ordre où elles arrivent. Le programme annonce d'emblée ce qui est incontournable et ce qui est optionnel ; les hébergements distinguent la famille, logée au domaine, des amis qui doivent réserver alentour ; les transports rappellent qu'une voiture est indispensable et donnent les distances depuis les aéroports.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:32px">
+        <figure style="margin:0">
+          <img src="./assets/bc-accueil-v5.png" alt="Écran d'accueil invité" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Deux actions, rien d'autre : confirmer sa présence, ou ouvrir le guide.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/bc-guide-v6.png" alt="En-tête du guide pratique" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Le guide, consulté plusieurs fois : navigation par onglets plutôt qu'une longue page.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/bc-programme-v3.png" alt="Programme, tenue et transports" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Le programme distingue d'emblée l'incontournable de l'optionnel ; les transports donnent les temps de trajet depuis chaque aéroport.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/bc-hebergements-v3.png" alt="Hébergements autour du domaine" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Les hébergements séparent ce qui est garanti (familles, au domaine) de ce qui reste à réserver (amis, alentour).</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <img src="./assets/bc-faq.png" alt="Questions fréquentes" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+          <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">La FAQ recense les questions réellement posées, avec une recherche : c'est elle qui fait baisser le nombre de messages.</figcaption>
+        </figure>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">RSVP et données des invités</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Le formulaire ne demande que ce qui sert à organiser : présence, accompagnants, participation au brunch du lendemain, allergies et régimes alimentaires, besoins de covoiturage. Chaque champ correspond à une décision réelle des organisateurs — un plan de table, une commande au traiteur, une réservation. Rien n'est collecté « au cas où ».</p>
+        <p style="margin:0">Le brunch du lendemain est le cas le plus délicat : optionnel, payant, 30 € par personne. Il fallait l'annoncer sans qu'il ressemble à une obligation, et permettre le paiement sans caisse en ligne. La réponse tient dans le formulaire, le paiement se fait ensuite par lien Revolut, par Wero ou par virement, avec un bouton qui copie l'IBAN — la solution la moins élégante mais la seule qui fonctionne pour tout le monde.</p>
+        <p style="margin:0">L'espace organisateur affiche les réponses reçues, permet d'en supprimer une et d'exporter le tout en CSV. C'est volontairement pauvre : il ne remplace pas la feuille de calcul, il donne un aperçu depuis un téléphone sans avoir à l'ouvrir.</p>
+      </div>
+      <figure style="margin:32px 0 0">
+        <img src="./assets/bc-rsvp-1.png" alt="Formulaire RSVP" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Une seule réponse pour tout le groupe : l'invité s'identifie, puis ajoute une ligne par accompagnant.</figcaption>
+      </figure>
+      <figure style="margin:22px 0 0">
+        <img src="./assets/bc-rsvp-2-v5.png" alt="Brunch, cadeaux et remarques" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">Le brunch payant et la liste de cadeaux, annoncés comme optionnels, avec paiement par carte ou virement.</figcaption>
+      </figure>
+      <figure style="margin:22px 0 0">
+        <img src="./assets/bc-admin-v3.png" alt="Espace organisateur" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto;border-radius:6px;border:1px solid #e6e9ee">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#4b5057">L'espace organisateur : totaux, filtres amis/famille, suppression et export CSV. Noms et e-mails remplacés par des données fictives.</figcaption>
+      </figure>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Un site de mariage n'a pas de phase de recette : il est consulté par cent vingt personnes le jour où le lien part, sur leurs téléphones, et une erreur de RSVP se traduit par un appel téléphonique. J'ai donc testé avant l'envoi, en essayant de casser le formulaire plutôt que de vérifier qu'il fonctionne.</p>
+        <p style="margin:0">L'enjeu principal n'était pas l'affichage mais l'intégrité des réponses : un doublon, un accompagnant perdu ou un envoi silencieusement échoué se paient en travail manuel pour les organisateurs.</p>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Les outils</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Playwright</div>
+          <div style="color:#6b7280">Parcours RSVP complet rejoué à chaque déploiement, en viewport mobile et desktop.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Lighthouse</div>
+          <div style="color:#6b7280">Performance et accessibilité sur connexion lente, cible mobile en 4G dégradée.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">BrowserStack</div>
+          <div style="color:#6b7280">Safari iOS et Chrome Android sur d'anciens appareils, majoritaires chez les invités.</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+          <div style="font-weight:700;margin-bottom:5px">Test en conditions réelles</div>
+          <div style="color:#6b7280">Six proches ont rempli le formulaire avant l'envoi, sans consigne, en visio partagée.</div>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Le plan de test</h3>
+      <p style="margin:0 0 18px;font-size:15px;line-height:1.72;text-wrap:pretty">Vingt-deux cas, priorisés par ce qui produit un appel téléphonique s'il échoue.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8b93a1">
+          <div>Cas de test</div><div>Type</div><div>Résultat</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>RSVP avec deux accompagnants et une allergie</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Double envoi du même invité</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Réponse « ne vient pas » : champs suivants masqués</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Perte de réseau pendant l'envoi</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Export CSV avec accents et apostrophes</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#a3341f;font-weight:700;font-size:13px">Échec</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Formulaire sur iPhone SE, clavier ouvert</div><div style="color:#6b7280;font-size:13px">Manuel</div><div style="color:#b07a1f;font-weight:700;font-size:13px">Instable</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Chargement du guide en 4G dégradée</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
+          <div>Navigation clavier et libellés des champs</div><div style="color:#6b7280;font-size:13px">Auto</div><div style="color:#1f6b45;font-weight:700;font-size:13px">Passé</div>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#4b5057">Ce que la campagne a produit</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">22</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">cas de test, dont 9 automatisés</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">11</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">anomalies corrigées avant l'envoi du lien</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+          <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">0</div>
+          <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#6b7280">appel reçu pour un problème de site</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Le double envoi était le risque le plus coûteux : rien n'empêchait un invité de répondre deux fois, et les organisateurs se retrouvaient à arbitrer entre deux versions. La correction n'est pas technique mais conversationnelle — l'invité qui revient voit sa réponse précédente et la modifie, au lieu d'en créer une nouvelle.</p>
+        <p style="margin:0">La perte de réseau pendant l'envoi donnait le pire scénario possible : l'invité croyait avoir répondu, rien n'était enregistré. Le formulaire conserve désormais la saisie localement et affiche une confirmation explicite, jamais une redirection optimiste.</p>
+        <p style="margin:0">L'export CSV cassait sur les accents dès qu'il était ouvert dans Excel — un détail invisible en développement, bloquant pour la personne qui gère les tables. Corrigé par l'encodage, mais trouvé seulement parce que j'ai testé l'usage réel du fichier et pas seulement sa génération.</p>
+        <p style="margin:0">Le test avec six proches a été le plus instructif pour un coût nul. Deux d'entre eux ont cherché le bouton RSVP en haut de page alors qu'il était en fin de parcours ; c'est ce qui a motivé le rappel permanent en bas d'écran. Aucun n'avait lu la FAQ avant de poser sa question.</p>
+      </div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">C'est le projet où j'ai eu le plus de liberté et le moins d'excuses : pas de design system à respecter, pas de contrainte technique héritée, mais des utilisateurs réels qui n'ont pas de service support et qui appellent si le site ne répond pas à leur question.</p>
+        <p style="margin:0">Il m'a aussi rappelé qu'une bonne partie du travail UX est du travail d'écriture. Sur ce site, presque chaque problème d'usage se réglait en reformulant une phrase plutôt qu'en ajoutant un composant.</p>
+        <p style="margin:0">Enfin, faire le design et le développement dans le même fichier change le rythme : une hésitation sur la hiérarchie se tranche en la voyant sur un téléphone, dans la minute. C'est la façon de travailler que je cherche à garder dans un contexte d'équipe.</p>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box;color:#25282d">
+      <h1 style="margin:0 0 26px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">About</h1>
+      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#4b5057;text-wrap:pretty">En dehors du design, je fais de la musique. C'est là que j'ai appris à finir des choses, à les faire écouter et à recommencer.</p>
+
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La musique</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Je joue de la guitare et je compose. Un morceau se travaille comme une interface : une idée simple au départ, beaucoup de versions ensuite, et le moment délicat où il faut retirer plutôt qu'ajouter.</p>
+        <p style="margin:0">Deux endroits où ce travail est visible : mes compositions sur SoundCloud, et les tablatures que je relève et publie sur Ultimate Guitar. Les tablatures sont l'exercice le plus proche de mon métier — transcrire ce qu'on entend dans une notation que quelqu'un d'autre pourra lire et rejouer sans explication.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px">
+        <a href="#soundcloud" style="background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8b93a1;margin-bottom:8px">Compositions</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:6px">SoundCloud</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Mes morceaux, du brouillon au mixage.</div>
+        </a>
+        <a href="#ultimate-guitar" style="background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+          <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8b93a1;margin-bottom:8px">Tablatures</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:6px">Ultimate Guitar</div>
+          <div style="font-size:14px;line-height:1.6;color:#6b7280">Relevés publiés et joués par d'autres guitaristes.</div>
+        </a>
+      </div>
+
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+
+      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les voitures</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">Mon autre passion, que je filme et monte sur ma chaîne YouTube. Tourner, cadrer, monter : c'est aussi un travail de rythme et de sélection, décider ce qui reste et ce qui part.</p>
+      </div>
+      <a href="#youtube" style="display:block;margin-top:32px;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8b93a1;margin-bottom:8px">Vidéos</div>
+        <div style="font-size:17px;font-weight:700;margin-bottom:6px">YouTube</div>
+        <div style="font-size:14px;line-height:1.6;color:#6b7280">Ma chaîne automobile : essais, sorties et montages.</div>
+      </a>
+    </main>
+  </sc-if>
+
+  <footer style="max-width:1120px;width:100%;margin:0 auto;padding:56px 40px 40px;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);justify-items:center;font-size:14px;letter-spacing:0.01em;color:#111214">
+    <a href="mailto:qalterescu@me.com">qalterescu@me.com</a>
+    <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" style="font-weight:500">LinkedIn</a>
+    <a href="#cv" style="font-weight:500">CV</a>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { page: 'home' };
+  renderVals() {
+    const p = this.state.page;
+    const inWorks = p !== 'home' && p !== 'about';
+    return {
+      isHome: p === 'home',
+      isWorks: p === 'works',
+      isQatent: p === 'qatent',
+      isTalkingHands: p === 'talkinghands',
+      isBeaucens: p === 'beaucens',
+      goBeaucens: () => this.setState({ page: 'beaucens' }),
+      isAbout: p === 'about',
+      isSG: p === 'sg',
+      isVerbatim: p === 'verbatim',
+      isGenepro: p === 'genepro',
+      isAlabri: p === 'alabri',
+      isCarapass: p === 'carapass',
+      goSG: () => this.setState({ page: 'sg' }),
+      goVerbatim: () => this.setState({ page: 'verbatim' }),
+      goGenepro: () => this.setState({ page: 'genepro' }),
+      goAlabri: () => this.setState({ page: 'alabri' }),
+      goCarapass: () => this.setState({ page: 'carapass' }),
+      worksTagBg: inWorks ? '#1f6fd0' : 'transparent',
+      worksTagColor: inWorks ? '#ffffff' : '#111214',
+      aboutTagBg: p === 'about' ? '#1f6fd0' : 'transparent',
+      aboutTagColor: p === 'about' ? '#ffffff' : '#111214',
+      goHome: () => this.setState({ page: 'home' }),
+      goWorks: () => this.setState({ page: 'works' }),
+      goQatent: () => this.setState({ page: 'qatent' }),
+      goTalkingHands: () => this.setState({ page: 'talkinghands' }),
+      goAbout: () => this.setState({ page: 'about' })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
