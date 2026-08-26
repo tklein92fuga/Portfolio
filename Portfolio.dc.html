@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -11,12 +14,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   html, body { margin:0; padding:0; }
-  body { -webkit-font-smoothing: antialiased; }
+  body { font-family:'Cabin',sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, h5, h6 { font-family:'Montserrat',sans-serif !important; }
+  p, figcaption, a, button, input, textarea, select, label, small { font-family:'Cabin',sans-serif !important; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: #1f5fc4; }
 </style>
 </helmet>
-<div style="min-height:100vh;display:flex;flex-direction:column;background:#f4f5f7;color:#111214;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#f4f5f7;color:#111214;font-family:'Cabin',sans-serif">
 
   <header style="display:flex;align-items:center;justify-content:space-between;max-width:1120px;width:100%;margin:0 auto;padding:34px 40px 0;box-sizing:border-box">
     <div onClick="{{ goHome }}" style="cursor:pointer;width:56px;height:64px;display:flex;align-items:center">
