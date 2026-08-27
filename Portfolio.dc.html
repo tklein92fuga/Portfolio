@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -15,75 +15,145 @@
 <style>
   html, body { margin:0; padding:0; }
   body { font-family:'Cabin',sans-serif; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior:smooth; }
   h1, h2, h3, h4, h5, h6 { font-family:'Montserrat',sans-serif !important; }
+  h1 { font-weight:800 !important; }
+  h2, h3, h4, h5, h6 { font-weight:700 !important; }
   p, figcaption, a, button, input, textarea, select, label, small { font-family:'Cabin',sans-serif !important; }
-  span[style*='border-radius:20px'] { background:#2CA6A4 !important; color:#F4F5F6 !important; }
+  .project-intro { font-family:'Montserrat',sans-serif !important; font-weight:400 !important; font-size:17px !important; line-height:1.78 !important; color:#4A4D57 !important; }
+  .hero-copy, .hero-copy * { font-family:'Montserrat',sans-serif !important; }
+  .hero-light { font-weight:300; }
+  .hero-medium { font-weight:500; }
+  .hero-bold { font-weight:700; }
+  .availability-dot { width:8px;height:8px;border-radius:50%;background:#168F68;box-shadow:0 0 0 5px rgba(22,143,104,.10);animation:availabilityPulse 2.8s ease-in-out infinite; }
+  @keyframes availabilityPulse { 0%,100% { transform:scale(1);box-shadow:0 0 0 5px rgba(22,143,104,.10); } 50% { transform:scale(1.12);box-shadow:0 0 0 9px rgba(22,143,104,0); } }
+  .section-guide { position:fixed;right:18px;top:50%;z-index:20;display:flex;flex-direction:column;gap:7px;transform:translateY(-50%); }
+  .section-guide a { display:flex;align-items:center;justify-content:flex-end;gap:9px;min-height:24px;color:#777B86; }
+  .section-guide .guide-label { max-width:150px;opacity:1;overflow:hidden;white-space:nowrap;font-family:'Montserrat',sans-serif !important;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9AA0AA;transition:color .2s ease,transform .2s ease; }
+  .section-guide .guide-dot { width:7px;height:7px;border-radius:50%;background:#C7D3E1;border:1px solid #AFC0D3;transition:transform .2s ease,background .2s ease,box-shadow .2s ease; }
+  .section-guide a:hover .guide-label, .section-guide a:focus-visible .guide-label { color:#236ABF;transform:translateX(-2px); }
+  .section-guide a:hover .guide-dot, .section-guide a:focus-visible .guide-dot { transform:scale(1.55);background:#236ABF;box-shadow:0 0 0 4px rgba(35,106,191,.10); }
+  .section-guide a.is-active .guide-label { color:#236ABF;font-weight:700;transform:translateX(-2px); }
+  .section-guide a.is-active .guide-dot { transform:scale(1.55);background:#236ABF;border-color:#236ABF;box-shadow:0 0 0 4px rgba(35,106,191,.12); }
+  .cv-timeline { position:relative; }
+  .cv-timeline:before { content:'';position:absolute;left:13px;top:12px;bottom:12px;width:1px;background:#D6E0EB; }
+  .cv-section { position:relative;padding-left:52px; }
+  .cv-section:before { content:'';position:absolute;left:0;top:4px;width:14px;height:14px;border-radius:50%;background:#236ABF;border:6px solid #DCEAF8;box-sizing:content-box; }
+  .cv-card { background:#fff;border:1px solid #DDE5EE;border-radius:16px;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
+  .cv-card:hover { transform:translateY(-3px);border-color:#AFC7E2;box-shadow:0 14px 32px rgba(31,34,50,.07); }
+  .skill-pill { display:flex;align-items:center;justify-content:center;min-height:58px;padding:12px 14px;border:1px solid #E1E8F0;border-radius:12px;background:#F8FBFD;text-align:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:#344055;transition:transform .2s ease,background .2s ease,border-color .2s ease; }
+  .skill-pill:hover { transform:scale(1.035);background:#fff;border-color:#AFC7E2; }
+  .project-tag { display:inline-flex; align-items:center; border-radius:20px; padding:5px 12px; color:#1F2232 !important; }
+  .tag-design { background:#DDF3E5 !important; color:#08785D !important; }
+  .tag-dev { background:#DDEEFF !important; color:#236ABF !important; }
+  .tag-ia { background:#EBDDFC !important; color:#6A2DBD !important; }
+  .tag-qa { background:#FBE5D5 !important; color:#9A4A00 !important; }
+  #soundcloud, #ultimate-guitar, #youtube { border-radius:18px !important; }
+  #soundcloud { border-top:4px solid #FF5500 !important; }
+  #ultimate-guitar { border-top:4px solid #236ABF !important; }
+  #youtube { border-top:4px solid #D95050 !important; }
+  .music-feature-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch;justify-content:center;width:100%;margin:0 auto 18px; }
+  .spotify-embed-wrap { height:152px;overflow:hidden;border-radius:12px;background:#191919; }
+  .spotify-search-card { height:152px;box-sizing:border-box;border-radius:12px;background:#191919;color:#fff;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden; }
+  .spotify-search-head { display:flex;align-items:center;gap:9px;font-family:'Montserrat',sans-serif !important;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#B7B7B7; }
+  .spotify-search-mark { width:23px;height:23px;border-radius:50%;background:#1ED760;display:grid;place-items:center;color:#191919;font-size:13px;line-height:1; }
+  .spotify-search-title { display:block;font-family:'Montserrat',sans-serif !important;font-size:18px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .spotify-search-artist { display:block;margin-top:4px;color:#B7B7B7;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .spotify-search-link { align-self:flex-start;color:#1ED760;font-size:12px;font-weight:700; }
+  .tab-song-list a { cursor:pointer;border-radius:8px;transition:background .16s ease,color .16s ease,padding .16s ease; }
+  .tab-song-list a:hover, .tab-song-list a:focus-visible { background:#F0F5FB;color:#236ABF;padding-left:9px !important;padding-right:9px !important; }
+  .contact-field { display:flex;flex-direction:column;gap:8px; }
+  .contact-field label { font-family:'Montserrat',sans-serif !important;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#596170; }
+  .contact-field input, .contact-field select, .contact-field textarea { width:100%;box-sizing:border-box;border:1px solid #D8E1EB;border-radius:11px;background:#F8FAFC;color:#1F2232;padding:13px 14px;font-size:14px;line-height:1.45;outline:none;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease; }
+  .contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus { border-color:#236ABF;background:#fff;box-shadow:0 0 0 4px rgba(35,106,191,.09); }
+  .contact-field textarea { min-height:150px;resize:vertical; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: #236ABF; }
+  @media (max-width:1120px) { .section-guide { right:8px; } }
+  @media (max-width:760px) {
+    .site-header { padding:22px 20px 0 !important; }
+    .site-nav { gap:10px !important;font-size:11px !important;letter-spacing:.05em !important; }
+    .site-nav span, .site-nav a { padding:5px 7px !important; }
+    .home-main { padding:64px 22px !important;align-items:flex-start !important; }
+    .hero-copy { font-size:34px !important;line-height:1.2 !important; }
+    .section-guide { right:5px;gap:5px;padding:7px 5px;border-radius:10px;background:rgba(244,245,246,.90);backdrop-filter:blur(5px); }
+    .section-guide .guide-label { max-width:92px;font-size:8.5px;letter-spacing:.04em; }
+    .cv-layout { grid-template-columns:1fr !important; }
+    .cv-aside { position:static !important; }
+    .cv-project-grid, .cv-skills-grid, .cv-method-grid { grid-template-columns:1fr !important; }
+    .cv-section { padding-left:40px; }
+    .site-footer { padding:36px 20px 28px !important;grid-template-columns:1fr !important;gap:14px; }
+    .youtube-overview { grid-template-columns:1fr !important; }
+    .music-feature-grid, .contact-layout, .contact-pair { grid-template-columns:1fr !important; }
+    .spotify-embed-wrap, .spotify-embed-wrap iframe { height:152px !important; }
+  }
 </style>
 </helmet>
-<div style="min-height:100vh;display:flex;flex-direction:column;background:#F4F5F6;color:#1F2232;font-family:'Cabin',sans-serif">
+<div id="page-top" style="min-height:100vh;display:flex;flex-direction:column;background:#F4F5F6;color:#1F2232;font-family:'Cabin',sans-serif">
 
-  <header style="display:flex;align-items:center;justify-content:space-between;max-width:1120px;width:100%;margin:0 auto;padding:34px 40px 0;box-sizing:border-box">
+  <header class="site-header" style="display:flex;align-items:center;justify-content:space-between;max-width:1120px;width:100%;margin:0 auto;padding:34px 40px 0;box-sizing:border-box">
     <div onClick="{{ goHome }}" style="cursor:pointer;width:56px;height:64px;display:flex;align-items:center">
       <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="width:52px;height:auto;display:block">
     </div>
-    <nav style="display:flex;gap:64px;align-items:center;font-size:14px;letter-spacing:0.09em;text-transform:uppercase;font-weight:500">
+    <nav class="site-nav" style="display:flex;gap:38px;align-items:center;font-size:14px;letter-spacing:0.09em;text-transform:uppercase;font-weight:500">
       <span onClick="{{ goWorks }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ worksTagBg }};color:{{ worksTagColor }};transition:background .18s,color .18s">Travaux</span>
       <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
-      <a href="mailto:qalterescu@me.com" style="padding:5px 11px">Contact</a>
+      <span onClick="{{ goCV }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ cvTagBg }};color:{{ cvTagColor }};transition:background .18s,color .18s">CV</span>
+      <span onClick="{{ goContact }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ contactTagBg }};color:{{ contactTagColor }};transition:background .18s,color .18s">Contact</span>
     </nav>
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-    <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box">
-      <p style="max-width:1000px;margin:0;font-size:52px;line-height:1.28;font-weight:200;letter-spacing:-0.01em;color:#1F2232;text-wrap:pretty">Quentin Alterescu est un <strong style="font-weight:400;color:#1F2232">product designer</strong> actuellement à la recherche de nouvelles opportunités professionnelles.<br>
-      <strong style="font-weight:400;color:#1F2232">Curieux, empathique et collaboratif</strong>, je conçois des expériences utiles et humaines.</p>
+    <main class="home-main" style="flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box">
+      <div style="max-width:1080px;width:100%">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:28px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#08785D"><span class="availability-dot"></span>Disponible pour de nouvelles collaborations</div>
+        <p class="hero-copy" style="margin:0;font-size:58px;line-height:1.19;letter-spacing:-0.035em;color:#1F2232;text-wrap:pretty"><span class="hero-bold">Product designer augmenté par l'IA,</span><span class="hero-light"> Quentin transforme plus vite les besoins complexes en produits </span><span class="hero-medium">clairs, utiles et prêts à livrer.</span><br><span class="hero-light">Il maîtrise le </span><span class="hero-bold">design</span><span class="hero-light">, le </span><span class="hero-bold">code</span><span class="hero-light"> et le </span><span class="hero-bold">test</span><span class="hero-light"> — de l'idée à l'expérience réelle.</span></p>
+      </div>
     </main>
   </sc-if>
 
   <sc-if value="{{ isWorks }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;max-width:1120px;width:100%;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box">
+    <main id="top" style="flex:1;max-width:1120px;width:100%;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box">
       <h1 style="margin:0 0 56px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">Travaux</h1>
-      <div style="display:flex;flex-direction:column;gap:32px">
+      <div id="works-projects" style="display:flex;flex-direction:column;gap:32px">
         <a onClick="{{ goSG }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
           <img src="./assets/societe-generale.png" alt="Société Générale" style="width:420px;height:auto;display:block">
-          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">Design</span></div>
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span></div>
         </a>
         <a onClick="{{ goQatent }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
           <img src="./assets/qatent.png" alt="Qatent" style="width:330px;height:auto;display:block">
-          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#236ABF;background:#236ABF;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">IA</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#1F2232;border-radius:20px;padding:5px 12px">QA testing</span></div>
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span><span class="project-tag tag-dev" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Dev</span><span class="project-tag tag-ia" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">IA</span><span class="project-tag tag-qa" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">QA testing</span></div>
         </a>
         <a onClick="{{ goTalkingHands }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
           <img src="./assets/talking-hands.png" alt="Talking Hands" style="width:180px;height:auto;display:block">
-          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#236ABF;background:#236ABF;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">IA</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#1F2232;border-radius:20px;padding:5px 12px">QA testing</span></div>
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span><span class="project-tag tag-dev" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Dev</span><span class="project-tag tag-ia" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">IA</span><span class="project-tag tag-qa" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">QA testing</span></div>
         </a>
         <a onClick="{{ goBeaucens }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
           <div style="font-family:Georgia,'Times New Roman',serif;font-size:44px;line-height:1;color:#1F2232">Beaucens</div>
-          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#2CA6A4;border-radius:20px;padding:5px 12px">Design</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#236ABF;background:#236ABF;border-radius:20px;padding:5px 12px">Dev</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2CA6A4;background:#1F2232;border-radius:20px;padding:5px 12px">QA testing</span></div>
+          <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span><span class="project-tag tag-dev" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Dev</span><span class="project-tag tag-qa" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">QA testing</span></div>
         </a>
       </div>
     </main>
   </sc-if>
 
   <sc-if value="{{ isQatent }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
       <img src="./assets/qatent.png" alt="Qatent" style="display:block;width:120px;height:auto;margin:0 auto 26px">
       <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">QATENT</h1>
-      <p style="margin:0 auto;max-width:560px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Qatent est une solution exploitant l'intelligence artificielle pour générer des brevets industriels. Malgré une puissance technologique importante, l'interface existante restait complexe et peu orientée acquisition.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:590px;text-align:center;text-wrap:pretty">Qatent est une solution exploitant l'intelligence artificielle pour générer des brevets industriels. Malgré une puissance technologique importante, l'interface existante restait complexe et peu orientée acquisition.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
+      <h2 id="q-prologue" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Lorsque j'ai rejoint le projet, Qatent évoluait dans une culture produit principalement guidée par l'ingénierie. Les fonctionnalités étaient pensées pour des utilisateurs experts, ce qui rendait l'outil difficile d'accès et limitait son potentiel commercial.</p>
         <p style="margin:0">En tant qu'UX Designer intervenant en solo pendant six mois, j'ai travaillé à clarifier des workflows complexes, simplifier la navigation et rendre l'outil plus lisible pour soutenir l'objectif stratégique du projet : utiliser le design comme levier pour trouver de nouveaux clients sans compromettre la profondeur technique de la solution.</p>
         <p style="margin:0">Arriver seul designer dans une équipe d'ingénieurs demandait d'abord de gagner le droit d'intervenir sur les workflows. J'ai commencé par documenter l'existant écran par écran, un travail sans production visible mais qui m'a donné le vocabulaire nécessaire pour discuter d'égal à égal avec l'équipe technique.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
+      <h2 id="q-problematique" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Lorsque j'ai rejoint le projet, Qatent évoluait dans une culture produit principalement guidée par l'ingénierie. Les fonctionnalités étaient pensées pour des utilisateurs experts, ce qui rendait l'outil difficile d'accès et limitait son potentiel commercial.</p>
         <p style="margin:0">En tant qu'UX Designer intervenant en solo pendant six mois, j'ai travaillé à clarifier des workflows complexes, simplifier la navigation et rendre l'outil plus lisible pour soutenir l'objectif stratégique du projet : utiliser le design comme levier pour trouver de nouveaux clients sans compromettre la profondeur technique de la solution.</p>
@@ -94,9 +164,9 @@
         <img src="./assets/qatent-dashboard.png" alt="Dashboard Qatent à mon arrivée" style="display:block;width:100%;height:auto;border-radius:6px">
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Recherche</h2>
+      <h2 id="q-recherche" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Recherche</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Pour orienter la refonte, j'ai participé à des entretiens avec des cabinets d'avocats ainsi qu'avec des utilisateurs potentiels afin de recueillir des insights concrets sur leurs besoins, leurs attentes et leurs freins face à l'outil.</p>
         <p style="margin:0">Le dispositif était volontairement léger : une dizaine d'entretiens d'environ une heure, menés auprès d'associés de cabinets, de juristes en entreprise et de deux ingénieurs brevets. J'y ai systématiquement demandé de me montrer le dernier brevet rédigé plutôt que de décrire un processus théorique — c'est en regardant faire que les contournements apparaissent.</p>
@@ -148,9 +218,9 @@
         </div>
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
+      <h2 id="q-proposition" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Face à une interface dense et pensée avant tout pour des profils techniques, j'ai pris l'initiative de proposer un « easy mode » centré sur la fonctionnalité principale de la solution. L'objectif était de réduire la complexité perçue et de permettre aux utilisateurs de comprendre rapidement la valeur du produit sans naviguer dans des options avancées.</p>
         <p style="margin:0">Cette proposition découle directement des entretiens : si la valeur doit être perçue en quelques minutes, alors l'écran d'entrée ne peut pas exposer l'ensemble des paramètres. Le mode avancé n'a pas disparu, il est devenu un choix explicite plutôt que l'état par défaut.</p>
@@ -180,9 +250,9 @@
         <img src="./assets/qatent-apres.png" alt="Interface après la refonte" style="display:block;width:100%;height:auto;border-radius:6px">
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le guided tour</h2>
+      <h2 id="q-guided" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le guided tour</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Sur un produit aussi technique, la première session détermine souvent si l'utilisateur reste ou abandonne. J'ai donc conçu un guided tour qui accompagne l'utilisateur pas à pas dans les écrans clés, au moment précis où l'action est attendue, plutôt que de le laisser découvrir seul une interface dense.</p>
         <p style="margin:0">Chaque étape explique une notion à la fois, dans le vocabulaire des avocats en droit des brevets, et reste optionnelle : l'utilisateur peut revenir en arrière, avancer ou fermer le tour à tout moment. Cet onboarding réduit la charge cognitive au premier contact, rend la valeur du produit immédiatement lisible et diminue le besoin d'accompagnement commercial lors des démonstrations.</p>
@@ -194,9 +264,9 @@
         <img src="./assets/qatent-gt-3.png" alt="Guided tour, étape 3 : ajout de figure et génération du diagramme" style="display:block;width:100%;height:auto;border-radius:6px">
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <h2 id="q-test" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Dans une équipe de sept personnes sans QA dédié, chacun testait son propre travail — et les régressions passaient. J'ai proposé de tenir ce rôle sur les parcours que j'avais dessinés : personne n'était mieux placé pour voir un écart entre ce qui était spécifié et ce qui était livré.</p>
         <p style="margin:0">Le déclencheur a été concret. Une démonstration commerciale s'est arrêtée sur un export vide : le brevet était bien généré mais le fichier téléchargé ne contenait que l'en-tête, sur Safari uniquement. Un cas jamais testé, sur un navigateur que personne dans l'équipe n'utilisait.</p>
@@ -204,19 +274,19 @@
 
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Les outils</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Playwright</div>
           <div style="color:#1F2232">Parcours critiques rejoués à chaque livraison, sur Chrome, Firefox et WebKit.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Linear</div>
           <div style="color:#1F2232">Un ticket par anomalie, avec capture, étapes de reproduction et sévérité.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">BrowserStack</div>
           <div style="color:#1F2232">Vérification sur les configurations réelles des cabinets, souvent Windows et Edge.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">axe DevTools</div>
           <div style="color:#1F2232">Contrastes, ordre de tabulation et libellés des champs sur les écrans refondus.</div>
         </div>
@@ -228,40 +298,40 @@
         <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#1F2232">
           <div>Cas de test</div><div>Type</div><div>Résultat</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Import d'un invention disclosure au format .docx</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Import d'un invention disclosure au format .docx</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Génération complète d'un brevet en easy mode</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Génération complète d'un brevet en easy mode</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Export du brevet en PDF, Safari 17</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Export du brevet en PDF, Safari 17</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Reprise d'un brouillon après déconnexion</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Reprise d'un brouillon après déconnexion</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Guided tour interrompu puis relancé</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Instable</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Guided tour interrompu puis relancé</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#C97818;font-weight:700;font-size:13px">Instable</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Terme de revendication contenant une apostrophe</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Terme de revendication contenant une apostrophe</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Navigation clavier sur le formulaire de rédaction</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Navigation clavier sur le formulaire de rédaction</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
       </div>
 
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a produit</h3>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">34</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">cas de test écrits, dont 12 automatisés</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">19</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">anomalies remontées sur deux mois</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">4</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">bloquantes, corrigées avant la mise en production</div>
         </div>
@@ -273,9 +343,9 @@
         <p style="margin:0">Ce rôle a changé ma façon de concevoir. Écrire les cas de test avant la livraison m'obligeait à décrire les états d'erreur, les cas vides et les limites de saisie au moment des maquettes, pas après. C'est le retour le plus direct que j'ai eu sur la qualité de mes propres spécifications.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
+      <h2 id="q-retour" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Qatent est le projet où j'ai eu le plus de latitude et le moins de repères. Seul designer dans une équipe d'ingénieurs, sur un domaine — la propriété industrielle — dont j'ignorais tout, j'ai passé les premières semaines à comprendre avant de proposer. C'est le meilleur investissement que j'ai fait sur ce poste.</p>
         <p style="margin:0">La leçon principale porte sur la nature du problème. L'équipe pensait avoir un problème d'interface ; les entretiens ont montré un problème de confiance. Les utilisateurs ne refusaient pas l'outil parce qu'il était complexe, mais parce qu'ils ne voyaient pas ce que la machine décidait à leur place, sur un document qui engage leur responsabilité. Une refonte purement visuelle n'aurait rien changé.</p>
@@ -287,33 +357,33 @@
   </sc-if>
 
   <sc-if value="{{ isTalkingHands }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
       <img src="./assets/talking-hands.png" alt="Talking Hands" style="display:block;width:78px;height:auto;margin:0 auto 26px">
       <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">TALKING HANDS</h1>
-      <p style="margin:0 auto;max-width:560px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Talking Hands est une application basée sur l'intelligence artificielle, conçue pour faciliter l'apprentissage de la langue des signes de manière interactive et accessible.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:590px;text-align:center;text-wrap:pretty">Talking Hands est une application basée sur l'intelligence artificielle, conçue pour faciliter l'apprentissage de la langue des signes de manière interactive et accessible.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
+      <h2 id="th-prologue" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Ce projet axé sur l'accessibilité est né d'une problématique réelle rencontrée par un collègue sourd qui avait des difficultés à participer efficacement à des conférences à distance et à des cours en ligne. Les méthodes de communication traditionnelles, comme le chat textuel, étaient contraignantes et perturbaient le déroulement naturel des présentations et des échanges.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
+      <h2 id="th-problematique" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La problematique</h2>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Notre équipe a identifié un manque important en matière d'accessibilité sur les plateformes de visioconférence, où les personnes sourdes ou malentendantes doivent s'appuyer sur des modes de communication textuels lents et perturbants pendant les sessions en temps réel. Cette limite affecte fortement leur capacité à participer de manière fluide et naturelle aux environnements virtuels, qu'ils soient éducatifs ou professionnels.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La technologie</h2>
+      <h2 id="th-technologie" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La technologie</h2>
       <img src="./assets/th-tech.png" alt="Python et Google MediaPipe" style="display:block;width:100%;max-width:400px;height:auto;margin:0 auto 30px">
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Sur ce projet, j'ai contribué à l'aspect technique à travers le developpement d'une application Python et en participant à l'entraînement du modèle d'intelligence artificielle. Pour cela, j'ai constitué et utilisé un ensemble de photos représentant les différentes lettres de l'alphabet en langue des signes, afin d'améliorer la reconnaissance des gestes et la précision du système.</p>
         <p style="margin:0">Cette implication m'a permis de faire le lien entre conception UX et contraintes techniques liées à l'IA.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
+      <h2 id="th-proposition" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La proposition</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">La proposition actuelle prend la forme d'une application low-fi, conçue comme un premier prototype fonctionnel capable de reconnaître les lettres de l'alphabet en langue des signes.</p>
         <p style="margin:0">Cette version initiale permet de valider les bases techniques de la reconnaissance gestuelle ainsi que les premiers principes d'interaction, avec l'objectif d'itérer progressivement vers une expérience plus complète et aboutie.</p>
@@ -323,33 +393,33 @@
         <img src="./assets/th-app-e.png" alt="Reconnaissance de la lettre E" style="display:block;width:100%;max-width:430px;height:auto">
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture</h2>
+      <h2 id="th-architecture" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture</h2>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">La reconnaissance ne travaille jamais sur l'image brute. MediaPipe extrait les landmarks de la main, dont les coordonnées deviennent directement le vecteur d'entrée du classifieur. Le choix était entre classer l'image entière, un recadrage de la main, ou seulement la position des doigts : cette dernière option réduit fortement la dimension des données tout en conservant l'information utile, et rend le modèle indifférent à l'arrière-plan comme à l'éclairage.</p>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:26px">
-        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:16px 18px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#1F2232;margin-bottom:8px">01 — CAPTURE</div>
           <div style="font-size:14px;line-height:1.55">Flux webcam, image miroir pour rendre le geste naturel à l'écran.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:16px 18px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#1F2232;margin-bottom:8px">02 — LANDMARKS</div>
           <div style="font-size:14px;line-height:1.55">MediaPipe Hands renvoie les points de la main ; on ne garde que les coordonnées x et y.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:16px 18px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#1F2232;margin-bottom:8px">03 — VECTORISATION</div>
           <div style="font-size:14px;line-height:1.55">Les landmarks sont mis à plat dans un seul vecteur, une image devenant une liste de coordonnées.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:16px 18px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:16px 18px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.08em;color:#1F2232;margin-bottom:8px">04 — CLASSIFICATION</div>
           <div style="font-size:14px;line-height:1.55">Un Random Forest prédit la lettre, affichée à l'écran dans un cadre calé sur la main.</div>
         </div>
       </div>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Le retour visuel fait partie de l'expérience : le cadre et la lettre affichés en direct sur l'image indiquent à l'utilisateur que son geste est bien vu, et à quel endroit la caméra le lit.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le code</h2>
+      <h2 id="th-code" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le code</h2>
       <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le projet est découpé en quatre scripts indépendants, qui se transmettent leur travail par deux fichiers intermédiaires. Chaque étape peut ainsi être relancée seule, sans refaire les précédentes.</p>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
         <div style="background:#1F2232;color:#F4F5F6;border-radius:10px;padding:18px 22px">
@@ -375,36 +445,36 @@
       <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le point sensible de cette architecture est la symétrie entre les deux derniers scripts : si l'extraction des landmarks change à l'entraînement sans changer à l'inférence, le modèle reçoit un vecteur qu'il n'a jamais vu et les prédictions deviennent incohérentes, sans erreur apparente. Cette contrainte est la vraie raison du découpage en fichiers plutôt qu'en un seul programme.</p>
       <p style="margin:22px 0 0;font-size:15px;line-height:1.72;text-wrap:pretty">Le jeu de données a été constitué à la main, webcam comprise : 100 images par signe, en variant la distance à la caméra et le cadrage. Le modèle est un Random Forest, entraîné sur 80 % des images et évalué sur les 20 % restantes, tirées de façon aléatoire en conservant la proportion de chaque classe. Sur ce jeu de test, toutes les images sont correctement classées — un résultat à relativiser : trois signes très distincts, capturés par une seule personne dans un seul environnement.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les limites</h2>
+      <h2 id="th-limites" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les limites</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Le prototype reconnaît trois lettres de l'alphabet dactylologique — A, B et L — et non des signes. La démarche s'étend à n'importe quel autre symbole sans changer le pipeline, mais la langue des signes repose sur le mouvement, l'expression du visage et l'espace autour du corps : l'alphabet épelé n'en est qu'une petite partie, utilisée surtout pour les noms propres.</p>
         <p style="margin:0">La suite porte donc sur la reconnaissance de séquences plutôt que d'images fixes, et sur l'intégration du retour visuel directement dans l'outil de visioconférence, là où le besoin est né.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <h2 id="th-test" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Un modèle qui annonce 100 % de précision sur son jeu de test ne prouve rien : il a été entraîné et évalué sur les mêmes mains, la même webcam et la même lumière. Toute la recette a consisté à sortir de ces conditions pour voir où la reconnaissance cède.</p>
         <p style="margin:0">J'ai donc traité le prototype comme un produit à éprouver plutôt que comme une démonstration à réussir. Le protocole était volontairement hostile : d'autres mains que les nôtres, une pièce mal éclairée, un fond chargé, et des gestes tenus approximativement plutôt que parfaitement.</p>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Les outils</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">pytest</div>
           <div style="color:#1F2232">Tests unitaires sur l'extraction des landmarks : longueur du vecteur, ordre des points, cas sans main détectée.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">scikit-learn</div>
           <div style="color:#1F2232">Matrice de confusion et validation croisée, pour distinguer un vrai score d'un sur-apprentissage.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Jeu de test tiers</div>
           <div style="color:#1F2232">60 images capturées par trois personnes extérieures au projet, jamais vues à l'entraînement.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Journal de session</div>
           <div style="color:#1F2232">Chaque essai filmé et annoté : conditions, gestes tenus, prédictions obtenues.</div>
         </div>
@@ -415,42 +485,42 @@
         <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#1F2232">
           <div>Cas de test</div><div>Type</div><div>Résultat</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Vecteur de 42 valeurs pour toute main détectée</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Vecteur de 42 valeurs pour toute main détectée</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Image sans main : aucune prédiction émise</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Image sans main : aucune prédiction émise</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Reconnaissance des trois lettres, main de l'auteur</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Reconnaissance des trois lettres, main de l'auteur</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Reconnaissance sur trois mains inconnues</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Instable</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Reconnaissance sur trois mains inconnues</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#C97818;font-weight:700;font-size:13px">Instable</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Contre-jour, fenêtre derrière l'utilisateur</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Contre-jour, fenêtre derrière l'utilisateur</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Main gauche au lieu de la main droite</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Main gauche au lieu de la main droite</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Deux mains dans le cadre</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Deux mains dans le cadre</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Main à plus d'un mètre de la caméra</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Instable</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Main à plus d'un mètre de la caméra</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#C97818;font-weight:700;font-size:13px">Instable</div>
         </div>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a révélé</h3>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">100 %</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">sur le jeu de test interne — score trompeur</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">71 %</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">sur les mains inconnues, en lumière correcte</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">4</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">limites structurelles identifiées</div>
         </div>
@@ -461,9 +531,9 @@
         <p style="margin:0">Le contre-jour casse la détection en amont : MediaPipe ne trouve pas la main, donc aucune prédiction n'est émise. Ce cas nous a fait ajouter un état explicite « main non détectée », distinct d'une prédiction incertaine — deux situations que l'interface confondait.</p>
         <p style="margin:0">Ces essais ont surtout changé la feuille de route. Avant d'ajouter des lettres, il faut élargir le jeu de données à plusieurs personnes et afficher un indice de confiance. Un prototype qui se trompe en silence est plus dangereux qu'un prototype qui reconnaît moins de signes.</p>
       </div>
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La suite</h2>
+      <h2 id="th-suite" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La suite</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">La piste que nous voulons explorer est scolaire : une application d'apprentissage de la langue des signes, où l'élève signe devant la caméra et reçoit une correction immédiate. La reconnaissance change alors de rôle — elle ne sert plus à traduire, mais à vérifier.</p>
         <p style="margin:0">Ce déplacement rend le prototype pertinent tel quel : pour un exercice, l'application connaît déjà la lettre attendue et n'a qu'à confirmer que le geste correspond. Elle peut donc corriger avec certitude sur un vocabulaire restreint, là où une traduction libre demanderait un modèle bien plus large.</p>
@@ -473,28 +543,28 @@
   </sc-if>
 
   <sc-if value="{{ isSG }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
       <img src="./assets/societe-generale.png" alt="Société Générale" style="display:block;width:230px;height:auto;margin:0 auto 26px">
       <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">SOCIETE GENERALE</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Au sein de SG Assurances, j'ai travaillé en tant que product designer sur quatre projets : deux parcours de souscription distribués par BoursoBank, un parcours de souscription pour les professionnels et un outil interne d'analyse de verbatims assisté par IA.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Au sein de SG Assurances, j'ai travaillé en tant que product designer sur quatre projets : deux parcours de souscription distribués par BoursoBank, un parcours de souscription pour les professionnels et un outil interne d'analyse de verbatims assisté par IA.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 30px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les missions</h2>
+      <h2 id="sg-missions" style="margin:0 0 30px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les missions</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-        <div onClick="{{ goVerbatim }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+        <div onClick="{{ goVerbatim }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Verbatim IA</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Outil interne d'analyse des verbatims clients</div>
         </div>
-        <div onClick="{{ goGenepro }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+        <div onClick="{{ goGenepro }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Génépro/Généclé</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Parcours unique de souscription pour les professionnels</div>
         </div>
-        <div onClick="{{ goAlabri }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+        <div onClick="{{ goAlabri }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Alabri</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance habitation distribuée par BoursoBank</div>
         </div>
-        <div onClick="{{ goCarapass }}" style="cursor:pointer;background:#fff;border-radius:12px;padding:26px 24px;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(17,18,20,.09)">
+        <div onClick="{{ goCarapass }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Carapass</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance automobile distribuée par BoursoBank</div>
         </div>
@@ -504,15 +574,15 @@
   </sc-if>
 
   <sc-if value="{{ isVerbatim }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
       <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#236ABF">← Retour</span>
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">VERBATIM IA</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Verbatim IA est un projet né du besoin exprimé par les conseillers relation client de simplifier l'analyse des verbatims, afin d'anticiper et de répondre plus efficacement aux attentes des clients.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Verbatim IA est un projet né du besoin exprimé par les conseillers relation client de simplifier l'analyse des verbatims, afin d'anticiper et de répondre plus efficacement aux attentes des clients.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
-      <div style="background:#F4F5F6;border-radius:8px;padding:20px 24px">
+      <h2 id="v-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:12px">Bon à savoir</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
           <li>Un projet de l'expression des besoins à la livraison des maquettes</li>
@@ -521,9 +591,9 @@
         </ul>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h2 id="v-organisation" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait par e-mails, sous forme de comptes rendus, rédigés après les points de présentation des maquettes avec les chiffres de projet.</p>
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Ce format écrit servait aussi de trace des décisions de design : chaque compte rendu reprenait les arbitrages validés, ce qui évitait de rejouer les mêmes débats d'un point à l'autre.</p>
@@ -533,11 +603,11 @@
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Présenter tôt et souvent, même des écrans incomplets, a permis de corriger la structure de l'information avant d'entrer dans le détail visuel.</p>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">À la troisième semaine, le métier a demandé un tri par volume plutôt que par thème. C'était une remise en cause de la structure, mais encore peu coûteuse à ce stade : c'est exactement ce que l'on cherche en montrant tôt.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h2 id="v-missions" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
       <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Atelier d'idéation / Cadrage</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Matérialiser le besoin sous forme de wireframe</li>
@@ -550,7 +620,7 @@
       <img src="./assets/vb-atelier.png" alt="Board FigJam de l'atelier d'idéation" style="display:block;width:100%;height:auto;border-radius:6px">
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Écrans</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Matérialiser les idées de l'atelier précédent</li>
@@ -577,15 +647,15 @@
   </sc-if>
 
   <sc-if value="{{ isGenepro }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
       <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#236ABF">← Retour</span>
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">GÉNÉPRO / GÉNÉCLÉ</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Génépro et Généclé sont des assurances destinées aux professionnels. Jusqu'à présent, leur souscription s'effectuait via d'anciens outils proposant un parcours fragmenté. Il a donc été décidé de mettre en place un parcours unique de souscription, intégré dans un environnement dédié.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Génépro et Généclé sont des assurances destinées aux professionnels. Jusqu'à présent, leur souscription s'effectuait via d'anciens outils proposant un parcours fragmenté. Il a donc été décidé de mettre en place un parcours unique de souscription, intégré dans un environnement dédié.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
-      <div style="background:#F4F5F6;border-radius:8px;padding:20px 24px">
+      <h2 id="g-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:12px">Bon à savoir</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
           <li>Un projet de l'expression des besoins à la livraison des maquettes</li>
@@ -596,9 +666,9 @@
         </ul>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h2 id="g-organisation" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait grâce aux commentaires laissés sur les maquettes.</p>
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Commenter directement sur les écrans a rapproché le feedback de son contexte : chaque remarque restait rattachée à l'élément concerné plutôt qu'à un compte rendu séparé.</p>
@@ -608,11 +678,11 @@
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Ce rythme hebdomadaire servait surtout à aligner le métier, le développement et l'homologation sur une même version de référence.</p>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Une seule règle a suffi à rendre ces points efficaces : ne présenter que des écrans complets sur un scénario donné, jamais des fragments. Les discussions portaient alors sur le parcours et non sur des détails isolés.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h2 id="g-missions" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
       <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Atelier d'idéation / Cadrage</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Cadrer le besoin en termes de features</li>
@@ -628,7 +698,7 @@
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Le désaccord principal portait sur la place des bénéficiaires : au début du parcours pour les uns, juste avant la validation pour les autres. Le tri par cartes a tranché en rendant visible que cette information dépendait de choix faits plus tôt.</p>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Écrans</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Matérialiser les idées de l'atelier précédent</li>
@@ -658,7 +728,7 @@
       </div>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Tests utilisateurs</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Améliorer les maquettes pour les utilisateurs finaux</li>
@@ -681,15 +751,15 @@
   </sc-if>
 
   <sc-if value="{{ isAlabri }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
       <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#236ABF">← Retour</span>
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">ALABRI</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Le produit Alabri est une assurance habitation distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Le produit Alabri est une assurance habitation distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
-      <div style="background:#F4F5F6;border-radius:8px;padding:20px 24px">
+      <h2 id="a-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:12px">Bon à savoir</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
           <li>Un parcours déjà présent au début de la mission</li>
@@ -699,18 +769,18 @@
         </ul>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h2 id="a-organisation" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
       <p style="margin:0 0 20px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches s'effectuait auparavant par e-mail, sous forme de comptes rendus, ce qui entraînait des oublis et un manque de clarté. Afin d'optimiser ce processus, nous avons mis en place un fichier Excel dédié au suivi des tâches. Différents paramètres, définis conjointement avec les parties prenantes, permettent désormais de mieux qualifier et prioriser chaque tâche.</p>
       <figure style="margin:0 0 26px"><img src="./assets/al-suivi-taches.png" alt="Fichier Excel de suivi des tâches" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">Chaque ligne porte son demandeur, son objectif, son échéance, et son état de validation design et BA.</figcaption></figure>
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Un point design hebdomadaire pour discuter et présenter les tâches faites et à faire pour le prochain point design.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h2 id="a-missions" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
       <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Les missions ont été variées, allant de projets de grande envergure à des actions d'amélioration rapide.</p>
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Cette diversité demandait de garder une vision d'ensemble du parcours tout en livrant des correctifs au rythme des sprints.</p>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">En pratique je tenais deux listes : les chantiers, discutés en point design, et les correctifs rapides, traités directement avec les développeurs. Sans cette séparation, les petits sujets prenaient toute la place.</p>
@@ -720,7 +790,7 @@
       </div>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Maquetter le parcours entier</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Avoir des maquettes du parcours en recette à jour sur Figma</li>
@@ -733,7 +803,7 @@
       <figure style="margin:0"><img src="./assets/al-figma-parcours.png" alt="Vue Figma des parcours mobile et desktop" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">Le fichier Figma tenu à jour : simulation et souscription, en mobile et desktop, avec un cadre par cas (occupant avec foyer, sans foyer, non occupant).</figcaption></figure>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Audit UX du parcours</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Améliorer l'UI du parcours</li>
@@ -749,7 +819,7 @@
       <figure style="margin:22px 0 0"><img src="./assets/al-audit-classification.png" alt="Fichier de classification des erreurs de design" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">Chaque écran est repris critère par critère, avec une recommandation, une valeur design, une complexité et un statut de traitement.</figcaption></figure>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Ajout des packs à l'offre d'assurance</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Acquérir plus de souscriptions en étoffant l'offre d'assurance</li>
@@ -767,15 +837,15 @@
   </sc-if>
 
   <sc-if value="{{ isCarapass }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:56px 40px 24px;box-sizing:border-box;color:#1F2232">
       <span onClick="{{ goSG }}" style="cursor:pointer;display:inline-block;margin-bottom:28px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#236ABF">← Retour</span>
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">CARAPASS</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Le produit Carapass est une assurance automobile distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Le produit Carapass est une assurance automobile distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
-      <div style="background:#F4F5F6;border-radius:8px;padding:20px 24px">
+      <h2 id="c-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:12px">Bon à savoir</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
           <li>Un parcours en phase conception</li>
@@ -784,9 +854,9 @@
         </ul>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
+      <h2 id="c-organisation" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Organisation</h2>
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Suivi des taches</h3>
       <p style="margin:0 0 20px;font-size:15px;line-height:1.72;text-wrap:pretty">Le suivi des tâches était fait par mail sous la forme de CR, résultant en des oublis et un manque de clarté. Nous avons mis en place un fichier Excel pour optimiser le suivi des tâches à effectuer. Différents paramètres ont été mis en place avec les parties prenantes pour qualifier la tâche.</p>
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Rendre le suivi visible a réduit les allers-retours et permis d'objectiver la priorisation avec les parties prenantes.</p>
@@ -795,15 +865,15 @@
       <h3 style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Rituel Design</h3>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Un point design hebdomadaire pour discuter et présenter les tâches faites et à faire pour le prochain point design.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
+      <h2 id="c-missions" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Missions</h2>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Les missions ont été très diverses, de chantiers à des améliorations rapides.</p>
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Travailler sur un parcours encore en conception laissait plus de latitude pour poser les fondations UX avant l'arrivée des contraintes techniques.</p>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">J'en ai profité pour cadrer le parcours de bout en bout avant d'entrer dans les écrans, ce qui a évité de concevoir des étapes que les règles d'éligibilité rendaient de toute façon inutiles.</p>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Maquetter le parcours entier</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Avoir des maquettes du parcours en recette à jour sur Figma</li>
@@ -816,7 +886,7 @@
       <figure style="margin:0"><img src="./assets/cp-figma-parcours.png" alt="Vue Figma du parcours Assurance auto BoursoBank" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">La vue d'ensemble du parcours : éligibilité, véhicule, usages, informations générales, conducteurs, puis les formules.</figcaption></figure>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Création de page tarif</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Afficher le tarif, les options et le choix de formule</li>
@@ -829,7 +899,7 @@
       <figure style="margin:0"><img src="./assets/cp-page-tarif.png" alt="Écrans de la page tarif" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">La page tarif : la formule et ses garanties restent visibles pendant l'ajout des options, des franchises et des conducteurs.</figcaption></figure>
 
       <h3 style="margin:40px 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Recherche par marque</h3>
-      <div style="background:#F4F5F6;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+      <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #236ABF;border-radius:16px;padding:18px 22px;margin-bottom:22px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#fff">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:10px">Besoins</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6">
           <li>Rechercher son automobile à l'aide de sa marque</li>
@@ -843,16 +913,16 @@
   </sc-if>
 
   <sc-if value="{{ isBeaucens }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:72px 40px 24px;box-sizing:border-box;color:#1F2232">
       <div style="text-align:center;margin-bottom:26px">
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:52px;line-height:1;color:#1F2232">Beaucens</div>
       </div>
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">MARIAGE À BEAUCENS</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">Un site privé pour un mariage de décembre 2026 dans les Hautes-Pyrénées : confirmation de présence, guide pratique pour les invités et espace de suivi pour les organisateurs. Conçu et développé seul, mis en ligne sur GitHub Pages.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Un site privé pour un mariage de décembre 2026 dans les Hautes-Pyrénées : confirmation de présence, guide pratique pour les invités et espace de suivi pour les organisateurs. Conçu et développé seul, mis en ligne sur GitHub Pages.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
+      <h2 id="b-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Un mariage se pilote habituellement par messages : un groupe WhatsApp pour les questions, un tableur pour les réponses, des relances individuelles pour les manquants. Le problème n'est pas le manque d'information mais sa dispersion — chaque invité repose la question déjà posée par un autre.</p>
         <p style="margin:0">Le site part de là. Une seule adresse, protégée par le mot de passe figurant sur l'invitation, qui répond à la place des organisateurs : où, quand, comment venir, où dormir, et que dois-je confirmer.</p>
@@ -862,9 +932,9 @@
         <figcaption style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#1F2232;text-align:center">Le dessin du domaine, utilisé comme repère visuel sur la page d'accueil</figcaption>
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les contraintes</h2>
+      <h2 id="b-contraintes" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les contraintes</h2>
       <div style="background:#F4F5F6;border-radius:8px;padding:20px 24px;margin-bottom:26px">
         <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1F2232;margin-bottom:12px">Ce qui a dicté la conception</div>
         <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6">
@@ -880,9 +950,9 @@
         <p style="margin:0">Le réseau incertain a conduit à garder la réponse envoyée en mémoire côté navigateur : un invité qui revient voit sa réponse et peut la modifier, au lieu d'en créer une seconde en croyant que la première n'est pas passée.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture technique</h2>
+      <h2 id="b-architecture" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'architecture technique</h2>
       <p style="margin:0 0 22px;font-size:15px;line-height:1.72;text-wrap:pretty">Le parti pris est un site statique sans serveur : tout tient dans un fichier HTML publié sur GitHub Pages, et les réponses partent vers une feuille Google Sheets via un script Apps Script déployé en application web.</p>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
         <div style="background:#1F2232;color:#F4F5F6;border-radius:10px;padding:18px 22px">
@@ -902,9 +972,9 @@
       </div>
       <p style="margin:0;font-size:15px;line-height:1.72;text-wrap:pretty">Cette architecture a une limite que j'ai documentée dans le dépôt plutôt que de la cacher : le code organisateur protège l'interface, pas l'API. Toute personne connaissant l'URL du script peut techniquement lire les réponses. C'est acceptable pour une liste d'invités, pas pour des données sensibles — et c'est le genre d'arbitrage qu'il vaut mieux écrire noir sur blanc que découvrir plus tard.</p>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les écrans</h2>
+      <h2 id="b-ecrans" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les écrans</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Le site est découpé en trois espaces distincts : la porte d'entrée par mot de passe, le parcours invité (accueil, formulaire, guide) et l'espace organisateur. Le guide se parcourt avec une barre d'onglets en bas d'écran — Lieu, Programme, Transports, Hébergements — parce qu'un invité y revient plusieurs fois et cherche à chaque fois une chose précise.</p>
         <p style="margin:0">Le contenu est écrit pour lever les questions dans l'ordre où elles arrivent. Le programme annonce d'emblée ce qui est incontournable et ce qui est optionnel ; les hébergements distinguent la famille, logée au domaine, des amis qui doivent réserver alentour ; les transports rappellent qu'une automobile est indispensable et donnent les distances depuis les aéroports.</p>
@@ -914,9 +984,9 @@
         <p style="margin:14px 0 0;font-size:13px;line-height:1.65;color:#1F2232;text-align:center">Prototype mobile fidèle aux maquettes, avec données fictives. Testez l'inscription, le guide, les transports, les hébergements et la FAQ.</p>
       </div>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">RSVP et données des invités</h2>
+      <h2 id="b-rsvp" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">RSVP et données des invités</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Le formulaire ne demande que ce qui sert à organiser : présence, accompagnants, participation au brunch du lendemain, allergies et régimes alimentaires, besoins de covoiturage. Chaque champ correspond à une décision réelle des organisateurs — un plan de table, une commande au traiteur, une réservation. Rien n'est collecté « au cas où ».</p>
         <p style="margin:0">Le brunch du lendemain est le cas le plus délicat : optionnel, payant, 30 € par personne. Il fallait l'annoncer sans qu'il ressemble à une obligation, et permettre le paiement sans caisse en ligne. La réponse tient dans le formulaire, le paiement se fait ensuite par lien Revolut, par Wero ou par virement, avec un bouton qui copie l'IBAN — la solution la moins élégante mais la seule qui fonctionne pour tout le monde.</p>
@@ -935,28 +1005,28 @@
         <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232">L'espace organisateur : totaux, filtres amis/famille, suppression et export CSV. Noms et e-mails remplacés par des données fictives.</figcaption>
       </figure>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
+      <h2 id="b-test" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le test et la recette</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Un site de mariage n'a pas de phase de recette : il est consulté par cent vingt personnes le jour où le lien part, sur leurs téléphones, et une erreur de RSVP se traduit par un appel téléphonique. J'ai donc testé avant l'envoi, en essayant de casser le formulaire plutôt que de vérifier qu'il fonctionne.</p>
         <p style="margin:0">L'enjeu principal n'était pas l'affichage mais l'intégrité des réponses : un doublon, un accompagnant perdu ou un envoi silencieusement échoué se paient en travail manuel pour les organisateurs.</p>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Les outils</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;line-height:1.6">
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Playwright</div>
           <div style="color:#1F2232">Parcours RSVP complet rejoué à chaque déploiement, en viewport mobile et desktop.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Lighthouse</div>
           <div style="color:#1F2232">Performance et accessibilité sur connexion lente, cible mobile en 4G dégradée.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">BrowserStack</div>
           <div style="color:#1F2232">Safari iOS et Chrome Android sur d'anciens appareils, majoritaires chez les invités.</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:18px 20px">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:18px 20px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-weight:700;margin-bottom:5px">Test en conditions réelles</div>
           <div style="color:#1F2232">Six proches ont rempli le formulaire avant l'envoi, sans consigne, en visio partagée.</div>
         </div>
@@ -967,42 +1037,42 @@
         <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;padding:0 16px 6px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#1F2232">
           <div>Cas de test</div><div>Type</div><div>Résultat</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>RSVP avec deux accompagnants et une allergie</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>RSVP avec deux accompagnants et une allergie</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Double envoi du même invité</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Double envoi du même invité</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Réponse « ne vient pas » : champs suivants masqués</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Réponse « ne vient pas » : champs suivants masqués</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Perte de réseau pendant l'envoi</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Perte de réseau pendant l'envoi</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Export CSV avec accents et apostrophes</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Échec</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Export CSV avec accents et apostrophes</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#D95050;font-weight:700;font-size:13px">Échec</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Formulaire sur iPhone SE, clavier ouvert</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Instable</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Formulaire sur iPhone SE, clavier ouvert</div><div style="color:#1F2232;font-size:13px">Manuel</div><div style="color:#C97818;font-weight:700;font-size:13px">Instable</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Chargement du guide en 4G dégradée</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Chargement du guide en 4G dégradée</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border-radius:8px;padding:14px 16px">
-          <div>Navigation clavier et libellés des champs</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#2CA6A4;font-weight:700;font-size:13px">Passé</div>
+        <div style="display:grid;grid-template-columns:1fr 92px 82px;gap:10px;align-items:center;background:#fff;border:1px solid #DDE5EE;border-left:3px solid #CFE0F3;border-radius:12px;padding:14px 16px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:scale(1.01);border-color:#AFC7E2;background:#FAFCFE">
+          <div>Navigation clavier et libellés des champs</div><div style="color:#1F2232;font-size:13px">Auto</div><div style="color:#168F68;font-weight:700;font-size:13px">Passé</div>
         </div>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a produit</h3>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">22</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">cas de test, dont 9 automatisés</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">11</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">anomalies corrigées avant l'envoi du lien</div>
         </div>
-        <div style="background:#fff;border-radius:10px;padding:20px;text-align:center">
+        <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">0</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">appel reçu pour un problème de site</div>
         </div>
@@ -1013,9 +1083,9 @@
         <p style="margin:0">L'export CSV cassait sur les accents dès qu'il était ouvert dans Excel — un détail invisible en développement, bloquant pour la personne qui gère les tables. Corrigé par l'encodage, mais trouvé seulement parce que j'ai testé l'usage réel du fichier et pas seulement sa génération.</p>
         <p style="margin:0">Le test avec six proches a été le plus instructif pour un coût nul. Deux d'entre eux ont cherché le bouton RSVP en haut de page alors qu'il était en fin de parcours ; c'est ce qui a motivé le rappel permanent en bas d'écran. Aucun n'avait lu la FAQ avant de poser sa question.</p>
       </div>
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
+      <h2 id="b-retour" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Ce que j'en retire</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">C'est le projet où j'ai eu le plus de liberté et le moins d'excuses : pas de design system à respecter, pas de contrainte technique héritée, mais des utilisateurs réels qui n'ont pas de service support et qui appellent si le site ne répond pas à leur question.</p>
         <p style="margin:0">Il m'a aussi rappelé qu'une bonne partie du travail UX est du travail d'écriture. Sur ce site, presque chaque problème d'usage se réglait en reformulant une phrase plutôt qu'en ajoutant un composant.</p>
@@ -1024,38 +1094,113 @@
     </main>
   </sc-if>
 
+  <sc-if value="{{ isCV }}" hint-placeholder-val="{{ false }}">
+    <main id="top" style="flex:1;width:100%;max-width:1120px;margin:0 auto;padding:72px 40px 40px;box-sizing:border-box;color:#1F2232">
+      <div style="margin-bottom:52px">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#08785D"><span class="availability-dot"></span>Disponible pour de nouvelles collaborations</div>
+        <h1 style="max-width:920px;margin:0;font-size:48px;line-height:1.12;letter-spacing:-.035em;text-transform:none">Un product designer qui conçoit, code et teste jusqu'au produit livré.</h1>
+      </div>
+
+      <div class="cv-layout" style="display:grid;grid-template-columns:280px minmax(0,1fr);gap:54px;align-items:start">
+        <aside class="cv-aside" style="position:sticky;top:28px;background:#EEF3F8;border:1px solid #DDE5EE;border-radius:20px;padding:26px;box-sizing:border-box">
+          <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="display:block;width:88px;height:auto;margin-bottom:24px">
+          <h2 style="margin:0 0 8px;font-size:22px;line-height:1.2;text-transform:none;letter-spacing:-.02em">Quentin Alterescu</h2>
+          <p style="margin:0;color:#236ABF;font-family:'Montserrat',sans-serif !important;font-size:14px;line-height:1.5;font-weight:600">Product Designer<br>Design · Code · Test</p>
+          <div style="height:1px;background:#D4DEE9;margin:24px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:15px;font-size:13px;line-height:1.45">
+            <a href="mailto:qalterescu@me.com" style="display:flex;gap:10px;align-items:flex-start"><span style="color:#236ABF">●</span><span>qalterescu@me.com</span></a>
+            <a href="https://www.linkedin.com/in/quentin-alterescu-4a146478/" target="_blank" rel="noreferrer" style="display:flex;gap:10px;align-items:flex-start"><span style="color:#236ABF">↗</span><span>Profil LinkedIn</span></a>
+          </div>
+          <div style="height:1px;background:#D4DEE9;margin:24px 0"></div>
+          <p style="margin:0;font-size:13px;line-height:1.65;color:#4A4D57">Je transforme des sujets complexes en expériences compréhensibles, puis je vais assez loin dans le code et la recette pour vérifier qu'elles tiennent dans le produit réel.</p>
+        </aside>
+
+        <div class="cv-timeline" style="display:flex;flex-direction:column;gap:58px">
+          <section id="cv-projets" class="cv-section">
+            <h2 style="margin:0 0 22px;font-size:24px;line-height:1.2;text-transform:none;letter-spacing:-.02em">Projets & expériences</h2>
+            <div class="cv-project-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <a class="cv-card" onClick="{{ goSG }}" style="cursor:pointer;padding:21px;display:block">
+                <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start"><div><div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700">Société Générale</div><div style="margin-top:5px;font-size:13px;color:#5C6370">Product design · assurance & IA</div></div><span style="color:#236ABF">↗</span></div>
+                <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#4A4D57">Quatre missions : parcours de souscription, outil d'analyse de verbatims, cadrage, maquettes et accompagnement de la recette.</p>
+              </a>
+              <a class="cv-card" onClick="{{ goQatent }}" style="cursor:pointer;padding:21px;display:block">
+                <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start"><div><div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700">Qatent</div><div style="margin-top:5px;font-size:13px;color:#5C6370">UX solo · SaaS de brevets IA</div></div><span style="color:#236ABF">↗</span></div>
+                <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#4A4D57">Recherche, simplification de workflows experts, guided tour, design d'interface et campagne de tests fonctionnels.</p>
+              </a>
+              <a class="cv-card" onClick="{{ goTalkingHands }}" style="cursor:pointer;padding:21px;display:block">
+                <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start"><div><div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700">Talking Hands</div><div style="margin-top:5px;font-size:13px;color:#5C6370">Design · Python · IA</div></div><span style="color:#236ABF">↗</span></div>
+                <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#4A4D57">Prototype accessible de reconnaissance gestuelle, de la problématique utilisateur au modèle MediaPipe et à la recette en conditions réelles.</p>
+              </a>
+              <a class="cv-card" onClick="{{ goBeaucens }}" style="cursor:pointer;padding:21px;display:block">
+                <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start"><div><div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700">Beaucens</div><div style="margin-top:5px;font-size:13px;color:#5C6370">Conception · développement · QA</div></div><span style="color:#236ABF">↗</span></div>
+                <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#4A4D57">Site de mariage privé conçu et développé de bout en bout, avec RSVP, gestion des données, responsive et tests utilisateurs.</p>
+              </a>
+            </div>
+          </section>
+
+          <section id="cv-competences" class="cv-section">
+            <h2 style="margin:0 0 22px;font-size:24px;line-height:1.2;text-transform:none;letter-spacing:-.02em">Compétences</h2>
+            <div style="display:flex;flex-direction:column;gap:22px">
+              <div><div style="margin-bottom:10px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#08785D">Design produit</div><div class="cv-skills-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px"><div class="skill-pill">Recherche utilisateur</div><div class="skill-pill">Cadrage & parcours</div><div class="skill-pill">UI & Design System</div><div class="skill-pill">Wireframes</div><div class="skill-pill">Prototypage</div><div class="skill-pill">Ateliers</div></div></div>
+              <div><div style="margin-bottom:10px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#236ABF">Code & IA</div><div class="cv-skills-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px"><div class="skill-pill">HTML · CSS · JS</div><div class="skill-pill">Python</div><div class="skill-pill">Intégration front</div><div class="skill-pill">MediaPipe</div><div class="skill-pill">Prototypage IA</div><div class="skill-pill">Architecture d'interface</div></div></div>
+              <div><div style="margin-bottom:10px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9A4A00">Test & qualité</div><div class="cv-skills-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px"><div class="skill-pill">Playwright</div><div class="skill-pill">Tests manuels</div><div class="skill-pill">Recette fonctionnelle</div><div class="skill-pill">Accessibilité</div><div class="skill-pill">BrowserStack</div><div class="skill-pill">Analyse d'anomalies</div></div></div>
+            </div>
+          </section>
+
+          <section id="cv-methode" class="cv-section">
+            <h2 style="margin:0 0 22px;font-size:24px;line-height:1.2;text-transform:none;letter-spacing:-.02em">Ma façon de travailler</h2>
+            <div class="cv-method-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+              <div class="cv-card" style="padding:20px"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;color:#236ABF">01 · COMPRENDRE</div><p style="margin:12px 0 0;font-size:13px;line-height:1.6">Observer les usages, clarifier le besoin et partager une lecture commune du problème.</p></div>
+              <div class="cv-card" style="padding:20px"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;color:#236ABF">02 · CONCEVOIR</div><p style="margin:12px 0 0;font-size:13px;line-height:1.6">Passer vite du parcours au prototype, avec une interface lisible et cohérente.</p></div>
+              <div class="cv-card" style="padding:20px"><div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;color:#236ABF">03 · PROUVER</div><p style="margin:12px 0 0;font-size:13px;line-height:1.6">Coder quand cela accélère l'apprentissage, tester le réel et corriger avant la livraison.</p></div>
+            </div>
+          </section>
+
+          <section id="cv-contact" class="cv-section">
+            <div style="background:#1F2232;border-radius:18px;padding:28px;color:#fff">
+              <h2 style="margin:0 0 10px;font-size:24px;line-height:1.2;text-transform:none;letter-spacing:-.02em;color:#fff">Un produit à clarifier, prototyper ou fiabiliser ?</h2>
+              <p style="margin:0 0 20px;max-width:560px;font-size:14px;line-height:1.65;color:#DDE5EE">Je suis disponible pour échanger sur une mission product design, design engineering ou QA orientée expérience.</p>
+              <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="mailto:qalterescu@me.com" style="display:inline-block;background:#fff;color:#1F2232;border-radius:999px;padding:10px 16px;font-weight:700;font-size:13px">Me contacter</a><a href="https://www.linkedin.com/in/quentin-alterescu-4a146478/" target="_blank" rel="noreferrer" style="display:inline-block;border:1px solid #647087;color:#fff;border-radius:999px;padding:10px 16px;font-weight:700;font-size:13px">LinkedIn ↗</a></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
   <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
-    <main style="flex:1;width:100%;max-width:700px;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box;color:#1F2232">
+    <main id="top" style="flex:1;width:100%;max-width:900px;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box;color:#1F2232">
       <h1 style="margin:0 0 26px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">About</h1>
-      <p style="margin:0 auto;max-width:580px;text-align:center;font-size:15.5px;line-height:1.72;color:#1F2232;text-wrap:pretty">En dehors du design, je fais de la musique. C'est là que j'ai appris à finir des choses, à les faire écouter et à recommencer.</p>
+      <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">En dehors du design, je fais de la musique. C'est là que j'ai appris à finir des choses, à les faire écouter et à recommencer.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La musique</h2>
-      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
+      <h2 id="about-musique" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">La musique</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:700px;margin:0 auto;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">Je joue de la guitare et je compose. Un morceau se travaille comme une interface : une idée simple au départ, beaucoup de versions ensuite, et le moment délicat où il faut retirer plutôt qu'ajouter.</p>
-        <p style="margin:0">Deux endroits où ce travail est visible : mes compositions sur SoundCloud, et les tablatures que je relève et publie sur Ultimate Guitar. Les tablatures sont l'exercice le plus proche de mon métier — transcrire ce qu'on entend dans une notation que quelqu'un d'autre pourra lire et rejouer sans explication.</p>
+        <p style="margin:0">Deux endroits où ce travail est visible : mes compositions sur SoundCloud, et les tablatures que je transcris et publie sur Ultimate Guitar. Les tablatures sont l'exercice le plus proche de mon métier — transcrire ce qu'on entend dans une notation que quelqu'un d'autre pourra lire et rejouer sans explication.</p>
       </div>
-      <div id="soundcloud" style="margin-top:32px;background:#fff;border-radius:12px;padding:22px;box-sizing:border-box">
+      <div id="soundcloud" style="max-width:700px;margin:32px auto 0;background:#fff;border:1px solid #DDE5EE;border-top:4px solid #FF5500;border-radius:18px;padding:22px;box-sizing:border-box;overflow:hidden">
         <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232;margin-bottom:14px">Mes compositions · balledegolf</div>
-        <iframe title="Lecteur SoundCloud de balledegolf" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fballedegolf&amp;color=%231f6fd0&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" style="display:block;border:0;border-radius:8px"></iframe>
+        <div style="width:100%;height:450px;overflow:hidden;border-radius:8px"><iframe title="Lecteur SoundCloud de balledegolf" width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fballedegolf&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;show_artwork=true&amp;visual=false" style="display:block;width:100%;height:450px;border:0;border-radius:8px;overflow:hidden"></iframe></div>
       </div>
-      <section id="ultimate-guitar" style="margin-top:16px;background:#fff;border-radius:16px;padding:24px;box-sizing:border-box;box-shadow:0 10px 30px rgba(31,45,61,0.05)">
+      <section id="ultimate-guitar" style="max-width:700px;margin:16px auto 0;background:#fff;border:1px solid #DDE5EE;border-top:4px solid #236ABF;border-radius:18px;padding:24px;box-sizing:border-box;box-shadow:none">
         <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
-          <div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232">Mes relevés · Ultimate Guitar</div><h3 style="margin:7px 0 0;font-size:22px;line-height:1.2">33 transcriptions publiées</h3></div>
+          <div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232">Mes tablatures · Ultimate Guitar</div><h3 style="margin:7px 0 0;font-size:22px;line-height:1.2">33 tablatures publiées</h3></div>
           <a href="https://www.ultimate-guitar.com/contribution/33587789-jeanfredalta1/tabs" target="_blank" rel="noreferrer" style="font-size:13px;font-weight:650;color:#236ABF">Profil jeanfredalta1 ↗</a>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-bottom:18px">
-          <a href="https://tabs.ultimate-guitar.com/tab/fu-manchu/strolling-astronomer-guitar-pro-6135053" target="_blank" rel="noreferrer" style="min-height:152px;padding:20px;border-radius:12px;background:#1F2232;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
-            <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#F4F5F6">Transcription à la une · Guitar Pro</span>
-            <span><strong style="display:block;font-size:21px;line-height:1.15">Strolling Astronomer</strong><span style="display:block;margin-top:6px;font-size:14px;color:#F4F5F6">Fu Manchu · janvier 2026</span></span>
+        <div class="music-feature-grid">
+          <a href="{{ selectedTabUrl }}" target="_blank" rel="noreferrer" style="height:152px;padding:17px 19px;border-radius:12px;background:#1F2232;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+            <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#F4F5F6">Tablature à la une · Guitar Pro</span>
+            <span><strong style="display:block;font-size:19px;line-height:1.12">{{ selectedTabTitle }}</strong><span style="display:block;margin-top:5px;font-size:13px;color:#F4F5F6">{{ selectedTabMeta }}</span></span>
             <span style="font-size:12px;color:#236ABF">Ouvrir la tablature ↗</span>
           </a>
-          <iframe title="Écouter Strolling Astronomer de Fu Manchu sur Spotify" src="https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&amp;theme=0" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy" style="display:block;border:0;border-radius:12px"></iframe>
+          <sc-if value="{{ hasSpotifyEmbed }}" hint-placeholder-val="{{ true }}"><div class="spotify-embed-wrap"><iframe title="Écouter {{ selectedTabTitle }} de {{ selectedTabArtist }} sur Spotify" src="{{ selectedSpotifyUrl }}" width="100%" height="152" scrolling="no" frameborder="0" allowfullscreen allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy" style="display:block;width:100%;height:152px;border:0;border-radius:12px;overflow:hidden"></iframe></div></sc-if>
+          <sc-if value="{{ showSpotifySearch }}" hint-placeholder-val="{{ false }}"><div class="spotify-search-card"><span class="spotify-search-head"><span class="spotify-search-mark">♪</span>Spotify</span><span><strong class="spotify-search-title">{{ selectedTabTitle }}</strong><span class="spotify-search-artist">{{ selectedTabArtist }}</span></span><a class="spotify-search-link" href="{{ selectedSpotifySearchUrl }}" target="_blank" rel="noreferrer">Trouver ce morceau sur Spotify ↗</a></div></sc-if>
         </div>
         <div style="border:1px solid #F4F5F6;border-radius:12px;overflow:hidden">
           <div style="padding:12px 15px;background:#F4F5F6;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#1F2232">Toutes les contributions · défilement</div>
-          <div style="max-height:390px;overflow:auto;padding:4px 15px">
+          <div class="tab-song-list" onClick="{{ selectTab }}" style="max-height:280px;overflow:auto;padding:4px 15px">
             <a href="https://tabs.ultimate-guitar.com/tab/anda-morts/leere-flaschen-guitar-pro-5450316" target="_blank" rel="noreferrer" style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #F4F5F6"><span><strong>Leere Flaschen</strong><small style="display:block;color:#1F2232">Anda Morts</small></span><small style="color:#1F2232;white-space:nowrap">Guitar Pro</small></a>
             <a href="https://tabs.ultimate-guitar.com/tab/downpresser/broken-walls-guitar-pro-4120306" target="_blank" rel="noreferrer" style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #F4F5F6"><span><strong>Broken Walls</strong><small style="display:block;color:#1F2232">Downpresser</small></span><small style="color:#1F2232">Guitar Pro</small></a>
             <a href="https://tabs.ultimate-guitar.com/tab/downpresser/underneath-guitar-pro-4120303" target="_blank" rel="noreferrer" style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #F4F5F6"><span><strong>Underneath</strong><small style="display:block;color:#1F2232">Downpresser</small></span><small style="color:#1F2232">Guitar Pro</small></a>
@@ -1093,67 +1238,219 @@
         </div>
       </section>
 
-      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#F4F5F6,#F4F5F6,#F4F5F6)"></div>
+      <div style="height:3px;border-radius:2px;margin:48px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
-      <h2 style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'automobile</h2>
-      <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
-        <p style="margin:0">Mon autre passion, que je filme et monte sur ma chaîne YouTube. Tourner, cadrer, monter : c'est aussi un travail de rythme et de sélection, décider ce qui reste et ce qui part.</p>
+      <h2 id="about-auto" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">L'automobile</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:700px;margin:0 auto;font-size:15px;line-height:1.72;text-wrap:pretty">
+        <p style="margin:0">L'automobile, c'est d'abord le plaisir de conduire : sentir une route, comprendre le caractère d'une voiture et traverser des paysages qui donnent envie de prolonger le trajet. Sur Alta Drives, je transforme cette passion en images, entre conduite, routes panoramiques et attention portée aux lieux autant qu'aux machines.</p>
       </div>
-      <div id="youtube" style="margin-top:32px;background:#fff;border-radius:12px;padding:22px;box-sizing:border-box">
-        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232;margin-bottom:14px">Alta Drives · YouTube</div>
-        <div style="position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:8px;background:#1F2232">
-          <iframe title="Vidéos YouTube de la chaîne Alta Drives" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUWYzU7x5CAEgLldIZvUVnzw" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+      <div id="youtube" style="margin-top:32px;background:#fff;border:1px solid #DDE5EE;border-top:4px solid #D95050;border-radius:18px;padding:24px;box-sizing:border-box">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
+          <div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232">Alta Drives · YouTube</div><h3 style="margin:7px 0 0;font-size:22px;line-height:1.2">La conduite comme invitation au voyage</h3></div>
+          <a href="https://www.youtube.com/@AltaDrives" target="_blank" rel="noreferrer" style="font-size:13px;font-weight:650;color:#236ABF">Voir la chaîne ↗</a>
         </div>
-        <a href="https://www.youtube.com/@AltaDrives" target="_blank" rel="noreferrer" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:#236ABF">Voir la chaîne Alta Drives ↗</a>
+        <div style="position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:12px;background:#111">
+          <iframe title="Dernières vidéos de la chaîne YouTube Alta Drives" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUYP8T61JnDmtQrg7DYU4Fj2&amp;rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><span class="project-tag" style="background:#FBE5E5;font-size:11px;font-weight:600">Conduite</span><span class="project-tag" style="background:#E7EEF8;font-size:11px;font-weight:600">Paysages</span><span class="project-tag" style="background:#EEF1F4;font-size:11px;font-weight:600">Automobile</span></div>
       </div>
     </main>
   </sc-if>
 
-  <footer style="max-width:1120px;width:100%;margin:0 auto;padding:56px 40px 40px;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);justify-items:center;font-size:14px;letter-spacing:0.01em;color:#1F2232">
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <main id="top" style="flex:1;width:100%;max-width:980px;margin:0 auto;padding:96px 40px 40px;box-sizing:border-box;color:#1F2232">
+      <h1 style="margin:0 0 18px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">Contact</h1>
+      <p class="project-intro" style="margin:0 auto 48px;max-width:660px;text-align:center;text-wrap:pretty">Vous avez un produit à clarifier, une expérience à concevoir ou un parcours à fiabiliser ? Parlez-moi de votre projet.</p>
+      <div class="contact-layout" style="display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:stretch">
+        <aside style="display:flex;flex-direction:column;background:#1F2232;color:#fff;border-radius:18px;padding:26px;box-sizing:border-box">
+          <img src="./assets/quentin-contact.png" alt="Portrait de Quentin Alterescu" style="display:block;width:116px;height:116px;object-fit:cover;object-position:center 28%;border-radius:18px;margin-bottom:24px">
+          <h2 style="margin:0 0 10px;font-size:23px;line-height:1.2;text-transform:none;letter-spacing:-.02em;color:#fff">Construisons quelque chose d'utile.</h2>
+          <p style="margin:0;font-size:14px;line-height:1.65;color:#DDE5EE">Disponible pour des missions en product design, design augmenté par l'IA, prototypage et QA orientée expérience.</p>
+          <div style="height:1px;background:#3B4357;margin:26px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:13px;line-height:1.5">
+            <a href="mailto:qalterescu@me.com" style="color:#fff">qalterescu@me.com</a>
+            <a href="https://www.linkedin.com/in/quentin-alterescu-4a146478/" target="_blank" rel="noreferrer" style="color:#fff">LinkedIn ↗</a>
+          </div>
+        </aside>
+        <form onSubmit="{{ sendContact }}" action="mailto:qalterescu@me.com" method="post" enctype="text/plain" style="background:#fff;border:1px solid #DDE5EE;border-top:4px solid #236ABF;border-radius:18px;padding:28px;box-sizing:border-box">
+          <div class="contact-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="contact-field"><label for="contact-name">Nom</label><input id="contact-name" name="name" type="text" autocomplete="name" required placeholder="Votre nom"></div>
+            <div class="contact-field"><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" autocomplete="email" required placeholder="vous@email.com"></div>
+          </div>
+          <div class="contact-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+            <div class="contact-field"><label for="contact-project">Type de projet</label><select id="contact-project" name="project" required><option value="">Sélectionner</option><option>Product design</option><option>Design augmenté par l'IA</option><option>Prototype & développement</option><option>Audit UX & QA</option><option>Autre</option></select></div>
+            <div class="contact-field"><label for="contact-timing">Temporalité</label><select id="contact-timing" name="timing"><option value="">À définir</option><option>Dès que possible</option><option>Dans le mois</option><option>Dans les 3 mois</option><option>Plus tard</option></select></div>
+          </div>
+          <div class="contact-field" style="margin-top:16px"><label for="contact-message">Votre projet</label><textarea id="contact-message" name="message" required placeholder="Contexte, objectifs, équipe, contraintes…"></textarea></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:20px">
+            <small style="max-width:330px;color:#6B7280;line-height:1.45">Le formulaire ouvre votre messagerie avec votre demande préremplie.</small>
+            <button type="submit" style="cursor:pointer;border:0;border-radius:999px;background:#236ABF;color:#fff;padding:12px 19px;font-family:'Montserrat',sans-serif !important;font-size:12px;font-weight:700;letter-spacing:.04em">Préparer mon message ↗</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isQatent }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#q-prologue"><span class="guide-label">Prologue</span><span class="guide-dot"></span></a><a href="#q-problematique"><span class="guide-label">Problématique</span><span class="guide-dot"></span></a><a href="#q-recherche"><span class="guide-label">Recherche</span><span class="guide-dot"></span></a><a href="#q-proposition"><span class="guide-label">Proposition</span><span class="guide-dot"></span></a><a href="#q-guided"><span class="guide-label">Guided tour</span><span class="guide-dot"></span></a><a href="#q-test"><span class="guide-label">Test</span><span class="guide-dot"></span></a><a href="#q-retour"><span class="guide-label">Bilan</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isTalkingHands }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#th-prologue"><span class="guide-label">Prologue</span><span class="guide-dot"></span></a><a href="#th-problematique"><span class="guide-label">Problématique</span><span class="guide-dot"></span></a><a href="#th-technologie"><span class="guide-label">Technologie</span><span class="guide-dot"></span></a><a href="#th-proposition"><span class="guide-label">Proposition</span><span class="guide-dot"></span></a><a href="#th-architecture"><span class="guide-label">Architecture</span><span class="guide-dot"></span></a><a href="#th-code"><span class="guide-label">Code</span><span class="guide-dot"></span></a><a href="#th-limites"><span class="guide-label">Limites</span><span class="guide-dot"></span></a><a href="#th-test"><span class="guide-label">Test</span><span class="guide-dot"></span></a><a href="#th-suite"><span class="guide-label">Suite</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isSG }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#sg-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isVerbatim }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#v-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#v-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#v-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isGenepro }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#g-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#g-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#g-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isAlabri }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#a-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#a-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#a-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isCarapass }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#c-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#c-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#c-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isBeaucens }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#b-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#b-contraintes"><span class="guide-label">Contraintes</span><span class="guide-dot"></span></a><a href="#b-architecture"><span class="guide-label">Architecture</span><span class="guide-dot"></span></a><a href="#b-ecrans"><span class="guide-label">Écrans</span><span class="guide-dot"></span></a><a href="#b-rsvp"><span class="guide-label">RSVP</span><span class="guide-dot"></span></a><a href="#b-test"><span class="guide-label">Test</span><span class="guide-dot"></span></a><a href="#b-retour"><span class="guide-label">Bilan</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#about-musique"><span class="guide-label">Musique</span><span class="guide-dot"></span></a><a href="#about-auto"><span class="guide-label">Automobile</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <sc-if value="{{ isCV }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#cv-projets"><span class="guide-label">Projets</span><span class="guide-dot"></span></a><a href="#cv-competences"><span class="guide-label">Compétences</span><span class="guide-dot"></span></a><a href="#cv-methode"><span class="guide-label">Méthode</span><span class="guide-dot"></span></a><a href="#cv-contact"><span class="guide-label">Contact</span><span class="guide-dot"></span></a></aside></sc-if>
+
+  <footer class="site-footer" style="max-width:1120px;width:100%;margin:0 auto;padding:56px 40px 40px;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);justify-items:center;font-size:14px;letter-spacing:0.01em;color:#1F2232">
     <a href="mailto:qalterescu@me.com">qalterescu@me.com</a>
-    <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" style="font-weight:500">LinkedIn</a>
-    <a href="#cv" style="font-weight:500">CV</a>
+    <a href="https://www.linkedin.com/in/quentin-alterescu-4a146478/" target="_blank" rel="noreferrer" style="font-weight:500">LinkedIn</a>
+    <span onClick="{{ goCV }}" style="cursor:pointer;font-weight:500">CV</span>
   </footer>
 </div>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { page: 'home' };
+  state = {
+    page: 'home',
+    selectedTabTitle: 'Strolling Astronomer',
+    selectedTabArtist: 'Fu Manchu',
+    selectedTabMeta: 'Fu Manchu · janvier 2026',
+    selectedTabUrl: 'https://tabs.ultimate-guitar.com/tab/fu-manchu/strolling-astronomer-guitar-pro-6135053',
+    selectedSpotifyUrl: 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0',
+    selectedSpotifySearchUrl: 'https://open.spotify.com/search/Strolling%20Astronomer%20Fu%20Manchu',
+    selectedHasSpotifyEmbed: true
+  };
+  navigate(page) {
+    this.setState({ page });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    setTimeout(() => window.scrollTo(0, 0), 0);
+  }
+  sendContact(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    const form = event && event.currentTarget ? event.currentTarget : document.querySelector('form[action^="mailto:"]');
+    if (!form || !form.reportValidity()) return;
+    const data = new FormData(form);
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const project = data.get('project') || 'Projet';
+    const timing = data.get('timing') || 'À définir';
+    const message = data.get('message') || '';
+    const subject = encodeURIComponent('Projet · ' + project + ' · ' + name);
+    const body = encodeURIComponent('Bonjour Quentin,\n\n' + message + '\n\nType de projet : ' + project + '\nTemporalité : ' + timing + '\n\n' + name + '\n' + email);
+    window.location.href = 'mailto:qalterescu@me.com?subject=' + subject + '&body=' + body;
+  }
+  selectTab(event) {
+    const link = event && event.target && event.target.closest ? event.target.closest('a') : null;
+    if (!link || !link.closest('.tab-song-list')) return;
+    event.preventDefault();
+    const title = (link.querySelector('strong')?.textContent || '').trim();
+    const artist = (link.querySelector('small')?.textContent || '').trim();
+    if (!title || !artist) return;
+    const exactSpotify = title === 'Strolling Astronomer' && artist === 'Fu Manchu';
+    this.setState({
+      selectedTabTitle: title,
+      selectedTabArtist: artist,
+      selectedTabMeta: artist + ' · Guitar Pro',
+      selectedTabUrl: link.href,
+      selectedSpotifyUrl: exactSpotify ? 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0' : '',
+      selectedSpotifySearchUrl: 'https://open.spotify.com/search/' + encodeURIComponent(title + ' ' + artist),
+      selectedHasSpotifyEmbed: exactSpotify
+    });
+  }
   renderVals() {
     const p = this.state.page;
-    const inWorks = p !== 'home' && p !== 'about';
+    const inWorks = ['works','qatent','talkinghands','beaucens','sg','verbatim','genepro','alabri','carapass'].includes(p);
     return {
       isHome: p === 'home',
       isWorks: p === 'works',
+      isCV: p === 'cv',
+      isContact: p === 'contact',
       isQatent: p === 'qatent',
       isTalkingHands: p === 'talkinghands',
       isBeaucens: p === 'beaucens',
-      goBeaucens: () => this.setState({ page: 'beaucens' }),
+      goBeaucens: () => this.navigate('beaucens'),
       isAbout: p === 'about',
       isSG: p === 'sg',
       isVerbatim: p === 'verbatim',
       isGenepro: p === 'genepro',
       isAlabri: p === 'alabri',
       isCarapass: p === 'carapass',
-      goSG: () => this.setState({ page: 'sg' }),
-      goVerbatim: () => this.setState({ page: 'verbatim' }),
-      goGenepro: () => this.setState({ page: 'genepro' }),
-      goAlabri: () => this.setState({ page: 'alabri' }),
-      goCarapass: () => this.setState({ page: 'carapass' }),
+      goSG: () => this.navigate('sg'),
+      goVerbatim: () => this.navigate('verbatim'),
+      goGenepro: () => this.navigate('genepro'),
+      goAlabri: () => this.navigate('alabri'),
+      goCarapass: () => this.navigate('carapass'),
       worksTagBg: inWorks ? '#236ABF' : 'transparent',
       worksTagColor: inWorks ? '#ffffff' : '#1F2232',
       aboutTagBg: p === 'about' ? '#236ABF' : 'transparent',
       aboutTagColor: p === 'about' ? '#ffffff' : '#1F2232',
-      goHome: () => this.setState({ page: 'home' }),
-      goWorks: () => this.setState({ page: 'works' }),
-      goQatent: () => this.setState({ page: 'qatent' }),
-      goTalkingHands: () => this.setState({ page: 'talkinghands' }),
-      goAbout: () => this.setState({ page: 'about' })
+      cvTagBg: p === 'cv' ? '#236ABF' : 'transparent',
+      cvTagColor: p === 'cv' ? '#ffffff' : '#1F2232',
+      contactTagBg: p === 'contact' ? '#236ABF' : 'transparent',
+      contactTagColor: p === 'contact' ? '#ffffff' : '#1F2232',
+      goHome: () => this.navigate('home'),
+      goWorks: () => this.navigate('works'),
+      goQatent: () => this.navigate('qatent'),
+      goTalkingHands: () => this.navigate('talkinghands'),
+      goAbout: () => this.navigate('about'),
+      goCV: () => this.navigate('cv'),
+      goContact: () => this.navigate('contact'),
+      sendContact: (event) => this.sendContact(event),
+      selectTab: (event) => this.selectTab(event),
+      selectedTabTitle: this.state.selectedTabTitle,
+      selectedTabArtist: this.state.selectedTabArtist,
+      selectedTabMeta: this.state.selectedTabMeta,
+      selectedTabUrl: this.state.selectedTabUrl,
+      selectedSpotifyUrl: this.state.selectedSpotifyUrl,
+      selectedSpotifySearchUrl: this.state.selectedSpotifySearchUrl,
+      hasSpotifyEmbed: this.state.selectedHasSpotifyEmbed,
+      showSpotifySearch: !this.state.selectedHasSpotifyEmbed
     };
   }
 }
 
+</script>
+<script>
+  (() => {
+    let frame = 0;
+    const updateActiveGuide = () => {
+      const links = Array.from(document.querySelectorAll('.section-guide a[href^="#"]'));
+      if (!links.length) return;
+      let active = links[0];
+      const threshold = Math.min(190, window.innerHeight * 0.3);
+      links.slice(1).forEach((link) => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section && section.getBoundingClientRect().top <= threshold) active = link;
+      });
+      links.forEach((link) => {
+        const current = link === active;
+        link.classList.toggle('is-active', current);
+        if (current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+    const scheduleGuideUpdate = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveGuide);
+    };
+    window.addEventListener('scroll', scheduleGuideUpdate, { passive: true });
+    window.addEventListener('resize', scheduleGuideUpdate);
+    document.addEventListener('click', () => setTimeout(scheduleGuideUpdate, 50));
+    const root = document.querySelector('x-dc') || document.body;
+    new MutationObserver(scheduleGuideUpdate).observe(root, { childList: true, subtree: true });
+    scheduleGuideUpdate();
+  })();
 </script>
 </body>
 </html>
