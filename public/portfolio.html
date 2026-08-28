@@ -53,8 +53,9 @@
   .minimal-shot:hover { transform:scale(1.02);border-color:#AFC7E2; }
   .minimal-shot img { display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3; }
   .proto-row { display:flex;align-items:center;justify-content:center;gap:14px; }
-  .proto-frame { position:relative;flex:1;min-width:0;max-width:600px;border-radius:12px;overflow:hidden;border:1px solid #DDE5EE;box-shadow:0 20px 44px rgba(31,34,50,.09);background:#fff; }
+  .proto-frame { position:relative;flex:1;min-width:0;max-width:600px;height:480px;border-radius:12px;overflow-y:auto;overflow-x:hidden;border:1px solid #DDE5EE;box-shadow:0 20px 44px rgba(31,34,50,.09);background:#fff;scrollbar-width:thin; }
   .proto-frame img { display:block;width:100%;height:auto; }
+  @media (max-width:760px) { .proto-frame { height:400px; } }
   .proto-variant-btn { font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 16px;border-radius:20px;border:1px solid #DDE5EE;background:#fff;color:#5C6370;cursor:pointer; }
   .proto-variant-btn.is-active { background:#236ABF;border-color:#236ABF;color:#fff; }
   .proto-arrow { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #DDE5EE;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;color:#236ABF;cursor:pointer;box-shadow:0 6px 18px rgba(31,34,50,.10);transition:background .15s ease,transform .15s ease,opacity .15s ease;user-select:none;touch-action:manipulation;}
@@ -617,10 +618,14 @@
         <span class="chip">Animation d'ateliers</span>
         <span class="chip">Design System</span>
       </div>
-      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        <div class="minimal-shot"><img src="./assets/vb-accueil.png" alt="Écran Accueil de Verbatim IA"></div>
-        <div class="minimal-shot"><img src="./assets/vb-verbatims.png" alt="Écran Verbatims de Verbatim IA"></div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Flèches ou swipe pour naviguer entre les écrans.</p>
+      <div class="proto-row">
+        <span onClick="{{ goProtoVerbatimPrev }}" class="proto-arrow {{ verbatimProtoPrevDisabled }}">‹</span>
+        <div class="proto-frame" onTouchStart="{{ protoVerbatimTouchStart }}" onTouchEnd="{{ protoVerbatimTouchEnd }}">
+          <img src="{{ verbatimProtoImage }}" alt="Prototype de l'outil Verbatim IA" style="animation:{{ verbatimProtoAnimName }} .35s ease">
+        </div>
+        <span onClick="{{ goProtoVerbatimNext }}" class="proto-arrow {{ verbatimProtoNextDisabled }}">›</span>
       </div>
       </sc-if>
 
@@ -871,12 +876,14 @@
         <span class="chip">4 dev · 1 PO · 1 PPO · 1 BA · 3 homologateurs</span>
         <span class="chip">UI inspirée BoursoBank</span>
       </div>
-      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        <div class="minimal-shot"><img src="./assets/al-figma-parcours.png" alt="Vue Figma des parcours mobile et desktop"></div>
-        <div class="minimal-shot"><img src="./assets/al-audit-classification.png" alt="Fichier de classification des erreurs de design"></div>
-        <div class="minimal-shot"><img src="./assets/al-equipements.png" alt="Écran de déclaration des équipements"></div>
-        <div class="minimal-shot"><img src="./assets/al-packs.png" alt="Écran de sélection des garanties et packs"></div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Flèches ou swipe pour naviguer entre les écrans.</p>
+      <div class="proto-row">
+        <span onClick="{{ goProtoAlabriPrev }}" class="proto-arrow {{ alabriProtoPrevDisabled }}">‹</span>
+        <div class="proto-frame" onTouchStart="{{ protoAlabriTouchStart }}" onTouchEnd="{{ protoAlabriTouchEnd }}">
+          <img src="{{ alabriProtoImage }}" alt="Prototype du parcours Alabri" style="animation:{{ alabriProtoAnimName }} .35s ease">
+        </div>
+        <span onClick="{{ goProtoAlabriNext }}" class="proto-arrow {{ alabriProtoNextDisabled }}">›</span>
       </div>
       </sc-if>
 
@@ -986,12 +993,14 @@
         <span class="chip">4 dev · 1 PO · 1 PPO · 1 BA · 3 homologateurs</span>
         <span class="chip">UI inspirée BoursoBank</span>
       </div>
-      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        <div class="minimal-shot"><img src="./assets/cp-figma-parcours.png" alt="Vue Figma du parcours Assurance auto BoursoBank"></div>
-        <div class="minimal-shot"><img src="./assets/cp-page-tarif.png" alt="Écrans de la page tarif"></div>
-        <div class="minimal-shot"><img src="./assets/cp-recherche-marque.png" alt="Écrans de la recherche par marque"></div>
-        <div class="minimal-shot"><img src="./assets/cp-suivi-taches.png" alt="Fichier de suivi des tâches Carapass"></div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Flèches ou swipe pour naviguer entre les écrans.</p>
+      <div class="proto-row">
+        <span onClick="{{ goProtoCarapassPrev }}" class="proto-arrow {{ carapassProtoPrevDisabled }}">‹</span>
+        <div class="proto-frame" onTouchStart="{{ protoCarapassTouchStart }}" onTouchEnd="{{ protoCarapassTouchEnd }}">
+          <img src="{{ carapassProtoImage }}" alt="Prototype du parcours Carapass" style="animation:{{ carapassProtoAnimName }} .35s ease">
+        </div>
+        <span onClick="{{ goProtoCarapassNext }}" class="proto-arrow {{ carapassProtoNextDisabled }}">›</span>
       </div>
       </sc-if>
 
@@ -1482,7 +1491,9 @@ class Component extends DCLogic {
     projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed' },
     gpProtoStep: 'home',
     gpProtoVariant: 'a',
-    gpAnimTick: 0
+    gpAnimTick: 0,
+    protoIndex: { verbatim: 0, alabri: 0, carapass: 0, qatent: 0 },
+    protoAnim: { verbatim: 0, alabri: 0, carapass: 0, qatent: 0 }
   };
   toggleProjectView(key) {
     const next = this.state.projectView[key] === 'minimal' ? 'detailed' : 'minimal';
@@ -1518,6 +1529,37 @@ class Component extends DCLogic {
   }
   gpProtoSetVariant(v) {
     this.setState({ gpProtoVariant: v, gpAnimTick: this.state.gpAnimTick + 1 });
+  }
+  protoImageCounts() {
+    return { verbatim: 6, alabri: 7, carapass: 6, qatent: 9 };
+  }
+  protoNext(key) {
+    const count = this.protoImageCounts()[key];
+    const i = this.state.protoIndex[key];
+    this.setState({
+      protoIndex: { ...this.state.protoIndex, [key]: Math.min(i + 1, count - 1) },
+      protoAnim: { ...this.state.protoAnim, [key]: this.state.protoAnim[key] + 1 }
+    });
+  }
+  protoPrev(key) {
+    const i = this.state.protoIndex[key];
+    this.setState({
+      protoIndex: { ...this.state.protoIndex, [key]: Math.max(i - 1, 0) },
+      protoAnim: { ...this.state.protoAnim, [key]: this.state.protoAnim[key] + 1 }
+    });
+  }
+  protoTouchStart(key, event) {
+    this['_protoTouchX_' + key] = event.touches && event.touches[0] ? event.touches[0].clientX : null;
+  }
+  protoTouchEnd(key, event) {
+    const startX = this['_protoTouchX_' + key];
+    if (startX == null) return;
+    const touch = event.changedTouches && event.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - startX;
+    this['_protoTouchX_' + key] = null;
+    if (Math.abs(dx) < 40) return;
+    if (dx < 0) this.protoNext(key); else this.protoPrev(key);
   }
   navigate(page) {
     this.setState({ page });
@@ -1639,6 +1681,68 @@ class Component extends DCLogic {
       gpProtoTouchEnd: (event) => this.gpProtoTouchEnd(event),
       setGpVariantA: () => this.gpProtoSetVariant('a'),
       setGpVariantB: () => this.gpProtoSetVariant('b'),
+      ...(() => {
+        const images = {
+          verbatim: [
+            './assets/verbatim-proto/va-filters.png',
+            './assets/verbatim-proto/va-accueil-detail.png',
+            './assets/verbatim-proto/va-insight-list.png',
+            './assets/verbatim-proto/va-insight-detail.png',
+            './assets/verbatim-proto/va-verbatims-list.png',
+            './assets/verbatim-proto/va-verbatims-detail.png'
+          ],
+          alabri: [
+            './assets/alabri-proto/al-proto-1.png',
+            './assets/alabri-proto/al-proto-2.png',
+            './assets/alabri-proto/al-proto-3.png',
+            './assets/alabri-proto/al-proto-4.png',
+            './assets/alabri-proto/al-proto-5.png',
+            './assets/alabri-proto/al-proto-6.png',
+            './assets/alabri-proto/al-proto-7.png'
+          ],
+          carapass: [
+            './assets/carapass-proto/cp-proto-1.png',
+            './assets/carapass-proto/cp-proto-2.png',
+            './assets/carapass-proto/cp-proto-3.png',
+            './assets/carapass-proto/cp-proto-4.png',
+            './assets/carapass-proto/cp-proto-tarif-1.png',
+            './assets/carapass-proto/cp-proto-tarif-2.png'
+          ],
+          qatent: [
+            './assets/qatent-proto/qt-proto-home.png',
+            './assets/qatent-proto/qt-proto-draft-3.png',
+            './assets/qatent-proto/qt-proto-draft-4.png',
+            './assets/qatent-proto/qt-proto-subscription.png',
+            './assets/qatent-proto/qt-proto-mode-multi.png',
+            './assets/qatent-proto/qt-proto-relation-table.png',
+            './assets/qatent-proto/qt-proto-guided-1.png',
+            './assets/qatent-proto/qt-proto-guided-5.png',
+            './assets/qatent-proto/qt-proto-help.png'
+          ]
+        };
+        const protoVals = (key) => {
+          const list = images[key];
+          const i = this.state.protoIndex[key];
+          const tick = this.state.protoAnim[key];
+          const cap = key.charAt(0).toUpperCase() + key.slice(1);
+          return {
+            [key + 'ProtoImage']: list[i],
+            [key + 'ProtoPrevDisabled']: i <= 0 ? 'is-disabled' : '',
+            [key + 'ProtoNextDisabled']: i >= list.length - 1 ? 'is-disabled' : '',
+            [key + 'ProtoAnimName']: tick % 2 === 0 ? 'gp-fade-a' : 'gp-fade-b',
+            ['goProto' + cap + 'Prev']: () => this.protoPrev(key),
+            ['goProto' + cap + 'Next']: () => this.protoNext(key),
+            ['proto' + cap + 'TouchStart']: (event) => this.protoTouchStart(key, event),
+            ['proto' + cap + 'TouchEnd']: (event) => this.protoTouchEnd(key, event)
+          };
+        };
+        return {
+          ...protoVals('verbatim'),
+          ...protoVals('alabri'),
+          ...protoVals('carapass'),
+          ...protoVals('qatent')
+        };
+      })(),
       ...viewToggle('verbatim'),
       ...viewToggle('genepro'),
       ...viewToggle('alabri'),
