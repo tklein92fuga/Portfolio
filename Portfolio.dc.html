@@ -163,7 +163,40 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:34px;font-weight:800;letter-spacing:0.05em">QATENT</h1>
       <p class="project-intro" style="margin:0 auto;max-width:590px;text-align:center;text-wrap:pretty">Qatent est une solution exploitant l'intelligence artificielle pour générer des brevets industriels. Malgré une puissance technologique importante, l'interface existante restait complexe et peu orientée acquisition.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ qatentLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleQatent }}" class="view-switch-track" style="cursor:pointer;background:{{ qatentTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ qatentKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ qatentLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ qatentMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">6 mois</div><div class="stat-tile-label">UX solo</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">34</div><div class="stat-tile-label">Cas de test écrits</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">19</div><div class="stat-tile-label">Anomalies remontées</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">12</div><div class="stat-tile-label">Tests automatisés</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">Easy mode</span>
+        <span class="chip">Guided tour</span>
+        <span class="chip">Recherche utilisateur</span>
+        <span class="chip">Recette QA</span>
+        <span class="chip">7 onglets → 1 parcours clair</span>
+      </div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Flèches ou swipe pour naviguer entre les écrans.</p>
+      <div class="proto-row">
+        <span onClick="{{ goProtoQatentPrev }}" class="proto-arrow {{ qatentProtoPrevDisabled }}">‹</span>
+        <div class="proto-frame" onTouchStart="{{ protoQatentTouchStart }}" onTouchEnd="{{ protoQatentTouchEnd }}">
+          <img src="{{ qatentProtoImage }}" alt="Prototype de Qatent" style="animation:{{ qatentProtoAnimName }} .35s ease">
+        </div>
+        <span onClick="{{ goProtoQatentNext }}" class="proto-arrow {{ qatentProtoNextDisabled }}">›</span>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ qatentDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="q-prologue" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Prologue</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
@@ -374,6 +407,7 @@
         <p style="margin:0">Le rôle de recette m'a donné la boucle de retour que je n'avais pas. Voir mes propres écrans échouer sur des cas que je n'avais pas décrits — un caractère spécial, une session interrompue — m'a rendu plus précis en amont. Je spécifie désormais les états d'erreur en même temps que les états nominaux.</p>
         <p style="margin:0">Ce que je referais différemment : formaliser des tests utilisateurs plutôt que m'appuyer sur l'observation des démonstrations commerciales. Cela a suffi pour orienter les itérations, mais je n'ai pas de mesure avant/après sur le temps de première rédaction. C'est la donnée qui manque pour prouver l'effet de la refonte.</p>
       </div>
+      </sc-if>
     </main>
   </sc-if>
 
@@ -1488,7 +1522,7 @@ class Component extends DCLogic {
     selectedSpotifyUrl: 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0',
     selectedSpotifySearchUrl: 'https://open.spotify.com/search/Strolling%20Astronomer%20Fu%20Manchu',
     selectedHasSpotifyEmbed: true,
-    projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed' },
+    projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed', qatent: 'detailed', beaucens: 'detailed' },
     gpProtoStep: 'home',
     gpProtoVariant: 'a',
     gpAnimTick: 0,
@@ -1747,6 +1781,8 @@ class Component extends DCLogic {
       ...viewToggle('genepro'),
       ...viewToggle('alabri'),
       ...viewToggle('carapass'),
+      ...viewToggle('qatent'),
+      ...viewToggle('beaucens'),
       isHome: p === 'home',
       isWorks: p === 'works',
       isCV: p === 'cv',
