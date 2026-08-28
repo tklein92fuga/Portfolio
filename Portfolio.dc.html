@@ -27,6 +27,12 @@
   .hero-bold { font-weight:700; }
   .availability-dot { width:8px;height:8px;border-radius:50%;background:#168F68;box-shadow:0 0 0 5px rgba(22,143,104,.10);animation:availabilityPulse 2.8s ease-in-out infinite; }
   @keyframes availabilityPulse { 0%,100% { transform:scale(1);box-shadow:0 0 0 5px rgba(22,143,104,.10); } 50% { transform:scale(1.12);box-shadow:0 0 0 9px rgba(22,143,104,0); } }
+  .hero-blob { position:absolute;border-radius:50%;filter:blur(70px);z-index:0;pointer-events:none; }
+  .hero-blob-a { width:460px;height:460px;background:radial-gradient(circle,#CFE0F3 0%,rgba(207,224,243,0) 72%);top:-140px;right:-100px; }
+  .hero-blob-b { width:360px;height:360px;background:radial-gradient(circle,#D3F0E8 0%,rgba(211,240,232,0) 72%);bottom:-140px;left:-80px; }
+  .hero-avatar-frame { width:180px;height:180px;border-radius:50%;background:linear-gradient(160deg,#EEF4FB,#DCEAF8);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 44px rgba(35,106,191,.14),inset 0 0 0 1px rgba(175,199,226,.55);animation:heroFloat 6s ease-in-out infinite; }
+  @keyframes heroFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+  .hero-skill-pill { font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:20px;background:#fff;border:1px solid #DDE5EE;color:#344055; }
   .section-guide { position:fixed;right:18px;top:50%;z-index:20;display:flex;flex-direction:column;gap:7px;transform:translateY(-50%); }
   .section-guide a { display:flex;align-items:center;justify-content:flex-end;gap:9px;min-height:24px;color:#777B86; }
   .section-guide .guide-label { max-width:150px;opacity:1;overflow:hidden;white-space:nowrap;font-family:'Montserrat',sans-serif !important;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9AA0AA;transition:color .2s ease,transform .2s ease; }
@@ -106,6 +112,10 @@
     .site-nav { gap:10px !important;font-size:11px !important;letter-spacing:.05em !important; }
     .site-nav span, .site-nav a { padding:5px 7px !important; }
     .home-main { padding:64px 22px !important;align-items:flex-start !important; }
+    .home-hero-row { flex-direction:column-reverse !important;gap:32px !important; }
+    .hero-avatar-frame { width:120px;height:120px; }
+    .hero-avatar-frame img { width:76px !important; }
+    .hero-blob-a, .hero-blob-b { width:260px;height:260px; }
     .hero-copy { font-size:34px !important;line-height:1.2 !important; }
     .section-guide { left:0;right:0;bottom:0;top:auto;transform:none;flex-direction:row;justify-content:flex-start;gap:2px;padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));border-radius:0;background:rgba(244,245,246,.95);backdrop-filter:blur(8px);box-shadow:0 -2px 16px rgba(31,34,50,.08);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none; }
     .section-guide::-webkit-scrollbar { display:none; }
@@ -138,10 +148,24 @@
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-    <main class="home-main" style="flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box">
-      <div style="max-width:1080px;width:100%">
-        <div style="display:flex;align-items:center;gap:11px;margin-bottom:28px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#08785D"><span class="availability-dot"></span>Disponible pour de nouvelles collaborations</div>
-        <p class="hero-copy" style="margin:0;font-size:58px;line-height:1.19;letter-spacing:-0.035em;color:#1F2232;text-wrap:pretty"><span class="hero-bold">Product designer</span><span class="hero-light"> qui </span><span class="hero-bold">conçoit</span><span class="hero-light">, </span><span class="hero-bold">code</span><span class="hero-light"> et </span><span class="hero-bold">teste</span><span class="hero-light"> ses interfaces — </span><span class="hero-medium">de l'idée au produit livré.</span><br><span class="hero-light">Augmenté par l'</span><span class="hero-bold">IA</span><span class="hero-light"> pour aller plus vite, sans rien perdre en qualité.</span></p>
+    <main class="home-main" style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box;overflow:hidden">
+      <div class="hero-blob hero-blob-a"></div>
+      <div class="hero-blob hero-blob-b"></div>
+      <div class="home-hero-row" style="position:relative;z-index:1;max-width:1080px;width:100%;display:flex;align-items:center;gap:56px">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:28px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#08785D"><span class="availability-dot"></span>Disponible pour de nouvelles collaborations</div>
+          <p class="hero-copy" style="margin:0;font-size:58px;line-height:1.19;letter-spacing:-0.035em;color:#1F2232;text-wrap:pretty"><span class="hero-bold">Product designer</span><span class="hero-light"> qui </span><span class="hero-bold">conçoit</span><span class="hero-light">, </span><span class="hero-bold">code</span><span class="hero-light"> et </span><span class="hero-bold">teste</span><span class="hero-light"> ses interfaces — </span><span class="hero-medium">de l'idée au produit livré.</span><br><span class="hero-light">Augmenté par l'</span><span class="hero-bold">IA</span><span class="hero-light"> pour aller plus vite, sans rien perdre en qualité.</span></p>
+        </div>
+        <div class="hero-visual" style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:18px">
+          <div class="hero-avatar-frame">
+            <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="width:110px;height:auto;display:block">
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:210px">
+            <span class="hero-skill-pill">Design</span>
+            <span class="hero-skill-pill">Code</span>
+            <span class="hero-skill-pill">Test</span>
+          </div>
+        </div>
       </div>
     </main>
   </sc-if>
