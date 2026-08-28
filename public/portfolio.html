@@ -43,6 +43,15 @@
   .cv-card:hover { transform:translateY(-3px);border-color:#AFC7E2;box-shadow:0 14px 32px rgba(31,34,50,.07); }
   .skill-pill { display:flex;align-items:center;justify-content:center;min-height:58px;padding:12px 14px;border:1px solid #E1E8F0;border-radius:12px;background:#F8FBFD;text-align:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:#344055;transition:transform .2s ease,background .2s ease,border-color .2s ease; }
   .skill-pill:hover { transform:scale(1.035);background:#fff;border-color:#AFC7E2; }
+  .view-switch-track { position:relative;display:inline-block;width:40px;height:22px;border-radius:11px;transition:background .2s ease;vertical-align:middle; }
+  .view-switch-knob { position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(31,34,50,.25);transition:transform .2s ease;display:block; }
+  .stat-tile { background:#F8FBFD;border:1px solid #DDE5EE;border-radius:14px;padding:16px 14px;text-align:center; }
+  .stat-tile-value { font-family:'Montserrat',sans-serif;font-weight:800;font-size:21px;color:#236ABF;line-height:1.15; }
+  .stat-tile-label { margin-top:6px;font-size:11.5px;letter-spacing:.02em;color:#5C6370;line-height:1.35; }
+  .chip { display:inline-flex;align-items:center;padding:6px 13px;border-radius:20px;background:#EEF3F8;color:#344055;font-size:12.5px;font-weight:600;line-height:1.3; }
+  .minimal-shot { border-radius:10px;overflow:hidden;border:1px solid #DDE5EE;background:#F4F5F6;transition:transform .22s ease,border-color .22s ease; }
+  .minimal-shot:hover { transform:scale(1.02);border-color:#AFC7E2; }
+  .minimal-shot img { display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3; }
   .project-tag { display:inline-flex; align-items:center; border-radius:20px; padding:5px 12px; color:#1F2232 !important; }
   .tag-design { background:#DDF3E5 !important; color:#08785D !important; }
   .tag-dev { background:#DDEEFF !important; color:#236ABF !important; }
@@ -579,7 +588,33 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">VERBATIM IA</h1>
       <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Verbatim IA est un projet né du besoin exprimé par les conseillers relation client de simplifier l'analyse des verbatims, afin d'anticiper et de répondre plus efficacement aux attentes des clients.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ verbatimLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleVerbatim }}" class="view-switch-track" style="cursor:pointer;background:{{ verbatimTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ verbatimKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ verbatimLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ verbatimMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">2</div><div class="stat-tile-label">Missions</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">2</div><div class="stat-tile-label">Écrans livrés</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">1</div><div class="stat-tile-label">Atelier d'idéation</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">De l'expression du besoin à la livraison</span>
+        <span class="chip">Animation d'ateliers</span>
+        <span class="chip">Design System</span>
+      </div>
+      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        <div class="minimal-shot"><img src="./assets/vb-accueil.png" alt="Écran Accueil de Verbatim IA"></div>
+        <div class="minimal-shot"><img src="./assets/vb-verbatims.png" alt="Écran Verbatims de Verbatim IA"></div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ verbatimDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="v-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
@@ -643,6 +678,7 @@
         <img src="./assets/vb-global.png" alt="Vue globale du projet Verbatim IA" style="display:block;width:100%;height:auto;border-radius:6px">
         <figcaption style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13.5px;color:#1F2232;text-align:center">Vue globale du projet</figcaption>
       </figure>
+      </sc-if>
     </main>
   </sc-if>
 
@@ -652,7 +688,38 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">GÉNÉPRO / GÉNÉCLÉ</h1>
       <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Génépro et Généclé sont des assurances destinées aux professionnels. Jusqu'à présent, leur souscription s'effectuait via d'anciens outils proposant un parcours fragmenté. Il a donc été décidé de mettre en place un parcours unique de souscription, intégré dans un environnement dédié.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ geneproLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleGenepro }}" class="view-switch-track" style="cursor:pointer;background:{{ geneproTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ geneproKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ geneproLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ geneproMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">2</div><div class="stat-tile-label">Parcours</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">3</div><div class="stat-tile-label">Missions</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">12</div><div class="stat-tile-label">Testeurs</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">4</div><div class="stat-tile-label">Scénarios de test</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">De l'expression du besoin à la livraison</span>
+        <span class="chip">2 parcours à maquetter</span>
+        <span class="chip">Animation d'ateliers</span>
+        <span class="chip">Design System</span>
+        <span class="chip">Tests utilisateurs</span>
+      </div>
+      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        <div class="minimal-shot"><img src="./assets/gp-caracteristiques.png" alt="Étape Caractéristiques du parcours Génépro"></div>
+        <div class="minimal-shot"><img src="./assets/gp-beneficiaires.png" alt="Étape Bénéficiaires du parcours Génépro"></div>
+        <div class="minimal-shot"><img src="./assets/gp-recapitulatif.png" alt="Récapitulatif avant validation"></div>
+        <div class="minimal-shot"><img src="./assets/gp-grille-test.png" alt="Grille de test utilisateurs"></div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ geneproDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="g-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
@@ -747,6 +814,7 @@
         <img src="./assets/gp-grille-test.png" alt="Grille de test utilisateurs" style="display:block;width:100%;height:auto;border-radius:6px">
         <figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">Grille de test pour recueillir les verbatims et faire un suivi quantitatif du parcours</figcaption>
       </figure>
+      </sc-if>
     </main>
   </sc-if>
 
@@ -756,7 +824,36 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">ALABRI</h1>
       <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Le produit Alabri est une assurance habitation distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ alabriLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleAlabri }}" class="view-switch-track" style="cursor:pointer;background:{{ alabriTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ alabriKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ alabriLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ alabriMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">3</div><div class="stat-tile-label">Chantiers majeurs</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">9</div><div class="stat-tile-label">Personnes dans l'équipe</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">~15</div><div class="stat-tile-label">Personnes à l'audit UX</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">Parcours déjà en production</span>
+        <span class="chip">Audit UX complet</span>
+        <span class="chip">4 dev · 1 PO · 1 PPO · 1 BA · 3 homologateurs</span>
+        <span class="chip">UI inspirée BoursoBank</span>
+      </div>
+      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        <div class="minimal-shot"><img src="./assets/al-figma-parcours.png" alt="Vue Figma des parcours mobile et desktop"></div>
+        <div class="minimal-shot"><img src="./assets/al-audit-classification.png" alt="Fichier de classification des erreurs de design"></div>
+        <div class="minimal-shot"><img src="./assets/al-equipements.png" alt="Écran de déclaration des équipements"></div>
+        <div class="minimal-shot"><img src="./assets/al-packs.png" alt="Écran de sélection des garanties et packs"></div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ alabriDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="a-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
@@ -833,6 +930,7 @@
         <figure style="margin:0"><img src="./assets/al-equipements.png" alt="Écran de déclaration des équipements" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232">L'écran amont : déclarer ses équipements sans engagement, avec la mention explicite que cela conditionne les packs proposés plus loin.</figcaption></figure>
         <figure style="margin:0"><img src="./assets/al-packs.png" alt="Écran de sélection des garanties et packs" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232">Les packs recommandés sont pré-activés et distingués des packs « à la carte », chacun avec son prix mensuel.</figcaption></figure>
       </div>
+      </sc-if>
     </main>
   </sc-if>
 
@@ -842,7 +940,35 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">CARAPASS</h1>
       <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Le produit Carapass est une assurance automobile distribuée par BoursoBank. L'assurance est souscrite auprès de SG Assurances. La conception du parcours est effectuée par SG Assurances.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ carapassLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleCarapass }}" class="view-switch-track" style="cursor:pointer;background:{{ carapassTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ carapassKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ carapassLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ carapassMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">3</div><div class="stat-tile-label">Chantiers majeurs</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">9</div><div class="stat-tile-label">Personnes dans l'équipe</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">4</div><div class="stat-tile-label">Étapes de recherche marque</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">Parcours en phase conception</span>
+        <span class="chip">4 dev · 1 PO · 1 PPO · 1 BA · 3 homologateurs</span>
+        <span class="chip">UI inspirée BoursoBank</span>
+      </div>
+      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        <div class="minimal-shot"><img src="./assets/cp-figma-parcours.png" alt="Vue Figma du parcours Assurance auto BoursoBank"></div>
+        <div class="minimal-shot"><img src="./assets/cp-page-tarif.png" alt="Écrans de la page tarif"></div>
+        <div class="minimal-shot"><img src="./assets/cp-recherche-marque.png" alt="Écrans de la recherche par marque"></div>
+        <div class="minimal-shot"><img src="./assets/cp-suivi-taches.png" alt="Fichier de suivi des tâches Carapass"></div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ carapassDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="c-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="background:#F8FBFD;border:1px solid #DDE5EE;border-left:4px solid #2CA6A4;border-radius:16px;padding:20px 24px;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#9FD4C8;background:#fff">
@@ -909,6 +1035,7 @@
       <p style="margin:22px 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Partir de la marque plutôt que d'un formulaire complet réduit l'effort de saisie en début de parcours, là où l'abandon est le plus fréquent.</p>
       <p style="margin:0 0 26px;font-size:15px;line-height:1.72;text-wrap:pretty">Un détail a demandé plusieurs itérations : que faire quand la marque saisie n'existe pas dans le référentiel. Nous avons préféré une suggestion immédiate à un message d'erreur, pour ne pas bloquer l'utilisateur sur une faute de frappe.</p>
       <figure style="margin:0"><img src="./assets/cp-recherche-marque.png" alt="Écrans de la recherche par marque" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #F4F5F6"><figcaption style="margin-top:12px;font-size:14px;line-height:1.65;color:#1F2232;text-align:center">La recherche par marque, déclinée en quatre étapes courtes — marque, modèle, énergie, puissance — avec les états de saisie et de sélection.</figcaption></figure>
+      </sc-if>
     </main>
   </sc-if>
 
@@ -1323,8 +1450,13 @@ class Component extends DCLogic {
     selectedTabUrl: 'https://tabs.ultimate-guitar.com/tab/fu-manchu/strolling-astronomer-guitar-pro-6135053',
     selectedSpotifyUrl: 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0',
     selectedSpotifySearchUrl: 'https://open.spotify.com/search/Strolling%20Astronomer%20Fu%20Manchu',
-    selectedHasSpotifyEmbed: true
+    selectedHasSpotifyEmbed: true,
+    projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed' }
   };
+  toggleProjectView(key) {
+    const next = this.state.projectView[key] === 'minimal' ? 'detailed' : 'minimal';
+    this.setState({ projectView: { ...this.state.projectView, [key]: next } });
+  }
   navigate(page) {
     this.setState({ page });
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -1400,7 +1532,25 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.state.page;
     const inWorks = ['works','qatent','talkinghands','beaucens','sg','verbatim','genepro','alabri','carapass'].includes(p);
+    const pv = this.state.projectView;
+    const viewToggle = (key) => {
+      const minimal = pv[key] === 'minimal';
+      const cap = key.charAt(0).toUpperCase() + key.slice(1);
+      return {
+        [key + 'Detailed']: !minimal,
+        [key + 'Minimal']: minimal,
+        ['toggle' + cap]: () => this.toggleProjectView(key),
+        [key + 'TrackBg']: minimal ? '#236ABF' : '#DDE5EE',
+        [key + 'KnobOffset']: minimal ? '18px' : '0px',
+        [key + 'LabelDetailColor']: minimal ? '#9AA5B1' : '#1F2232',
+        [key + 'LabelMinimalColor']: minimal ? '#1F2232' : '#9AA5B1'
+      };
+    };
     return {
+      ...viewToggle('verbatim'),
+      ...viewToggle('genepro'),
+      ...viewToggle('alabri'),
+      ...viewToggle('carapass'),
       isHome: p === 'home',
       isWorks: p === 'works',
       isCV: p === 'cv',

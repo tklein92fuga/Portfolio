@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "portfolio-dev",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev"],
-      "port": 5173
+      "runtimeExecutable": "C:\\Users\\qalte\\Documents\\Projets\\UXDev portfolio design\\.claude\\dev-launch.cmd",
+      "runtimeArgs": [],
+      "port": 3001
     }
   ]
 }
