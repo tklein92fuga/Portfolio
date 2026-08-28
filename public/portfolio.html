@@ -1118,7 +1118,32 @@
       <h1 style="margin:0 0 26px;text-align:center;font-size:32px;font-weight:800;letter-spacing:0.04em">MARIAGE À BEAUCENS</h1>
       <p class="project-intro" style="margin:0 auto;max-width:600px;text-align:center;text-wrap:pretty">Un site privé pour un mariage de décembre 2026 dans les Hautes-Pyrénées : confirmation de présence, guide pratique pour les invités et espace de suivi pour les organisateurs. Conçu et développé seul, mis en ligne sur GitHub Pages.</p>
 
-      <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:30px 0 0">
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ beaucensLabelDetailColor }}">Détaillé</span>
+        <span onClick="{{ toggleBeaucens }}" class="view-switch-track" style="cursor:pointer;background:{{ beaucensTrackBg }}"><span class="view-switch-knob" style="transform:translateX({{ beaucensKnobOffset }})"></span></span>
+        <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:{{ beaucensLabelMinimalColor }}">Synthèse</span>
+      </div>
+
+      <sc-if value="{{ beaucensMinimal }}" hint-placeholder-val="{{ false }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 36px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="stat-tile"><div class="stat-tile-value">2</div><div class="stat-tile-label">Langues (FR/EN)</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">1</div><div class="stat-tile-label">Fichier, zéro serveur</div></div>
+        <div class="stat-tile"><div class="stat-tile-value">Solo</div><div class="stat-tile-label">Design + dev</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0">
+        <span class="chip">GitHub Pages</span>
+        <span class="chip">Google Sheets en base de données</span>
+        <span class="chip">Réponse conservée hors-ligne</span>
+        <span class="chip">Conçu mobile d'abord</span>
+      </div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype interactif</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Le vrai site, avec des données fictives : inscription, guide, transports, hébergements et FAQ.</p>
+      <iframe src="./beaucens-demo.html" title="Prototype mobile interactif du projet Beaucens avec données fictives" style="display:block;width:100%;max-width:380px;height:480px;margin:0 auto;border:1px solid #DDE5EE;border-radius:18px;background:#F4F5F6"></iframe>
+      </sc-if>
+
+      <sc-if value="{{ beaucensDetailed }}" hint-placeholder-val="{{ true }}">
+      <div style="height:3px;border-radius:2px;margin:36px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="b-contexte" style="margin:0 0 26px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Le contexte</h2>
       <div style="display:flex;flex-direction:column;gap:22px;font-size:15px;line-height:1.72;text-wrap:pretty">
@@ -1289,6 +1314,7 @@
         <p style="margin:0">Il m'a aussi rappelé qu'une bonne partie du travail UX est du travail d'écriture. Sur ce site, presque chaque problème d'usage se réglait en reformulant une phrase plutôt qu'en ajoutant un composant.</p>
         <p style="margin:0">Enfin, faire le design et le développement dans le même fichier change le rythme : une hésitation sur la hiérarchie se tranche en la voyant sur un téléphone, dans la minute. C'est la façon de travailler que je cherche à garder dans un contexte d'équipe.</p>
       </div>
+      </sc-if>
     </main>
   </sc-if>
 
