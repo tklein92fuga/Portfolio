@@ -96,8 +96,10 @@
     .site-nav span, .site-nav a { padding:5px 7px !important; }
     .home-main { padding:64px 22px !important;align-items:flex-start !important; }
     .hero-copy { font-size:34px !important;line-height:1.2 !important; }
-    .section-guide { right:5px;gap:5px;padding:7px 5px;border-radius:10px;background:rgba(244,245,246,.90);backdrop-filter:blur(5px); }
-    .section-guide .guide-label { max-width:92px;font-size:8.5px;letter-spacing:.04em; }
+    .section-guide { right:6px;gap:9px;padding:8px 6px;border-radius:20px;background:rgba(244,245,246,.85);backdrop-filter:blur(5px); }
+    .section-guide .guide-label { display:none; }
+    .section-guide.is-expanded { background:rgba(244,245,246,.97); }
+    .section-guide.is-expanded .guide-label { display:inline-block;max-width:92px;font-size:8.5px;letter-spacing:.04em; }
     .cv-layout { grid-template-columns:1fr !important; }
     .cv-aside { position:static !important; }
     .cv-project-grid, .cv-skills-grid, .cv-method-grid { grid-template-columns:1fr !important; }
@@ -137,15 +139,15 @@
       <h1 style="margin:0 0 56px;text-align:center;font-size:17px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase">Travaux</h1>
       <div id="works-projects" style="display:flex;flex-direction:column;gap:32px">
         <a onClick="{{ goSG }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
-          <img src="./assets/societe-generale.png" alt="Société Générale" style="width:420px;height:auto;display:block">
+          <img src="./assets/societe-generale.png" alt="Société Générale" style="width:420px;max-width:82%;height:auto;display:block">
           <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span></div>
         </a>
         <a onClick="{{ goQatent }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
-          <img src="./assets/qatent.png" alt="Qatent" style="width:330px;height:auto;display:block">
+          <img src="./assets/qatent.png" alt="Qatent" style="width:330px;max-width:82%;height:auto;display:block">
           <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span><span class="project-tag tag-dev" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Dev</span><span class="project-tag tag-ia" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">IA</span><span class="project-tag tag-qa" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">QA testing</span></div>
         </a>
         <a onClick="{{ goTalkingHands }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
-          <img src="./assets/talking-hands.png" alt="Talking Hands" style="width:180px;height:auto;display:block">
+          <img src="./assets/talking-hands.png" alt="Talking Hands" style="width:180px;max-width:82%;height:auto;display:block">
           <div style="position:absolute;left:22px;bottom:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="project-tag tag-design" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Design</span><span class="project-tag tag-dev" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Dev</span><span class="project-tag tag-ia" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">IA</span><span class="project-tag tag-qa" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase">QA testing</span></div>
         </a>
         <a onClick="{{ goBeaucens }}" style="cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;height:280px;background:#fff;border-radius:14px;transition:transform .22s ease,box-shadow .22s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 44px rgba(17,18,20,.10)">
@@ -606,19 +608,19 @@
 
       <h2 id="sg-missions" style="margin:0 0 30px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les missions</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-        <div onClick="{{ goVerbatim }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
+        <div onClick="{{ goVerbatim }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Verbatim IA</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Outil interne d'analyse des verbatims clients</div>
         </div>
-        <div onClick="{{ goGenepro }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
+        <div onClick="{{ goGenepro }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Génépro/Généclé</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Parcours unique de souscription pour les professionnels</div>
         </div>
-        <div onClick="{{ goAlabri }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
+        <div onClick="{{ goAlabri }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Alabri</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance habitation distribuée par BoursoBank</div>
         </div>
-        <div onClick="{{ goCarapass }}" style="cursor:pointer;position:relative;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
+        <div onClick="{{ goCarapass }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
           <div style="font-size:17px;font-weight:700;margin-bottom:8px">Carapass</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance automobile distribuée par BoursoBank</div>
         </div>
@@ -1886,6 +1888,23 @@ class Component extends DCLogic {
     const root = document.querySelector('x-dc') || document.body;
     new MutationObserver(scheduleGuideUpdate).observe(root, { childList: true, subtree: true });
     scheduleGuideUpdate();
+
+    const isCompact = () => window.matchMedia('(max-width:760px)').matches;
+    document.addEventListener('click', (event) => {
+      const guide = document.querySelector('.section-guide');
+      if (!guide) return;
+      const link = event.target.closest('.section-guide a');
+      if (link) {
+        if (isCompact() && !guide.classList.contains('is-expanded')) {
+          event.preventDefault();
+          guide.classList.add('is-expanded');
+        } else if (isCompact()) {
+          guide.classList.remove('is-expanded');
+        }
+        return;
+      }
+      if (isCompact()) guide.classList.remove('is-expanded');
+    });
   })();
 </script>
 </body>
