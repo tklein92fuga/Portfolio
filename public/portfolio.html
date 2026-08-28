@@ -100,18 +100,21 @@
   a:hover { color: #236ABF; }
   @media (max-width:1120px) { .section-guide { right:8px; } }
   @media (max-width:760px) {
+    #page-top { overflow-x:hidden;width:100%; }
+    [style*="display:grid"] > * { min-width:0; }
     .site-header { padding:22px 20px 0 !important; }
     .site-nav { gap:10px !important;font-size:11px !important;letter-spacing:.05em !important; }
     .site-nav span, .site-nav a { padding:5px 7px !important; }
     .home-main { padding:64px 22px !important;align-items:flex-start !important; }
     .hero-copy { font-size:34px !important;line-height:1.2 !important; }
-    .section-guide { right:6px;gap:9px;padding:8px 6px;border-radius:20px;background:rgba(244,245,246,.85);backdrop-filter:blur(5px); }
-    .section-guide .guide-label { display:none; }
-    .section-guide.is-expanded { background:rgba(244,245,246,.97); }
-    .section-guide.is-expanded .guide-label { display:inline-block;max-width:92px;font-size:8.5px;letter-spacing:.04em; }
+    .section-guide { left:0;right:0;bottom:0;top:auto;transform:none;flex-direction:row;justify-content:flex-start;gap:2px;padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));border-radius:0;background:rgba(244,245,246,.95);backdrop-filter:blur(8px);box-shadow:0 -2px 16px rgba(31,34,50,.08);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none; }
+    .section-guide::-webkit-scrollbar { display:none; }
+    .section-guide a { flex-shrink:0;justify-content:center;padding:6px 12px;gap:0; }
+    .section-guide .guide-label { display:inline-block;max-width:none;opacity:1;font-size:11px; }
+    .section-guide .guide-dot { display:none; }
     .cv-layout { grid-template-columns:1fr !important; }
     .cv-aside { position:static !important; }
-    .cv-project-grid, .cv-skills-grid, .cv-method-grid { grid-template-columns:1fr !important; }
+    .cv-project-grid, .cv-skills-grid, .cv-method-grid, .sg-missions-grid, .stats-grid-3 { grid-template-columns:1fr !important; }
     .cv-section { padding-left:40px; }
     .site-footer { padding:36px 20px 28px !important;grid-template-columns:1fr !important;gap:14px; }
     .youtube-overview { grid-template-columns:1fr !important; }
@@ -386,7 +389,7 @@
       </div>
 
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a produit</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+      <div class="stats-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
         <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">34</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">cas de test écrits, dont 12 automatisés</div>
@@ -576,7 +579,7 @@
         </div>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a révélé</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+      <div class="stats-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
         <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">100 %</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">sur le jeu de test interne — score trompeur</div>
@@ -616,21 +619,21 @@
       <div style="height:3px;border-radius:2px;margin:52px 0 44px;background:linear-gradient(90deg,#eceff3,#cfe0f3,#eceff3)"></div>
 
       <h2 id="sg-missions" style="margin:0 0 30px;text-align:center;font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Les missions</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="sg-missions-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
         <div onClick="{{ goVerbatim }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
-          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Verbatim IA</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px;overflow-wrap:break-word">Verbatim IA</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Outil interne d'analyse des verbatims clients</div>
         </div>
         <div onClick="{{ goGenepro }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
-          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Génépro/Généclé</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px;overflow-wrap:break-word">Génépro/Généclé</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Parcours unique de souscription pour les professionnels</div>
         </div>
         <div onClick="{{ goAlabri }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
-          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Alabri</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px;overflow-wrap:break-word">Alabri</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance habitation distribuée par BoursoBank</div>
         </div>
         <div onClick="{{ goCarapass }}" style="cursor:pointer;position:relative;min-width:0;background:#fff;border:1px solid #DDE5EE;border-radius:16px;padding:26px 58px 26px 24px;transition:transform .22s ease,border-color .22s ease,background .22s ease" style-hover="transform:translateY(-4px) scale(1.01);border-color:#AFC7E2;background:#FAFCFE"><span style="position:absolute;top:18px;right:18px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#EEF3F8;color:#236ABF;font-size:14px">↗</span>
-          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Carapass</div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px;overflow-wrap:break-word">Carapass</div>
           <div style="font-size:14px;line-height:1.6;color:#1F2232">Assurance automobile distribuée par BoursoBank</div>
         </div>
       </div>
@@ -1296,7 +1299,7 @@
         </div>
       </div>
       <h3 style="margin:36px 0 16px;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1F2232">Ce que la campagne a produit</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
+      <div class="stats-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px">
         <div style="background:#fff;border:1px solid #DDE5EE;border-top:3px solid #CFE0F3;border-radius:16px;padding:20px;text-align:center;transition:transform .24s ease,border-color .24s ease,background .24s ease" style-hover="transform:scale(1.018);border-color:#AFC7E2;background:#FAFCFE">
           <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em">22</div>
           <div style="margin-top:5px;font-size:12.5px;line-height:1.45;color:#1F2232">cas de test, dont 9 automatisés</div>
@@ -1920,21 +1923,16 @@ class Component extends DCLogic {
     new MutationObserver(scheduleGuideUpdate).observe(root, { childList: true, subtree: true });
     scheduleGuideUpdate();
 
-    const isCompact = () => window.matchMedia('(max-width:760px)').matches;
-    document.addEventListener('click', (event) => {
+    const scrollActiveIntoDock = () => {
+      if (!window.matchMedia('(max-width:760px)').matches) return;
       const guide = document.querySelector('.section-guide');
-      if (!guide) return;
-      const link = event.target.closest('.section-guide a');
-      if (link) {
-        if (isCompact() && !guide.classList.contains('is-expanded')) {
-          event.preventDefault();
-          guide.classList.add('is-expanded');
-        } else if (isCompact()) {
-          guide.classList.remove('is-expanded');
-        }
-        return;
-      }
-      if (isCompact()) guide.classList.remove('is-expanded');
+      const active = guide && guide.querySelector('a.is-active');
+      if (!active) return;
+      const left = active.offsetLeft - (guide.clientWidth - active.clientWidth) / 2;
+      guide.scrollTo({ left, behavior: 'smooth' });
+    };
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('.section-guide a')) setTimeout(scrollActiveIntoDock, 60);
     });
   })();
 </script>
