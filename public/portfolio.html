@@ -52,6 +52,13 @@
   .minimal-shot { border-radius:10px;overflow:hidden;border:1px solid #DDE5EE;background:#F4F5F6;transition:transform .22s ease,border-color .22s ease; }
   .minimal-shot:hover { transform:scale(1.02);border-color:#AFC7E2; }
   .minimal-shot img { display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3; }
+  .proto-frame { position:relative;max-width:600px;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid #DDE5EE;box-shadow:0 20px 44px rgba(31,34,50,.09);background:#fff; }
+  .proto-frame img { display:block;width:100%;height:auto; }
+  .proto-hotspot { position:absolute;cursor:pointer;border-radius:8px;background:rgba(35,106,191,0);border:2px solid rgba(35,106,191,0);transition:background .15s ease,border-color .15s ease; }
+  .proto-hotspot:hover { background:rgba(35,106,191,.10);border-color:rgba(35,106,191,.55); }
+  .proto-variant-btn { font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.03em;padding:8px 16px;border-radius:20px;border:1px solid #DDE5EE;background:#fff;color:#5C6370;cursor:pointer; }
+  .proto-variant-btn.is-active { background:#236ABF;border-color:#236ABF;color:#fff; }
+  .proto-reset { display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#236ABF;cursor:pointer; }
   .project-tag { display:inline-flex; align-items:center; border-radius:20px; padding:5px 12px; color:#1F2232 !important; }
   .tag-design { background:#DDF3E5 !important; color:#08785D !important; }
   .tag-dev { background:#DDEEFF !important; color:#236ABF !important; }
@@ -709,13 +716,54 @@
         <span class="chip">Design System</span>
         <span class="chip">Tests utilisateurs</span>
       </div>
-      <h3 style="margin:34px 0 14px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Écrans</h3>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        <div class="minimal-shot"><img src="./assets/gp-caracteristiques.png" alt="Étape Caractéristiques du parcours Génépro"></div>
-        <div class="minimal-shot"><img src="./assets/gp-beneficiaires.png" alt="Étape Bénéficiaires du parcours Génépro"></div>
-        <div class="minimal-shot"><img src="./assets/gp-recapitulatif.png" alt="Récapitulatif avant validation"></div>
-        <div class="minimal-shot"><img src="./assets/gp-grille-test.png" alt="Grille de test utilisateurs"></div>
+      <h3 style="margin:34px 0 6px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5C6370">Prototype cliquable</h3>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.6;color:#5C6370">Suis le parcours de souscription réel, écran par écran — clique où l'utilisateur cliquerait.</p>
+
+      <sc-if value="{{ gpIsRecap }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:center;gap:8px;margin-bottom:14px">
+        <span onClick="{{ setGpVariantA }}" class="proto-variant-btn {{ gpVariantAActive }}">Sans option</span>
+        <span onClick="{{ setGpVariantB }}" class="proto-variant-btn {{ gpVariantBActive }}">Avec option</span>
       </div>
+      </sc-if>
+
+      <div class="proto-frame">
+        <img src="{{ gpProtoImage }}" alt="Prototype du parcours de souscription Génépro">
+
+        <sc-if value="{{ gpIsHome }}" hint-placeholder-val="{{ true }}">
+          <div onClick="{{ goGpForm1 }}" class="proto-hotspot" style="left:35.5%;top:38.5%;width:18.5%;height:26.5%" title="Génépro"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsForm1 }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpError }}" class="proto-hotspot" style="left:76%;top:96.6%;width:11%;height:2.6%" title="Suivant"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsError }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpDropdown }}" class="proto-hotspot" style="left:22%;top:86.8%;width:58%;height:2.8%" title="Sélectionner une réponse"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsDropdown }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpForm2 }}" class="proto-hotspot" style="left:20%;top:66.5%;width:20%;height:3.6%" title="Annuelle"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsForm2 }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpRecap }}" class="proto-hotspot" style="left:76%;top:96.6%;width:11%;height:2.6%" title="Suivant"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsRecap }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpDocs }}" class="proto-hotspot" style="left:76%;top:97%;width:11%;height:2.4%" title="Suivant"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsDocs }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpAlmost }}" class="proto-hotspot" style="left:75%;top:94.5%;width:12%;height:3.2%" title="Suivant"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsAlmost }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpDone }}" class="proto-hotspot" style="left:38%;top:78.5%;width:24%;height:5%" title="Valider l'adhésion"></div>
+        </sc-if>
+        <sc-if value="{{ gpIsDone }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ goGpHome }}" class="proto-hotspot" style="left:38%;top:53.5%;width:24%;height:5%" title="Retourner sur l'EAC PRO"></div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ gpIsHome }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:14px 0 0;text-align:center;font-size:12px;color:#9AA5B1">Clique sur la carte « Génépro » pour démarrer la souscription.</p>
+      </sc-if>
+      <sc-if value="{{ gpIsDone }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:14px 0 0;text-align:center;font-size:12px;color:#9AA5B1">Dossier créé — clique sur le bouton pour recommencer.</p>
+      </sc-if>
       </sc-if>
 
       <sc-if value="{{ geneproDetailed }}" hint-placeholder-val="{{ true }}">
@@ -1451,11 +1499,19 @@ class Component extends DCLogic {
     selectedSpotifyUrl: 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0',
     selectedSpotifySearchUrl: 'https://open.spotify.com/search/Strolling%20Astronomer%20Fu%20Manchu',
     selectedHasSpotifyEmbed: true,
-    projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed' }
+    projectView: { verbatim: 'detailed', genepro: 'detailed', alabri: 'detailed', carapass: 'detailed' },
+    gpProtoStep: 'home',
+    gpProtoVariant: 'a'
   };
   toggleProjectView(key) {
     const next = this.state.projectView[key] === 'minimal' ? 'detailed' : 'minimal';
     this.setState({ projectView: { ...this.state.projectView, [key]: next } });
+  }
+  gpProtoGoto(step) {
+    this.setState({ gpProtoStep: step });
+  }
+  gpProtoSetVariant(v) {
+    this.setState({ gpProtoVariant: v });
   }
   navigate(page) {
     this.setState({ page });
@@ -1546,7 +1602,43 @@ class Component extends DCLogic {
         [key + 'LabelMinimalColor']: minimal ? '#1F2232' : '#9AA5B1'
       };
     };
+    const gpImages = {
+      home: './assets/genepro-proto/gp-proto-home.png',
+      form1: './assets/genepro-proto/gp-proto-form-empty.png',
+      error: './assets/genepro-proto/gp-proto-form-error.png',
+      dropdown: './assets/genepro-proto/gp-proto-form-dropdown.png',
+      form2: './assets/genepro-proto/gp-proto-form-filled.png',
+      recap: this.state.gpProtoVariant === 'b' ? './assets/genepro-proto/gp-proto-recap-b.png' : './assets/genepro-proto/gp-proto-recap-a.png',
+      docs: './assets/genepro-proto/gp-proto-docs.png',
+      almost: './assets/genepro-proto/gp-proto-almost.png',
+      done: './assets/genepro-proto/gp-proto-done.png'
+    };
+    const gpStep = this.state.gpProtoStep;
+    const gpVariantB = this.state.gpProtoVariant === 'b';
     return {
+      gpProtoImage: gpImages[gpStep],
+      gpIsHome: gpStep === 'home',
+      gpIsForm1: gpStep === 'form1',
+      gpIsError: gpStep === 'error',
+      gpIsDropdown: gpStep === 'dropdown',
+      gpIsForm2: gpStep === 'form2',
+      gpIsRecap: gpStep === 'recap',
+      gpIsDocs: gpStep === 'docs',
+      gpIsAlmost: gpStep === 'almost',
+      gpIsDone: gpStep === 'done',
+      gpVariantAActive: gpVariantB ? '' : 'is-active',
+      gpVariantBActive: gpVariantB ? 'is-active' : '',
+      goGpHome: () => this.gpProtoGoto('home'),
+      goGpForm1: () => this.gpProtoGoto('form1'),
+      goGpError: () => this.gpProtoGoto('error'),
+      goGpDropdown: () => this.gpProtoGoto('dropdown'),
+      goGpForm2: () => this.gpProtoGoto('form2'),
+      goGpRecap: () => this.gpProtoGoto('recap'),
+      goGpDocs: () => this.gpProtoGoto('docs'),
+      goGpAlmost: () => this.gpProtoGoto('almost'),
+      goGpDone: () => this.gpProtoGoto('done'),
+      setGpVariantA: () => this.gpProtoSetVariant('a'),
+      setGpVariantB: () => this.gpProtoSetVariant('b'),
       ...viewToggle('verbatim'),
       ...viewToggle('genepro'),
       ...viewToggle('alabri'),
