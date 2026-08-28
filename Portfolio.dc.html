@@ -116,6 +116,8 @@
     .hero-avatar-frame { width:120px;height:120px; }
     .hero-avatar-frame img { width:76px !important; }
     .hero-blob-a, .hero-blob-b { width:260px;height:260px; }
+    .hero-logos { margin-top:48px !important; }
+    .hero-logos > div:last-child { gap:26px !important; }
     .hero-copy { font-size:34px !important;line-height:1.2 !important; }
     .section-guide { left:0;right:0;bottom:0;top:auto;transform:none;flex-direction:row;justify-content:flex-start;gap:2px;padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));border-radius:0;background:rgba(244,245,246,.95);backdrop-filter:blur(8px);box-shadow:0 -2px 16px rgba(31,34,50,.08);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none; }
     .section-guide::-webkit-scrollbar { display:none; }
@@ -148,7 +150,7 @@
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-    <main class="home-main" style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box;overflow:hidden">
+    <main class="home-main" style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box;overflow:hidden">
       <div class="hero-blob hero-blob-a"></div>
       <div class="hero-blob hero-blob-b"></div>
       <div class="home-hero-row" style="position:relative;z-index:1;max-width:1080px;width:100%;display:flex;align-items:center;gap:56px">
@@ -161,10 +163,19 @@
             <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="width:110px;height:auto;display:block">
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:210px">
-            <span class="hero-skill-pill">Design</span>
-            <span class="hero-skill-pill">Code</span>
-            <span class="hero-skill-pill">Test</span>
+            <span class="project-tag tag-design" style="font-size:11px;font-weight:700;letter-spacing:.03em">Design</span>
+            <span class="project-tag tag-dev" style="font-size:11px;font-weight:700;letter-spacing:.03em">Code</span>
+            <span class="project-tag tag-qa" style="font-size:11px;font-weight:700;letter-spacing:.03em">Test</span>
           </div>
+        </div>
+      </div>
+      <div class="hero-logos" style="position:relative;z-index:1;max-width:1080px;width:100%;margin-top:72px">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9AA0AA;margin-bottom:20px;text-align:center">Ils m'ont fait confiance</div>
+        <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:44px">
+          <img src="./assets/societe-generale.png" alt="Société Générale" style="height:22px;width:auto;opacity:.8">
+          <img src="./assets/qatent.png" alt="Qatent" style="height:28px;width:auto;opacity:.8">
+          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.01em;color:#4A4D57;opacity:.8">BoursoBank</span>
+          <span style="font-family:Georgia,'Times New Roman',serif;font-size:23px;color:#4A4D57;opacity:.8">Domaine de Beaucens</span>
         </div>
       </div>
     </main>
