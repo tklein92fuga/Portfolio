@@ -97,8 +97,8 @@
     </div>
     <nav class="site-nav" style="display:flex;gap:38px;align-items:center;font-size:14px;letter-spacing:0.09em;text-transform:uppercase;font-weight:500">
       <span onClick="{{ goWorks }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ worksTagBg }};color:{{ worksTagColor }};transition:background .18s,color .18s">Travaux</span>
-      <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
       <span onClick="{{ goCV }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ cvTagBg }};color:{{ cvTagColor }};transition:background .18s,color .18s">CV</span>
+      <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
       <span onClick="{{ goContact }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ contactTagBg }};color:{{ contactTagColor }};transition:background .18s,color .18s">Contact</span>
     </nav>
   </header>
@@ -107,7 +107,7 @@
     <main class="home-main" style="flex:1;display:flex;align-items:center;justify-content:center;padding:80px 40px;box-sizing:border-box">
       <div style="max-width:1080px;width:100%">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:28px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#08785D"><span class="availability-dot"></span>Disponible pour de nouvelles collaborations</div>
-        <p class="hero-copy" style="margin:0;font-size:58px;line-height:1.19;letter-spacing:-0.035em;color:#1F2232;text-wrap:pretty"><span class="hero-bold">Product designer augmenté par l'IA,</span><span class="hero-light"> Quentin transforme plus vite les besoins complexes en produits </span><span class="hero-medium">clairs, utiles et prêts à livrer.</span><br><span class="hero-light">Il maîtrise le </span><span class="hero-bold">design</span><span class="hero-light">, le </span><span class="hero-bold">code</span><span class="hero-light"> et le </span><span class="hero-bold">test</span><span class="hero-light"> — de l'idée à l'expérience réelle.</span></p>
+        <p class="hero-copy" style="margin:0;font-size:58px;line-height:1.19;letter-spacing:-0.035em;color:#1F2232;text-wrap:pretty"><span class="hero-bold">Product designer augmenté par l'IA,</span><span class="hero-light"> je transforme plus vite les besoins complexes en produits </span><span class="hero-medium">clairs, utiles et prêts à livrer.</span><br><span class="hero-light">Je maîtrise le </span><span class="hero-bold">design</span><span class="hero-light">, le </span><span class="hero-bold">code</span><span class="hero-light"> et le </span><span class="hero-bold">test</span><span class="hero-light"> — de l'idée à l'expérience réelle.</span></p>
       </div>
     </main>
   </sc-if>
@@ -1103,7 +1103,7 @@
 
       <div class="cv-layout" style="display:grid;grid-template-columns:280px minmax(0,1fr);gap:54px;align-items:start">
         <aside class="cv-aside" style="position:sticky;top:28px;background:#EEF3F8;border:1px solid #DDE5EE;border-radius:20px;padding:26px;box-sizing:border-box">
-          <img src="./assets/avatar-sticker.png" alt="Quentin Alterescu" style="display:block;width:88px;height:auto;margin-bottom:24px">
+          <img src="./assets/quentin-contact.png" alt="Portrait de Quentin Alterescu" style="display:block;width:64px;height:auto;border-radius:14px;margin:0 auto 24px">
           <h2 style="margin:0 0 8px;font-size:22px;line-height:1.2;text-transform:none;letter-spacing:-.02em">Quentin Alterescu</h2>
           <p style="margin:0;color:#236ABF;font-family:'Montserrat',sans-serif !important;font-size:14px;line-height:1.5;font-weight:600">Product Designer<br>Design · Code · Test</p>
           <div style="height:1px;background:#D4DEE9;margin:24px 0"></div>
@@ -1244,13 +1244,13 @@
       <div style="display:flex;flex-direction:column;gap:22px;max-width:700px;margin:0 auto;font-size:15px;line-height:1.72;text-wrap:pretty">
         <p style="margin:0">L'automobile, c'est d'abord le plaisir de conduire : sentir une route, comprendre le caractère d'une voiture et traverser des paysages qui donnent envie de prolonger le trajet. Sur Alta Drives, je transforme cette passion en images, entre conduite, routes panoramiques et attention portée aux lieux autant qu'aux machines.</p>
       </div>
-      <div id="youtube" style="margin-top:32px;background:#fff;border:1px solid #DDE5EE;border-top:4px solid #D95050;border-radius:18px;padding:24px;box-sizing:border-box">
+      <div id="youtube" style="max-width:700px;margin:32px auto 0;background:#fff;border:1px solid #DDE5EE;border-top:4px solid #D95050;border-radius:18px;padding:24px;box-sizing:border-box">
         <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
           <div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#1F2232">Alta Drives · YouTube</div><h3 style="margin:7px 0 0;font-size:22px;line-height:1.2">La conduite comme invitation au voyage</h3></div>
           <a href="https://www.youtube.com/@AltaDrives" target="_blank" rel="noreferrer" style="font-size:13px;font-weight:650;color:#236ABF">Voir la chaîne ↗</a>
         </div>
         <div style="position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:12px;background:#111">
-          <iframe title="Dernières vidéos de la chaîne YouTube Alta Drives" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUYP8T61JnDmtQrg7DYU4Fj2&amp;rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+          <iframe title="Dernières vidéos de la chaîne YouTube Alta Drives" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUWYzU7x5CAEgLldIZvUVnzw&amp;rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><span class="project-tag" style="background:#FBE5E5;font-size:11px;font-weight:600">Conduite</span><span class="project-tag" style="background:#E7EEF8;font-size:11px;font-weight:600">Paysages</span><span class="project-tag" style="background:#EEF1F4;font-size:11px;font-weight:600">Automobile</span></div>
       </div>
@@ -1263,7 +1263,7 @@
       <p class="project-intro" style="margin:0 auto 48px;max-width:660px;text-align:center;text-wrap:pretty">Vous avez un produit à clarifier, une expérience à concevoir ou un parcours à fiabiliser ? Parlez-moi de votre projet.</p>
       <div class="contact-layout" style="display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:stretch">
         <aside style="display:flex;flex-direction:column;background:#1F2232;color:#fff;border-radius:18px;padding:26px;box-sizing:border-box">
-          <img src="./assets/quentin-contact.png" alt="Portrait de Quentin Alterescu" style="display:block;width:116px;height:116px;object-fit:cover;object-position:center 28%;border-radius:18px;margin-bottom:24px">
+          <img src="./assets/quentin-contact.png" alt="Portrait de Quentin Alterescu" style="display:block;width:64px;height:auto;border-radius:14px;margin:0 auto 24px">
           <h2 style="margin:0 0 10px;font-size:23px;line-height:1.2;text-transform:none;letter-spacing:-.02em;color:#fff">Construisons quelque chose d'utile.</h2>
           <p style="margin:0;font-size:14px;line-height:1.65;color:#DDE5EE">Disponible pour des missions en product design, design augmenté par l'IA, prototypage et QA orientée expérience.</p>
           <div style="height:1px;background:#3B4357;margin:26px 0"></div>
@@ -1295,8 +1295,6 @@
 
   <sc-if value="{{ isTalkingHands }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#th-prologue"><span class="guide-label">Prologue</span><span class="guide-dot"></span></a><a href="#th-problematique"><span class="guide-label">Problématique</span><span class="guide-dot"></span></a><a href="#th-technologie"><span class="guide-label">Technologie</span><span class="guide-dot"></span></a><a href="#th-proposition"><span class="guide-label">Proposition</span><span class="guide-dot"></span></a><a href="#th-architecture"><span class="guide-label">Architecture</span><span class="guide-dot"></span></a><a href="#th-code"><span class="guide-label">Code</span><span class="guide-dot"></span></a><a href="#th-limites"><span class="guide-label">Limites</span><span class="guide-dot"></span></a><a href="#th-test"><span class="guide-label">Test</span><span class="guide-dot"></span></a><a href="#th-suite"><span class="guide-label">Suite</span><span class="guide-dot"></span></a></aside></sc-if>
 
-  <sc-if value="{{ isSG }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#sg-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
-
   <sc-if value="{{ isVerbatim }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#v-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#v-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#v-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
 
   <sc-if value="{{ isGenepro }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#g-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#g-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#g-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
@@ -1306,10 +1304,6 @@
   <sc-if value="{{ isCarapass }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#c-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#c-organisation"><span class="guide-label">Organisation</span><span class="guide-dot"></span></a><a href="#c-missions"><span class="guide-label">Missions</span><span class="guide-dot"></span></a></aside></sc-if>
 
   <sc-if value="{{ isBeaucens }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#b-contexte"><span class="guide-label">Contexte</span><span class="guide-dot"></span></a><a href="#b-contraintes"><span class="guide-label">Contraintes</span><span class="guide-dot"></span></a><a href="#b-architecture"><span class="guide-label">Architecture</span><span class="guide-dot"></span></a><a href="#b-ecrans"><span class="guide-label">Écrans</span><span class="guide-dot"></span></a><a href="#b-rsvp"><span class="guide-label">RSVP</span><span class="guide-dot"></span></a><a href="#b-test"><span class="guide-label">Test</span><span class="guide-dot"></span></a><a href="#b-retour"><span class="guide-label">Bilan</span><span class="guide-dot"></span></a></aside></sc-if>
-
-  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#about-musique"><span class="guide-label">Musique</span><span class="guide-dot"></span></a><a href="#about-auto"><span class="guide-label">Automobile</span><span class="guide-dot"></span></a></aside></sc-if>
-
-  <sc-if value="{{ isCV }}" hint-placeholder-val="{{ false }}"><aside class="section-guide" aria-label="Guide des sections"><a href="#page-top" title="Retour en haut"><span class="guide-label">Haut</span><span class="guide-dot"></span></a><a href="#cv-projets"><span class="guide-label">Projets</span><span class="guide-dot"></span></a><a href="#cv-competences"><span class="guide-label">Compétences</span><span class="guide-dot"></span></a><a href="#cv-methode"><span class="guide-label">Méthode</span><span class="guide-dot"></span></a><a href="#cv-contact"><span class="guide-label">Contact</span><span class="guide-dot"></span></a></aside></sc-if>
 
   <footer class="site-footer" style="max-width:1120px;width:100%;margin:0 auto;padding:56px 40px 40px;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);justify-items:center;font-size:14px;letter-spacing:0.01em;color:#1F2232">
     <a href="mailto:qalterescu@me.com">qalterescu@me.com</a>
@@ -1357,15 +1351,50 @@ class Component extends DCLogic {
     const title = (link.querySelector('strong')?.textContent || '').trim();
     const artist = (link.querySelector('small')?.textContent || '').trim();
     if (!title || !artist) return;
-    const exactSpotify = title === 'Strolling Astronomer' && artist === 'Fu Manchu';
+    const spotifyEmbeds = {
+      'Leere Flaschen|Anda Morts': 'track/1OVIHA46LKcFBNNPnmmmtS',
+      'Broken Walls|Downpresser': 'track/62dpPx4BuMERDx2211zRxS',
+      'Underneath|Downpresser': 'track/0TVdHJbbLIK3xqc7sfpWbO',
+      'Danza — Wascha Mesa|Eduardo Paniagua': 'track/0JU6xDgcGqHogS5J8sZVYr',
+      'Forgetting|Expire': 'track/3vuzO1edJ5rGhNdZwstkwq',
+      'King|Fireball Ministry': 'track/7f8uKtO890WMmEYKJIbixA',
+      'The Man|Fireball Ministry': 'track/1Vah9GxORKlBiEPE4zhvly',
+      'Egor|Fu Manchu': 'track/2oTKlcjoW9WyHTcVYw1GsK',
+      'Strolling Astronomer|Fu Manchu': 'track/0vngHSAMqNQMrfWC5YWuQh',
+      'The Bargain|Fu Manchu': 'artist/1TKaUU8ooBgSW9TlyKsw6k',
+      'Travel Agent|Fu Manchu': 'track/3Hbuf4tpUODwndQk9JrmgB',
+      'Talk Real|Gridiron': 'track/23zo4qbvYvDLr1lJ9UDoIU',
+      'Åh Bliss|Honningbarna': 'track/1nbq7DdJiAGit4FTK0jHR3',
+      'I Think I Like U 2|Jamaica': 'track/4EKiQ44hZ5g9xMLRqvWgsH',
+      'Rotting Away|Locked Shut': 'track/68J5vDMPayDRMBVTmmBDLr',
+      'Premier Gaou|Magic System': 'track/6YmE0GgmWES5NTntP8qKSG',
+      'Counterattack|Magnitude': 'track/6dUl8q1twLt7nQpUf7j9YS',
+      'Remain|Magnitude': 'track/6IaW4pyJWt1Z2XmJoo4Rkd',
+      'Whats Up|Mom Jeans.': 'track/46BV2Stvj9yJGw8gHAwHAU',
+      'Straight Line|Pabst': 'track/22fypMPwI6o7rv9uNydKrP',
+      'Same Old Story|Pennywise': 'track/4yyi1pH8UNiFLBJrGmHTPz',
+      'Fuel For The Darkest Man|Queensway': 'track/1wtPljykBlE9M2fS9PEmAn',
+      'Minds Eye|Shackled': 'track/6oOL7nKLiJ2OuHybpWaHDF',
+      'Through The Veil|Shackled': 'track/1ELJCeHGmO1m9DrOM8BdNv',
+      'Kevin|Slomosa': 'track/3bTJRzsVHaL4JOmmNX4Cm3',
+      'Junkie Killer|Smoke Blow': 'track/1phNvay5rC4I3auZEbjyux',
+      'Sweetwater|Smoke Blow': 'track/7rTrDv7gT9yea5pHAHGPuZ',
+      'Blues Improvisation|Tone Factory': 'track/5HdBuMJxp8PRFqmRoW2Jso',
+      'Degenerate|Violation': 'track/6F8vgZlA1uH96fp0e9TpCo',
+      'Devoured|Violation': 'track/2Hrm95sYpNPhsnTmCRMsiK',
+      'Disillusioned|Violation': 'track/4tWBMMBLyQY6mFeYS2jVhy',
+      'Low And Behold|Violation': 'track/3CRJ1QaZeMyC5TZHTILcyj',
+      'That Which Has No End|Violation': 'track/0JRp23unpXWBKguST44ivu'
+    };
+    const spotifyEmbed = spotifyEmbeds[title + '|' + artist] || '';
     this.setState({
       selectedTabTitle: title,
       selectedTabArtist: artist,
       selectedTabMeta: artist + ' · Guitar Pro',
       selectedTabUrl: link.href,
-      selectedSpotifyUrl: exactSpotify ? 'https://open.spotify.com/embed/track/0vngHSAMqNQMrfWC5YWuQh?utm_source=generator&theme=0' : '',
+      selectedSpotifyUrl: spotifyEmbed ? 'https://open.spotify.com/embed/' + spotifyEmbed + '?utm_source=generator&theme=0' : '',
       selectedSpotifySearchUrl: 'https://open.spotify.com/search/' + encodeURIComponent(title + ' ' + artist),
-      selectedHasSpotifyEmbed: exactSpotify
+      selectedHasSpotifyEmbed: Boolean(spotifyEmbed)
     });
   }
   renderVals() {
