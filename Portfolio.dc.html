@@ -102,15 +102,25 @@
   .contact-field input, .contact-field select, .contact-field textarea { width:100%;box-sizing:border-box;border:1px solid #D8E1EB;border-radius:11px;background:#F8FAFC;color:#1F2232;padding:13px 14px;font-size:14px;line-height:1.45;outline:none;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease; }
   .contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus { border-color:#236ABF;background:#fff;box-shadow:0 0 0 4px rgba(35,106,191,.09); }
   .contact-field textarea { min-height:150px;resize:vertical; }
+  .language-switch { display:flex;align-items:center;padding:3px;border:1px solid #D6E0EB;border-radius:999px;background:#fff;box-shadow:0 5px 16px rgba(31,34,50,.05); }
+  .language-switch button { cursor:pointer;min-width:34px;border:0;border-radius:999px;background:transparent;padding:6px 8px;color:#818896;font-family:'Montserrat',sans-serif !important;font-size:10px;font-weight:700;letter-spacing:.08em;line-height:1;transition:background .18s ease,color .18s ease,box-shadow .18s ease; }
+  .language-switch button:hover { color:#236ABF; }
+  .language-switch button.is-active { background:#236ABF;color:#fff;box-shadow:0 3px 9px rgba(35,106,191,.24); }
+  .language-switch button:focus-visible { outline:2px solid #236ABF;outline-offset:2px; }
+  #google_translate_element { position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden; }
+  .goog-te-banner-frame.skiptranslate,.goog-te-banner-frame,.goog-te-balloon-frame,.goog-tooltip,.goog-tooltip:hover { display:none !important; }
+  body { top:0 !important; }
+  .goog-text-highlight { background:transparent !important;box-shadow:none !important; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: #236ABF; }
   @media (max-width:1120px) { .section-guide { right:8px; } }
   @media (max-width:760px) {
     #page-top { overflow-x:hidden;width:100%; }
     [style*="display:grid"] > * { min-width:0; }
-    .site-header { padding:22px 20px 0 !important; }
-    .site-nav { gap:10px !important;font-size:11px !important;letter-spacing:.05em !important; }
+    .site-header { position:relative;flex-wrap:wrap;padding:22px 20px 0 !important; }
+    .site-nav { order:3;width:100%;justify-content:center;gap:7px !important;margin-top:10px;font-size:10px !important;letter-spacing:.04em !important; }
     .site-nav span, .site-nav a { padding:5px 7px !important; }
+    .language-switch { position:absolute;top:27px;right:20px; }
     .home-main { padding:64px 22px !important;align-items:flex-start !important; }
     .home-hero-row { flex-direction:column-reverse !important;gap:32px !important; }
     .hero-avatar-frame { width:120px;height:120px; }
@@ -147,6 +157,10 @@
       <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
       <span onClick="{{ goContact }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ contactTagBg }};color:{{ contactTagColor }};transition:background .18s,color .18s">Contact</span>
     </nav>
+    <div class="language-switch notranslate" translate="no" role="group" aria-label="Choisir la langue">
+      <button type="button" data-language="fr" aria-label="Afficher le site en français" onclick="setPortfolioLanguage('fr')">FR</button>
+      <button type="button" data-language="en" aria-label="Display the site in English" onclick="setPortfolioLanguage('en')">EN</button>
+    </div>
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
@@ -1992,5 +2006,71 @@ class Component extends DCLogic {
     });
   })();
 </script>
+<div id="google_translate_element" class="notranslate" translate="no" aria-hidden="true"></div>
+<script>
+  (() => {
+    const storageKey = 'quentin-portfolio-language';
+    const readLanguage = () => {
+      try { return localStorage.getItem(storageKey) === 'en' ? 'en' : 'fr'; }
+      catch (_) { return 'fr'; }
+    };
+    const updateLanguageButtons = (language) => {
+      document.querySelectorAll('[data-language]').forEach((button) => {
+        const active = button.getAttribute('data-language') === language;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      document.documentElement.setAttribute('lang', language);
+    };
+    const clearTranslationCookies = () => {
+      const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = 'googtrans=;expires=' + expires + ';path=/';
+      if (location.hostname && location.hostname !== 'localhost') {
+        document.cookie = 'googtrans=;expires=' + expires + ';path=/;domain=' + location.hostname;
+        document.cookie = 'googtrans=;expires=' + expires + ';path=/;domain=.' + location.hostname;
+      }
+    };
+    const activateEnglish = (attempt = 0) => {
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = 'en';
+        select.dispatchEvent(new Event('change'));
+        return;
+      }
+      if (attempt < 30) setTimeout(() => activateEnglish(attempt + 1), 200);
+    };
+    window.setPortfolioLanguage = (language) => {
+      const nextLanguage = language === 'en' ? 'en' : 'fr';
+      try { localStorage.setItem(storageKey, nextLanguage); } catch (_) {}
+      updateLanguageButtons(nextLanguage);
+      if (nextLanguage === 'en') {
+        document.cookie = 'googtrans=/fr/en;path=/';
+        activateEnglish();
+      } else {
+        clearTranslationCookies();
+        location.reload();
+      }
+    };
+    window.googleTranslateElementInit = () => {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
+      const language = readLanguage();
+      updateLanguageButtons(language);
+      if (language === 'en') activateEnglish();
+    };
+    const language = readLanguage();
+    updateLanguageButtons(language);
+    if (language === 'en') {
+      document.cookie = 'googtrans=/fr/en;path=/';
+      window.addEventListener('load', () => activateEnglish());
+    }
+    const root = document.querySelector('x-dc') || document.body;
+    new MutationObserver(() => updateLanguageButtons(readLanguage())).observe(root, { childList: true, subtree: true });
+  })();
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>
