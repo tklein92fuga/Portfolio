@@ -158,8 +158,8 @@
       <span onClick="{{ goContact }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ contactTagBg }};color:{{ contactTagColor }};transition:background .18s,color .18s">Contact</span>
     </nav>
     <div class="language-switch notranslate" translate="no" role="group" aria-label="Choisir la langue">
-      <button type="button" data-language="fr" aria-label="Afficher le site en français" onclick="setPortfolioLanguage('fr')">FR</button>
-      <button type="button" data-language="en" aria-label="Display the site in English" onclick="setPortfolioLanguage('en')">EN</button>
+      <button type="button" data-language="fr" aria-label="Afficher le site en français">FR</button>
+      <button type="button" data-language="en" aria-label="Display the site in English">EN</button>
     </div>
   </header>
 
@@ -2051,6 +2051,11 @@ class Component extends DCLogic {
         location.reload();
       }
     };
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.language-switch [data-language]');
+      if (!button) return;
+      window.setPortfolioLanguage(button.getAttribute('data-language'));
+    });
     window.googleTranslateElementInit = () => {
       new google.translate.TranslateElement({
         pageLanguage: 'fr',
