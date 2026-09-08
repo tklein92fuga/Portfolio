@@ -107,10 +107,6 @@
   .language-switch button:hover { color:#236ABF; }
   .language-switch button.is-active { background:#236ABF;color:#fff;box-shadow:0 3px 9px rgba(35,106,191,.24); }
   .language-switch button:focus-visible { outline:2px solid #236ABF;outline-offset:2px; }
-  #google_translate_element { position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden; }
-  .goog-te-banner-frame.skiptranslate,.goog-te-banner-frame,.goog-te-balloon-frame,.goog-tooltip,.goog-tooltip:hover { display:none !important; }
-  body { top:0 !important; }
-  .goog-text-highlight { background:transparent !important;box-shadow:none !important; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: #236ABF; }
   @media (max-width:1120px) { .section-guide { right:8px; } }
@@ -157,7 +153,7 @@
       <span onClick="{{ goAbout }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ aboutTagBg }};color:{{ aboutTagColor }};transition:background .18s,color .18s">About</span>
       <span onClick="{{ goContact }}" style="cursor:pointer;padding:5px 11px;border-radius:5px;background:{{ contactTagBg }};color:{{ contactTagColor }};transition:background .18s,color .18s">Contact</span>
     </nav>
-    <div class="language-switch notranslate" translate="no" role="group" aria-label="Choisir la langue">
+    <div class="language-switch" role="group" aria-label="Choisir la langue">
       <button type="button" data-language="fr" aria-label="Afficher le site en français">FR</button>
       <button type="button" data-language="en" aria-label="Display the site in English">EN</button>
     </div>
@@ -1722,7 +1718,10 @@ class Component extends DCLogic {
   navigate(page) {
     this.setState({ page });
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    setTimeout(() => window.scrollTo(0, 0), 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      if (window.refreshPortfolioLanguage) window.refreshPortfolioLanguage();
+    }, 0);
   }
   sendContact(event) {
     if (event && event.preventDefault) event.preventDefault();
@@ -1989,7 +1988,7 @@ class Component extends DCLogic {
     window.addEventListener('scroll', scheduleGuideUpdate, { passive: true });
     window.addEventListener('resize', scheduleGuideUpdate);
     document.addEventListener('click', () => setTimeout(scheduleGuideUpdate, 50));
-    const root = document.querySelector('x-dc') || document.body;
+    const root = document.body;
     new MutationObserver(scheduleGuideUpdate).observe(root, { childList: true, subtree: true });
     scheduleGuideUpdate();
 
@@ -2006,12 +2005,26 @@ class Component extends DCLogic {
     });
   })();
 </script>
-<div id="google_translate_element" class="notranslate" translate="no" aria-hidden="true"></div>
+<script src="./public/translations-en.js?v=2"></script>
 <script>
   (() => {
     const storageKey = 'quentin-portfolio-language';
+    const translations = window.PORTFOLIO_TRANSLATIONS_EN || {};
+    const originalText = new WeakMap();
+    const originalAttributes = new WeakMap();
+    const translatableAttributes = ['aria-label', 'title', 'alt', 'placeholder'];
+    let currentLanguage = 'fr';
+    const translationFor = (original) => {
+      if (translations[original]) return translations[original];
+      const spotifyLabel = original && original.match(/^Écouter (.+) de (.+) sur Spotify$/);
+      return spotifyLabel ? `Listen to ${spotifyLabel[1]} by ${spotifyLabel[2]} on Spotify` : null;
+    };
     const readLanguage = () => {
-      try { return localStorage.getItem(storageKey) === 'en' ? 'en' : 'fr'; }
+      try {
+        const requested = new URLSearchParams(window.location.search).get('lang');
+        if (requested === 'en' || requested === 'fr') return requested;
+        return localStorage.getItem(storageKey) === 'en' ? 'en' : 'fr';
+      }
       catch (_) { return 'fr'; }
     };
     const updateLanguageButtons = (language) => {
@@ -2022,60 +2035,85 @@ class Component extends DCLogic {
       });
       document.documentElement.setAttribute('lang', language);
     };
-    const clearTranslationCookies = () => {
-      const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
-      document.cookie = 'googtrans=;expires=' + expires + ';path=/';
-      if (location.hostname && location.hostname !== 'localhost') {
-        document.cookie = 'googtrans=;expires=' + expires + ';path=/;domain=' + location.hostname;
-        document.cookie = 'googtrans=;expires=' + expires + ';path=/;domain=.' + location.hostname;
+    const translateElement = (element, language) => {
+      if (!element || element.closest('.notranslate,[translate="no"],script,style,noscript')) return;
+      translatableAttributes.forEach((attribute) => {
+        if (!element.hasAttribute(attribute)) return;
+        let originals = originalAttributes.get(element);
+        if (!originals) {
+          originals = {};
+          originalAttributes.set(element, originals);
+        }
+        if (!(attribute in originals)) originals[attribute] = element.getAttribute(attribute);
+        const original = originals[attribute];
+        const translated = translationFor(original);
+        const nextValue = language === 'en' && translated ? translated : original;
+        if (element.getAttribute(attribute) !== nextValue) element.setAttribute(attribute, nextValue);
+      });
+    };
+    const translateText = (node, language) => {
+      const parent = node.parentElement;
+      if (!parent || parent.closest('.notranslate,[translate="no"],script,style,noscript')) return;
+      if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+      const original = originalText.get(node);
+      const core = original.replace(/\s+/g, ' ').trim();
+      const translated = translationFor(core);
+      if (language === 'en' && translated) {
+        const leading = (original.match(/^\s*/) || [''])[0];
+        const trailing = (original.match(/\s*$/) || [''])[0];
+        const nextValue = leading + translated + trailing;
+        if (node.nodeValue !== nextValue) node.nodeValue = nextValue;
+      } else {
+        if (node.nodeValue !== original) node.nodeValue = original;
       }
     };
-    const activateEnglish = (attempt = 0) => {
-      const select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = 'en';
-        select.dispatchEvent(new Event('change'));
-        return;
-      }
-      if (attempt < 30) setTimeout(() => activateEnglish(attempt + 1), 200);
+    const applyLanguage = (language, root = document.body) => {
+      if (!root) return;
+      currentLanguage = language;
+      if (root.nodeType === Node.ELEMENT_NODE) translateElement(root, language);
+      const elements = root.querySelectorAll ? root.querySelectorAll('*') : [];
+      elements.forEach((element) => translateElement(element, language));
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach((node) => translateText(node, language));
     };
     window.setPortfolioLanguage = (language) => {
       const nextLanguage = language === 'en' ? 'en' : 'fr';
       try { localStorage.setItem(storageKey, nextLanguage); } catch (_) {}
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', nextLanguage);
+        window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+      } catch (_) {}
       updateLanguageButtons(nextLanguage);
-      if (nextLanguage === 'en') {
-        document.cookie = 'googtrans=/fr/en;path=/';
-        activateEnglish();
-      } else {
-        clearTranslationCookies();
-        location.reload();
-      }
+      applyLanguage(nextLanguage);
+    };
+    window.refreshPortfolioLanguage = () => {
+      updateLanguageButtons(currentLanguage);
+      applyLanguage(currentLanguage);
     };
     document.addEventListener('click', (event) => {
       const button = event.target.closest('.language-switch [data-language]');
-      if (!button) return;
-      window.setPortfolioLanguage(button.getAttribute('data-language'));
+      if (button) window.setPortfolioLanguage(button.getAttribute('data-language'));
+      else setTimeout(window.refreshPortfolioLanguage, 0);
     });
-    window.googleTranslateElementInit = () => {
-      new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'en',
-        autoDisplay: false
-      }, 'google_translate_element');
-      const language = readLanguage();
-      updateLanguageButtons(language);
-      if (language === 'en') activateEnglish();
-    };
     const language = readLanguage();
     updateLanguageButtons(language);
-    if (language === 'en') {
-      document.cookie = 'googtrans=/fr/en;path=/';
-      window.addEventListener('load', () => activateEnglish());
-    }
-    const root = document.querySelector('x-dc') || document.body;
-    new MutationObserver(() => updateLanguageButtons(readLanguage())).observe(root, { childList: true, subtree: true });
+    applyLanguage(language);
+    const root = document.body;
+    if (root) new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) translateText(node, currentLanguage);
+        else if (node.nodeType === Node.ELEMENT_NODE) applyLanguage(currentLanguage, node);
+      }));
+      updateLanguageButtons(currentLanguage);
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'characterData') translateText(mutation.target, currentLanguage);
+        if (mutation.type === 'attributes') translateElement(mutation.target, currentLanguage);
+      });
+    }).observe(root, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: translatableAttributes });
   })();
 </script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>
